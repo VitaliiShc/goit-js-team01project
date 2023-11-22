@@ -1,2 +1,10 @@
 @import '~node_modules/modern-normalize/modern-normalize.css';
 @import url('./variable.css');
+@import url('./header.css');
+@import url('./hero.css');
+@import url('./filters.css');
+@import url('./productslist.css');
+@import url('./popularproducts.css');
+@import url('./discountproducts.css');
+@import url('./footer.css');
+@import url('./yourcart.css');

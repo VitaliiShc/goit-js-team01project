@@ -4,29 +4,35 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Food Boutique</title>
-    
-    <link href="https://fonts.cdnfonts.com/css/pp-neue-montreal?styles=158867,158869" rel="stylesheet">
+
+    <link
+      href="https://fonts.cdnfonts.com/css/pp-neue-montreal?styles=158867,158869"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
-  
+
   <body>
-    <load ="partials/header.html" />
+    <include src="partials/header.html"></include>
 
     <main>
-      <p>Test note</p>
-      <load ="partials/hero.html" />
+      <include src="partials/hero.html"></include>
       <section class="our-products">
         <div class="productslist">
-          <load ="partials/productslist.html" /> <!-- filters, products list, pagination -->
+          <!-- filters -->
+          <include src="partials/filters.html"></include>
+          <!-- products list, pagination -->
+          <include src="partials/productslist.html"></include>
         </div>
         <div class="offers">
-          <load ="partials/popularproducts.html" /> <!--  Popular products -->
-          <load ="partials/discountproducts.html" /> <!--  Discount products -->
+          <!--  Popular products -->
+          <include src="partials/popularproducts.html"></include>
+          <!--  Discount products -->
+          <include src="partials/discountproducts.html"></include>
         </div>
       </section>
     </main>
-
-    <load ="partials/footer.html" />
+    <include src="partials/footer.html"></include>
     <script type="module" src="./index.js"></script>
   </body>
 </html>
