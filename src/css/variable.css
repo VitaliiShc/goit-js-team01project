@@ -1,4 +1,11 @@
 :root {
+  --background-color: #e8e8e2;
+  --cads-color: #fafafa;
+  --primary-color: #6d8434;
+  --light-green: #e8e8e2;
+  --dark-green: #586f1f;
+  --gray: rgba(1, 1, 1, 0.07);
+  --black: rgba(1, 1, 1, 1);
 }
 
 h1,
@@ -32,8 +39,8 @@ html {
 }
 
 body {
-  font-family: sans-serif; /* temporarily */
-  background-color: white; /* temporarily */
+  font-family: 'PP Neue Montreal', sans-serif;
+  background-color: var(--background-color);
 }
 
 a {
