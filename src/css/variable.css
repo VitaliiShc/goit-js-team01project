@@ -4,8 +4,9 @@
   --primary-color: #6d8434;
   --light-green: #e8e8e2;
   --dark-green: #586f1f;
-  --gray: rgba(1, 1, 1, 0.07);
-  --black: rgba(1, 1, 1, 1);
+  --light-gray: rgba(1, 1, 1, 0.07);
+  --gray: rgba(1, 1, 1, 0.30);
+  --black: #010101;
 }
 
 html {
@@ -65,4 +66,25 @@ a:focus {
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
+}
+
+.container {
+  width: 100vw;
+  max-width: 375px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    max-width: 768px;
+    padding: 0 32px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+    padding: 0 20px;
+  }
 }
