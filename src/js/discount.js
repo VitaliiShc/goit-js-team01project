@@ -1,0 +1,45 @@
+import axios from 'axios';
+
+const refs = {
+    dicountList: document.querySelector('.discount_list')
+}
+
+const baseUrl = "https://food-boutique.b.goit.study/api/products/discount";
+
+export async function getDiscountItem() {
+    try {
+        const response = await axios.get(baseUrl);
+        console.log(response.data);
+        return response.data; 
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export function createMarkupDiscount(response) {
+    const limitedResponse = response.slice(0, 2);
+
+    for (let i = 0; i < limitedResponse.length; i++) {
+        const { name, img, price } = limitedResponse[i];
+
+        const markup = `<li>
+            <div class="discount_card">
+                <div class="dicount_img_icon">
+                    <img class="discount_photo" src="${img}" alt="No description" loading="lazy" width="114px" height="114px"/>
+                    <span></span>
+                </div>
+                <div class="discount_info">
+                    <p class="discount_product_name">${name}</p>
+                    <p class="discount_product_price">${price}</p>
+                    <button class="basket_button_discount"> 
+                        <svg class="basket" width="12px" height="12px">
+                            <use href="./images/icons.svg#"></use>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </li>`;
+
+        refs.dicountList.insertAdjacentHTML('beforeend', markup);
+    }
+}

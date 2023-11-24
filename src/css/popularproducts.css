@@ -1,0 +1,120 @@
+.popular_container {
+    padding: 20px 20px 0 20px;
+    width: 375px;
+    margin-bottom: 100px;
+}
+
+.popular_list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.popular_title {
+    color: #010101;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+        margin-bottom: 20px;
+}
+
+.div_img {
+    width: 74px;
+    height: 74px;
+    background-color: #E8E8E2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.info_name_button {
+    display: flex;
+    justify-content: space-between;
+}
+
+.popular_card {
+    display: flex;
+    width: 335px;
+    height: 95px;
+    background-color: #FAFAFA;
+    border-radius: 10px;
+    padding: 12px;
+    position: relative;
+}
+
+.basket_button {
+    border-radius: 30px;
+    display: flex;
+        padding: 4px;
+        justify-content: center;
+        align-items: center;
+        width: 20px;
+        height: 20px;
+        border-style: none;
+        background-color: #E8E8E2;
+        position: absolute;
+        right: 12;
+        top: 12;
+}
+
+.popular_item_name {
+    color: #010101;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 20px;
+        margin-bottom: 12px;
+}
+
+.space {
+    margin-bottom: 10px;
+}
+
+.info_decription {
+    display: flex;
+    gap: 9px;
+}
+
+.popular_description{
+color: rgba(1, 1, 1, 0.30);
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 14px;
+}
+
+.popular_description_info {
+    color: #010101;
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 14px;
+}
+
+
+/* adaptive */
+
+@media screen and (min-width: 768px) {
+    .popular_container {
+            width: 768px;
+        }
+
+    .popular_list {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 13px;
+    }
+}
+
+
+@media screen and (min-width: 1440px) {
+    .popular_container {
+            width: 375px;
+        }
+
+    .popular_list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+}
