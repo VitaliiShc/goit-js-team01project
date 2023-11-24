@@ -1,1 +1,1 @@
-import './js/firstGet';
+import "./js/firstGet"
