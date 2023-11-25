@@ -1,6 +1,6 @@
 let screenWidth = window.innerWidth;
 let limitProd = findLimitProd(screenWidth);
-let pageProd = 2;
+let pageProd = 1;
 
 function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
@@ -24,12 +24,12 @@ function handleResize() {
 window.addEventListener('resize', handleResize);
 
 function createFirst() {
-  const savedProduct = localStorage.getItem("res.data");
+  const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
-  const productsList = document.querySelector(".list-prod");
+  const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
   firstElOnPage = (pageProd - 1) * limitProd;
-  limitтNumberProd = +pageProd *(+limitProd);
+  limitтNumberProd = +pageProd * +limitProd;
   console.log(firstElOnPage);
   console.log(limitтNumberProd);
   try {
@@ -38,7 +38,7 @@ function createFirst() {
       const itemsToDisplay = dataItems.slice(firstElOnPage, limitтNumberProd);
       for (let i = 0; i < itemsToDisplay.length; i += 1) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
-        productsList.insertAdjacentHTML("beforeend", markup);
+        productsList.insertAdjacentHTML('beforeend', markup);
       }
     }
   } catch (error) {
@@ -47,12 +47,14 @@ function createFirst() {
 }
 
 function creatMarkupProd(item) {
-    const { category, name, img, price, size, is10PercentOff, popularity } = item;
-    const nameWithSpace = name.replace(/_/g, ' ');
-    const categoryWithSpace = category.replace(/_/g, ' ');
+  const { category, name, img, price, size, is10PercentOff, popularity } = item;
+  const nameWithSpace = name.replace(/_/g, ' ');
+  const categoryWithSpace = category.replace(/_/g, ' ');
   return `<li class="prod-item">
                 <div class="prod-pic">
-                  <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(is10PercentOff)};">
+                  <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
+                    is10PercentOff
+                  )};">
                     <use href="icons.svg#icon-cart"></use>
                   </svg>    
                   <img class="prod-img" src="${img}" alt="${name}" loading="lazy" />
@@ -71,15 +73,13 @@ function creatMarkupProd(item) {
                       </svg>
                 </button>
                 </div>
-            </li>`
-            
-};
+            </li>`;
+}
 
 function onVisible(is10PercentOff) {
   if (is10PercentOff === true) {
-    return "visible";
-  } else
-    return "hidden";
+    return 'visible';
+  } else return 'hidden';
 }
 
-createFirst(); 
+createFirst();
