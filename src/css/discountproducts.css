@@ -1,0 +1,99 @@
+.discount_title {
+    color: #010101;
+        font-size: 24px;
+        font-weight: 500;
+        line-height: 28px;
+        margin-bottom: 20px;
+}
+
+.discount_container {
+    padding: 0 20px 20px 20px;
+    width: 375px;
+}
+
+.discount_list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.discount_card {
+    width: 335px;
+    height: 232px;
+    background-color: #FAFAFA;
+    padding: 15px;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.dicount_img_icon {
+width: 304px;
+height: 150px;
+background-color: #E8E8E2;
+border-radius: 10px;
+display: flex;
+justify-content: center;
+align-items: center;
+margin-bottom: 23px;
+}
+
+.discount_info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.basket_button_discount {
+        border-radius: 30px;
+            display: flex;
+            padding: 4px;
+            justify-content: center;
+            align-items: center;
+            width: 20px;
+            height: 20px;
+            border-style: none;
+            background-color: #E8E8E2;
+}
+
+.discount_product_name {
+    color: #010101;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 20px;
+}
+
+.discount_product_price {
+    color: #010101;
+        font-size: 18px;
+        font-weight: 500;
+        line-height: 20px;
+}
+
+
+/* adaptive */
+
+@media screen and (min-width: 768px) {
+    .discount_container {
+            padding: 0 20px 20px 20px;
+            width: 768px;
+        }
+
+    .discount_list {
+            display: flex;
+            flex-direction: row;
+            gap: 32px;
+        }
+}
+
+
+@media screen and (min-width: 1280px) {
+    .discount_container {
+            width: 375px;
+        }
+
+                .discount_list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+}
