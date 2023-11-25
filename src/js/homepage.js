@@ -1,5 +1,5 @@
-import { getPopularItem, createMarkupPopular } from './js/popular';
-import { getDiscountItem, createMarkupDiscount } from './js/discount';
+import { getPopularItem, createMarkupPopular } from './popular.js';
+import { getDiscountItem, createMarkupDiscount } from './discount.js';
 
 getPopularItem()
   .then(response => createMarkupPopular(response))
