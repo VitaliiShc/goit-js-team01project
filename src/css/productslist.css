@@ -11,7 +11,7 @@
 
 .prod-item {
     padding: 20px 20px;
-    background: #FAFAFA;
+    background: var(--cards-color);
     border-radius: 20px;
     max-width: 100%;
     max-height: 356px;
@@ -19,7 +19,7 @@
 
 .prod-pic {
     border-radius: 10px;
-    background: #E8E8E2;
+    background-color: var(--background-color);
     width: 295px;
     height: 178px;
     display: flex;
@@ -34,7 +34,7 @@
 }
 
 .discont-prod {
-    background-color: #6D8434;
+    background-color: var(--primary-color);
     position: absolute;
     top: -10px;
     left: 245px;
@@ -43,10 +43,8 @@
 }
 
 .title-prod {
-    color: #010101;
-    font-family: Neue Montreal;
+    color: var(--black);
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: 1.11em;
     margin-top: 20px;
@@ -61,19 +59,15 @@
 }
 
 .feature-prod {
-    color: rgba(1, 1, 1, 0.30);
-    font-family: Neue Montreal;
+    color: var(--gray);
     font-size: 12px;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.17em;
 }
 
 .feature-value {
-    color: #010101;
-    font-family: Neue Montreal;
+    color: var(--black);
     font-size: 12px;
-    font-style: normal;
     font-weight: 400;
     line-height: 1.17em;
     margin-left: 4px;
@@ -88,10 +82,8 @@
 }
 
 .price-prod {
-    color: #010101;
-    font-family: Neue Montreal;
+    color: var(--black);
     font-size: 18px;
-    font-style: normal;
     font-weight: 500;
     line-height: 1.11em;
     align-self: self-end;
@@ -99,7 +91,7 @@
 
 .buy-btn {
     border-radius: 30px;
-    background: #6D8434;
+    background: var(--primary-color);
     width: 34px;
     height: 34px;
     display: flex;
@@ -110,19 +102,19 @@
 }
 
 .buy-svg {
-    fill: #6D8434;
+    fill: var(--primary-color);
     justify-content: center;
     align-items: center;
 }
 
 .buy-svg:hover,
 .buy-svg:focus {
-    fill: #586F1F;
+    fill: var(--dark-green);
 }
 
 .buy-btn:hover,
 .buy-btn:focus {
-    background: #586F1F;
+    background: var(--dark-green);
 }
 
 @media screen and (min-width: 768px) {
@@ -173,7 +165,7 @@
 
     .prod-item {
         padding: 20px 20px;
-        background: #FAFAFA;
+        background: var(--cards-color);
         border-radius: 20px;
         max-width: 295px;
         max-height: 363px;
