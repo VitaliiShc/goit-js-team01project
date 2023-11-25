@@ -1,6 +1,6 @@
 :root {
   --background-color: #e8e8e2;
-  --cads-color: #fafafa;
+  --cards-color: #fafafa;
   --primary-color: #6d8434;
   --light-green: #e8e8e2;
   --dark-green: #586f1f;
@@ -69,7 +69,6 @@ a {
   max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 @media screen and (min-width: 768px) {
