@@ -1,2 +1,2 @@
 import './js/firstGet.js';
-import './js/homepage.js';
+// import './js/homepage.js';
