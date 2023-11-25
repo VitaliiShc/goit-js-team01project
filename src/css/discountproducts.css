@@ -23,6 +23,7 @@
     background-color: #FAFAFA;
     padding: 15px;
     border-radius: 15px;
+    cursor: pointer;
 }
 
 .dicount_img_icon {
@@ -39,6 +40,7 @@ margin-bottom: 23px;
 .discount_info {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
 }
 
 .basket_button_discount {
@@ -58,7 +60,6 @@ margin-bottom: 23px;
         font-size: 18px;
         font-weight: 500;
         line-height: 20px;
-        margin-right: auto;
 }
 
 .discount_product_price {
@@ -66,7 +67,6 @@ margin-bottom: 23px;
         font-size: 18px;
         font-weight: 500;
         line-height: 20px;
-        margin-right: 8px;
 }
 
 
@@ -86,7 +86,7 @@ margin-bottom: 23px;
 }
 
 
-@media screen and (min-width: 1440px) {
+@media screen and (min-width: 1280px) {
     .discount_container {
             width: 375px;
         }
