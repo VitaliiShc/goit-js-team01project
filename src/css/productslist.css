@@ -34,6 +34,7 @@
 }
 
 .discont-prod {
+
     background-color: var(--primary-color);
     position: absolute;
     top: -10px;
