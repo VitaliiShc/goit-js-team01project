@@ -10,9 +10,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  visibility: visible;
+  opacity: 1;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.popup-curt-content {
+.popup-cart-content {
   width: 335px;
   border-radius: 20px;
   background-color: var(--light-green);
@@ -71,7 +74,7 @@
 }
 
 @media screen and (min-width: 768px) {
-  .popup-curt-content {
+  .popup-cart-content {
     width: 560px;
     padding: 40px 40px 80px 40px;
   }
@@ -103,5 +106,6 @@
 /* ! --- TOOLS --- */
 
 .is-hidden{
-  display: none;
+  visibility: hidden;
+  opacity: 0;
 }
