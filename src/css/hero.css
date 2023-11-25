@@ -1,6 +1,5 @@
 .hero-section {
-  padding-top: 72px;
-  padding-bottom: 74px;
+  margin-bottom: 74px;
 }
 
 .hero-title {
@@ -58,24 +57,27 @@
 
 @media screen and (min-width: 768px) {
   .hero-section {
-    padding-top: 116px;
-    padding-bottom: 74px;
+    padding-top: 12px;
   }
+
   .hero-title {
     max-width: 658px;
     font-size: 80px;
     line-height: 1;
     margin-bottom: 20px;
   }
+
   .hero-subtitle {
     max-width: 492px;
     font-size: 18px;
     line-height: 1.33;
     margin-bottom: 40px;
   }
+
   .hero-img {
     border-radius: 60px;
   }
+
   .hero-icon-cont {
     left: 91.2%;
     top: 5%;
@@ -83,14 +85,11 @@
 }
 
 @media screen and (min-width: 1280px) {
-  .hero-section {
-    padding-top: 77px;
-    padding-bottom: 74px;
-  }
   .hero-title {
     max-width: 1142px;
     letter-spacing: -0.02em;
   }
+  
   .hero-icon-cont {
     left: 94.5%;
     top: 1.5%;
