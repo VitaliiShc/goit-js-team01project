@@ -1,6 +1,7 @@
 .hero-section {
-  margin-bottom: 74px;
-}
+  padding-top: 54px;
+  padding-bottom: 74px;
+  }
 
 .hero-title {
   max-width: 335px;
@@ -57,7 +58,8 @@
 
 @media screen and (min-width: 768px) {
   .hero-section {
-    padding-top: 12px;
+    padding-top: 92px;
+    padding-bottom: 74px;
   }
 
   .hero-title {
@@ -85,6 +87,10 @@
 }
 
 @media screen and (min-width: 1280px) {
+    .hero-section {
+    padding-top: 53px;
+  }
+
   .hero-title {
     max-width: 1142px;
     letter-spacing: -0.02em;
