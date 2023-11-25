@@ -1,0 +1,202 @@
+.list-prod {
+    max-width: 375px;
+    margin: 0 auto;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px 20px;
+}
+
+.prod-item {
+    padding: 20px 20px;
+    background: #FAFAFA;
+    border-radius: 20px;
+    max-width: 100%;
+    max-height: 356px;
+}
+
+.prod-pic {
+    border-radius: 10px;
+    background: #E8E8E2;
+    width: 295px;
+    height: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.prod-img {
+    max-width: 140px;
+    max-height: 140px;
+}
+
+.discont-prod {
+    background-color: #6D8434;
+    position: absolute;
+    top: -10px;
+    left: 245px;
+    z-index: 7;
+    visibility: hidden;
+}
+
+.title-prod {
+    color: #010101;
+    font-family: Neue Montreal;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.11em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.feature {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    gap: 8px;
+}
+
+.feature-prod {
+    color: rgba(1, 1, 1, 0.30);
+    font-family: Neue Montreal;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.17em;
+}
+
+.feature-value {
+    color: #010101;
+    font-family: Neue Montreal;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.17em;
+    margin-left: 4px;
+}
+
+.buing-prod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: end; */
+    height: 34px;
+}
+
+.price-prod {
+    color: #010101;
+    font-family: Neue Montreal;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.11em;
+    align-self: self-end;
+}
+
+.buy-btn {
+    border-radius: 30px;
+    background: #6D8434;
+    width: 34px;
+    height: 34px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    appearance: auto;
+}
+
+.buy-svg {
+    fill: #6D8434;
+    justify-content: center;
+    align-items: center;
+}
+
+.buy-svg:hover,
+.buy-svg:focus {
+    fill: #586F1F;
+}
+
+.buy-btn:hover,
+.buy-btn:focus {
+    background: #586F1F;
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        width: 768px;
+    }
+
+    .list-prod {
+        max-width: 768px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 32px;
+        padding: 20px 32px;
+    }
+
+    .prod-item {
+        max-width: 336px;
+        max-height: 360px;
+    }
+
+    .title-prod {
+        font-size: 20px;
+        line-height: 1.2em;
+    }
+
+    .price-prod {
+        font-size: 20px;
+        line-height: 1.2em;
+    }
+
+    .prod-pic {
+        width: 296px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    body {
+        width: 1440px;
+    }
+
+    .list-prod {
+        max-width: 925px;
+        flex-wrap: wrap;
+        flex-direction: row;
+        gap: 40px 20px;
+        padding: 0;
+    }
+
+    .prod-item {
+        padding: 20px 20px;
+        background: #FAFAFA;
+        border-radius: 20px;
+        max-width: 295px;
+        max-height: 363px;
+    }
+
+    .title-prod {
+        font-size: 20px;
+        line-height: 1.2em;
+    }
+
+    .price-prod {
+        font-size: 20px;
+        line-height: 1.2em;
+    }
+
+    .prod-pic {
+        width: 255px;
+    }
+
+    .feature {
+        max-width: 220px;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 20px;
+    }
+}
