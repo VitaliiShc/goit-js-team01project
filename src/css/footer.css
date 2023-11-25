@@ -91,16 +91,14 @@
   font-size: 24px;
   line-height: 1.17;
   letter-spacing: -0.02em;
-  text-align: left;
   margin-bottom: 14px;
 }
 
 .footer-paragraph {
+  color: rgba(232, 232, 226, 0.7);
   font-size: 14px;
   font-weight: 400;
   line-height: 1.29;
-  letter-spacing: 0em;
-  text-align: left;
 }
 
 .footer-subcribe {
@@ -108,18 +106,69 @@
 }
 
 .footer-subtitle-text {
+  font-size: 14px;
+  line-height: 1.29;
+  font-weight: 400;
+  margin-bottom: 20px;
 }
 
 .footer-subcribe-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
 .footer-subcribe-label {
 }
 
 .footer-subcribe-input {
+  outline: transparent;
+  width: calc(100vw - 20px * 2);
+  max-width: 335px;
+  height: 42px;
+  border-radius: 30px;
+  border: 1px solid var(--background-color);
+  padding: 12px 18px;
+  background-color: var(--primary-color);
+  color: rgba(232, 232, 226);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-subcribe-input::placeholder {
+  color: rgba(232, 232, 226, 0.6);
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.29;
+  letter-spacing: 0.04em;
+}
+
+.footer-subcribe-input:focus {
+  border-color: rgba(232, 232, 226);
 }
 
 .footer-subcribe-btn {
+  width: calc(100vw - 20px * 2);
+  max-width: 335px;
+  height: 42px;
+  border-radius: 30px;
+  border: none;
+  padding: 12px 18px;
+  background-color: var(--background-color);
+  color: var(--black);
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.29;
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.footer-subcribe-btn:is(:hover, :focus) {
+  background-color: rgba(232, 232, 226, 0.6);
+  color: var(--dark-green);
 }
 
 .footer-policies {
