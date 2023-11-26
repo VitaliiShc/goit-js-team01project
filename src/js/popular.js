@@ -52,4 +52,5 @@ function getProductId(id) {
     const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
     const find = storedItems.find(obj => obj['_id'] === id);
     return find;
+    }
 }

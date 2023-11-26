@@ -31,7 +31,7 @@ export function createMarkupDiscount(response) {
                 <div class="discount_info">
                     <p class="discount_product_name" data-id="${_id}">${name}</p>
                     <p class="discount_product_price" data-id="${_id}">${price}</p>
-                    <button class=""></button>
+                    <button class="basket_button_discount"></button>
                 </div>
         </li>`;
 
