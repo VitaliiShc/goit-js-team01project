@@ -1,12 +1,12 @@
 :root {
-  --background-color: #e8e8e2;
-  --cards-color: #fafafa;
-  --primary-color: #6d8434;
-  --light-green: #e8e8e2;
-  --dark-green: #586f1f;
+  --background-color: rgba(232, 232, 226, 1);
+  --cards-color: rgba(250, 250, 250, 1);
+  --primary-color: rgba(109, 132, 52, 1);
+  --light-green: rgba(232, 232, 226, 0.2);
+  --dark-green: rgba(88, 111, 31, 1);
   --light-gray: rgba(1, 1, 1, 0.07);
   --gray: rgba(1, 1, 1, 0.3);
-  --black: #010101;
+  --black: rgba(1, 1, 1, 1);
 }
 
 html {
