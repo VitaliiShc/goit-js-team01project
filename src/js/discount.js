@@ -29,9 +29,15 @@ export function createMarkupDiscount(response) {
                     <span class="discount_icon"></span>
                 </div>
                 <div class="discount_info">
+<<<<<<< Updated upstream
                     <p class="discount_product_name" data-id="${_id}">${name}</p>
                     <p class="discount_product_price" data-id="${_id}">${price}</p>
                     <button class=""></button>
+=======
+                    <p class="discount_product_name">${name}</p>
+                    <p class="discount_product_price">${price}</p>
+                    <button class="basket_button_discount"></button>
+>>>>>>> Stashed changes
                 </div>
         </li>`;
 

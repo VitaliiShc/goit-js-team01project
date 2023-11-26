@@ -76,6 +76,7 @@ position: relative;
 }
 
 .basket_button_discount {
+    display: flex;
     border-radius: 30px;
     border-style: none;
     background-color: #6D8434;
