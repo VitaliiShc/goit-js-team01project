@@ -5,4 +5,3 @@ import './js/discount.js';
 import './js/firstProdGet.js';
 import './js/pagination-logic.js';
 import './js/pagination.js';
-import './js/popup-cart.js';
