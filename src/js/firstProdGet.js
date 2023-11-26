@@ -1,9 +1,8 @@
-import { pagination } from './pagination.js';
 let screenWidth = window.innerWidth;
 let limitProd = findLimitProd(screenWidth);
 let pageProd = 1;
 
-export function findLimitProd(screenWidth) {
+function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
     return 6;
   } else if (screenWidth >= 768 && screenWidth < 1280) {
@@ -18,25 +17,25 @@ function handleResize() {
   const newLimitProd = findLimitProd(newScreenWidth);
   if (newLimitProd !== limitProd) {
     limitProd = newLimitProd;
-    createFirst(pageProd, limitProd);
+    createFirst();
   }
 }
 
 window.addEventListener('resize', handleResize);
 
-export function createFirst(page, limit) {
+function createFirst() {
   const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
-  const firstElOnPage = (page - 1) * limit;
-  const limitNumberProd = page * limit;
+  firstElOnPage = (pageProd - 1) * limitProd;
+  limitтNumberProd = +pageProd * +limitProd;
   console.log(firstElOnPage);
-  console.log(limitNumberProd);
+  console.log(limitтNumberProd);
   try {
     const dataItems = parseItem;
     if (dataItems && dataItems.length > 0) {
-      const itemsToDisplay = dataItems.slice(firstElOnPage, limitNumberProd);
+      const itemsToDisplay = dataItems.slice(firstElOnPage, limitтNumberProd);
       for (let i = 0; i < itemsToDisplay.length; i += 1) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
         productsList.insertAdjacentHTML('beforeend', markup);
@@ -83,9 +82,4 @@ function onVisible(is10PercentOff) {
   } else return 'hidden';
 }
 
-createFirst(pageProd, limitProd);
-pagination.on('afterMove', event => {
-  const currentPage = event.page;
-  createFirst(currentPage, limitProd);
-  console.log(currentPage);
-});
+createFirst();
