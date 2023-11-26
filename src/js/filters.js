@@ -2,25 +2,29 @@ import { FoodApi } from './api.js';
 import { LocalStorage } from './local-storage.js';
 const submitForm = document.querySelector('.submit-form');
 const select = document.querySelector('.categories');
+// Дефолтные значение в хранилище
 document.addEventListener('DOMContentLoaded', () => {
     localStorageManager.defaultApiOptions()});
+
 const foodApi = new FoodApi();
 const localStorageManager = new LocalStorage();
 // толкаем в селект
-foodApi.getCategories().then(categories => {
 
+foodApi.getCategories().then(categories => {
   const defaultOption = document.createElement('option');
   defaultOption.value = '';
   defaultOption.textContent = 'Categories';
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);
-
   categories.forEach(category => {
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
     select.appendChild(option);
+  });
+  select.addEventListener('click', function () {
+    defaultOption.classList.add('hidden');
   });
 
   const showAllOption = createShowAllOption();
@@ -34,12 +38,10 @@ function createShowAllOption() {
   return showAllOption;
 }
 
-
-
 // Выбор категории
 select.addEventListener('change', async function () {
-  
 const selectedItem = select.value;
+
   try {
     
 let options = JSON.parse(localStorage.getItem('options')) || {};
@@ -59,6 +61,8 @@ let options = JSON.parse(localStorage.getItem('options')) || {};
     console.error('Error fetching food list:', error.message);
   }
 });
+
+
 
 // Сабмит
 submitForm.addEventListener('submit', async event => {
