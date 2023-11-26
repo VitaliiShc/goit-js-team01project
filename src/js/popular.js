@@ -3,12 +3,8 @@ import axios from 'axios';
 const refs = {
     popularList: document.querySelector('.popular_list'),
     popularCard: document.querySelector('.popular_card'),
-<<<<<<< Updated upstream
+    popularBtn: document.querySelector('.basket_button'),
 };
-=======
-    popularBtn: document.querySelector('.basket_button')
-}
->>>>>>> Stashed changes
 
 const baseUrl = "https://food-boutique.b.goit.study/api/products/popular";
 
@@ -44,14 +40,7 @@ export function createMarkupPopular(response) {
         </li>`;
     }).join('');
     refs.popularList.insertAdjacentHTML('beforeend', markup);
-refs.popularCard.addEventListener('click', clickOnCard());
-
-function clickOnCard() {
-    console.log("Натиснуто")
-    }
-}
-
-refs.popularList.addEventListener('click', e => {
+    refs.popularList.addEventListener('click', e => {
     const id = e.target.dataset.id;
     if (id) {
         const product = getProductId(id);
@@ -59,11 +48,8 @@ refs.popularList.addEventListener('click', e => {
     }
 });
 
-<<<<<<< Updated upstream
 function getProductId(id) {
     const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
     const find = storedItems.find(obj => obj['_id'] === id);
     return find;
 }
-=======
->>>>>>> Stashed changes
