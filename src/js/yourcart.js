@@ -1,15 +1,5 @@
-<section class="cart-container">
-    <div class="carts">
-        <div class="icon-block">
-            <svg class="icon">
-                <use href="./images/icons.svg#icon-cart"></use>
-            </svg>
-        </div>
-        <h2 class="title">CART (<span class="span-title">0</span>)</h2>
-    </div>
-
-
-    <!-- <div class="product-cart">
+const basketCart = document.querySelector('.js-basket');
+basketCart.innerHTML = `<div class="product-cart">
     <div class="delete-all">
         <p class="delete-all-text">Delete all</p>
         <button class="delete-all-btn">
@@ -18,13 +8,18 @@
             </svg>
         </button>
     </div>
+      <button class="delete-btn">
+                <svg class="delete-icon">
+                    <use href="./images/icons.svg#icon-remove"></use>
+                </svg>
+            </button>
     <ul class="product-list">
         <li class="product-item">
             <div class="product-cart-container">
                 <img src="" alt="" class="product-cart-img" />
             </div>
             <div class="product-info">
-                <h3 class="product-cart-title"></h3>
+                <h3 class="product-cart-title">Title</h3>
                 <ul class="product-list-info">
                     <li class="product-info-item">
                         <p class="product-cart-category">Category:<span></span></p>
@@ -33,32 +28,15 @@
                         <p class="'product-cart-size">Size:<span></span></p>
                     </li>
                 </ul>
-                <p class="product-price"><span></span></p>
+                <p class="product-price">1<span></span></p>
             </div>
-            <button class="delete-btn">
-                <svg class="delete-icon">
-                    <use href="./images/icons.svg#icon-remove"></use>
-                </svg>
-            </button>
+          
         </li>
     </ul>
-</div> -->
-
-    <div class="js-basket">
-        <picture>
-            <source srcset="./images/basket.png    1x, ./images/basket-2x.png 2x" />
-            <img src="./images/basket.png" alt="basket" class="basket-img" />
-        </picture>
-        <h3 class="basket-title">Your basket is <a href="/src/index.html" class="basket-title-link">empty...</a></h3>
-        <p class="basket-text">Go to the main page to select your favorite products and add them to the cart.</p>
-    </div>
-
-    <!-- ////// Кошик з товарами ////// -->
+</div>
 
 
-
-
-    <!-- <div class="order">
+<div class="order">
 <h2 class="order-title">Your Order</h2>
 <div class="order-total">
     <p class="order-text-total">Total</p>
@@ -71,6 +49,19 @@
 <form class="form-input">
     <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" required />
     <button type="submit" class="form-btn">Checkout</button>
-</form> -->
+</form>`;
+console.log(basketCart)
 
-</section>
+
+
+
+    // if (value === 0) {
+    //     basketCart.classList.remove('.visually-hidden')
+    // }
+
+    // if (value !== 0) {
+    //     basketCart.classList.add('.visually-hidden')
+    // }
+
+
+
