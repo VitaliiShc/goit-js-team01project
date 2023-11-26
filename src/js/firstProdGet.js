@@ -51,13 +51,13 @@ function creatMarkupProd(item) {
   const { category, name, img, price, size, is10PercentOff, popularity } = item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
-  return `<li class="prod-item">
+  return `<li class="prod-item" data-id="${_id}">
                 <div class="prod-pic">
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
                   )};">
                     <use href="icons.svg#icon-cart"></use>
-                  </svg>    
+                  </svg>
                   <img class="prod-img" src="${img}" alt="${name}" loading="lazy" />
                 </div>
                 <h3 class="title-prod">${nameWithSpace}</h3>
@@ -68,7 +68,7 @@ function creatMarkupProd(item) {
                 </div>
                 <div class="buing-prod">
                   <p class="price-prod">$${price}</p>
-                  <button class="buy-btn" type="button">
+                  <button class="buy-btn" type="button" id="${_id}">
                       <svg class="buy-svg" width="18" height="18">
                         <use href="icons.svg#icon-cart"></use>
                       </svg>
@@ -90,6 +90,7 @@ pagination.on('afterMove', event => {
   console.log(currentPage);
 });
 
+createFirst();
 
 // add to cart
 
@@ -124,5 +125,3 @@ function addToCart(event) {
   } else {
   }
 }
-
-createFirst();
