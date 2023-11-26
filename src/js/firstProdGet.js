@@ -48,7 +48,8 @@ export function createFirst(page, limit) {
 }
 
 function creatMarkupProd(item) {
-  const { category, name, img, price, size, is10PercentOff, popularity } = item;
+  const { _id, category, name, img, price, size, is10PercentOff, popularity } =
+    item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
   return `<li class="prod-item" data-id="${_id}">
@@ -98,30 +99,32 @@ const cartValue = localStorage.getItem('cart');
 
 if (cartValue !== null) {
 } else {
-  localStorage.setItem("cart", JSON.stringify([]));
+  localStorage.setItem('cart', JSON.stringify([]));
 }
 
-const buyClick = document.querySelectorAll(".buy-btn");
+const buyClick = document.querySelectorAll('.buy-btn');
 
 buyClick.forEach(button => {
-  button.addEventListener("click", addToCart);
+  button.addEventListener('click', addToCart);
 });
 
 function addToCart(event) {
   let buyingProd = event.currentTarget;
   let productId = buyingProd.id;
   console.log(productId);
-  
-  const savedProduct1 = JSON.parse(localStorage.getItem("res.data"));
+
+  const savedProduct1 = JSON.parse(localStorage.getItem('res.data'));
   const prodInCart = savedProduct1.find(option => option._id === productId);
 
-  const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+  const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  const productAlreadyInCart = currentCart.find(item => item._id === prodInCart._id);
+  const productAlreadyInCart = currentCart.find(
+    item => item._id === prodInCart._id
+  );
 
   if (!productAlreadyInCart) {
     currentCart.push(prodInCart);
-    localStorage.setItem("cart", JSON.stringify(currentCart));
+    localStorage.setItem('cart', JSON.stringify(currentCart));
   } else {
   }
 }
