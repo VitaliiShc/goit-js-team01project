@@ -28,8 +28,8 @@ function createFirst() {
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
-  firstElOnPage = (pageProd - 1) * limitProd;
-  limitтNumberProd = +pageProd * +limitProd;
+  const firstElOnPage = (pageProd - 1) * limitProd;
+  const limitтNumberProd = +pageProd * +limitProd;
   console.log(firstElOnPage);
   console.log(limitтNumberProd);
   try {
@@ -80,6 +80,48 @@ function onVisible(is10PercentOff) {
   if (is10PercentOff === true) {
     return 'visible';
   } else return 'hidden';
+}
+
+createFirst(pageProd, limitProd);
+pagination.on('afterMove', event => {
+  const currentPage = event.page;
+  createFirst(currentPage, limitProd);
+  console.log(currentPage);
+});
+
+
+// add to cart
+
+const cartValue = localStorage.getItem('cart');
+
+if (cartValue !== null) {
+} else {
+  localStorage.setItem("cart", JSON.stringify([]));
+}
+
+const buyClick = document.querySelectorAll(".buy-btn");
+
+buyClick.forEach(button => {
+  button.addEventListener("click", addToCart);
+});
+
+function addToCart(event) {
+  let buyingProd = event.currentTarget;
+  let productId = buyingProd.id;
+  console.log(productId);
+  
+  const savedProduct1 = JSON.parse(localStorage.getItem("res.data"));
+  const prodInCart = savedProduct1.find(option => option._id === productId);
+
+  const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const productAlreadyInCart = currentCart.find(item => item._id === prodInCart._id);
+
+  if (!productAlreadyInCart) {
+    currentCart.push(prodInCart);
+    localStorage.setItem("cart", JSON.stringify(currentCart));
+  } else {
+  }
 }
 
 createFirst();
