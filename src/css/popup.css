@@ -11,6 +11,9 @@
   justify-content: center;
   background: rgba(1, 1, 1, 0.4);
   overflow-y: auto;
+  overflow-x: hidden;
+  z-index: 10;
+  transition: all 800ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .popup-main-content {
@@ -56,13 +59,14 @@
   font-size: 18px;
   font-weight: 500;
   line-height: 1.11; /* 111.111% */
-  margin-bottom: 10px;
+
 }
 
 .popup-main-list {
   display: flex;
   flex-wrap: wrap;
   gap: 9px 8px;
+  margin-top: 10px;
   margin-bottom: 20px;
 }
 
@@ -106,7 +110,7 @@
   border-radius: 30px;
   background-color: var(--primary-color);
   /* button text */
-  color: var(--light-green);
+  color: var(--background-color);
   font-weight: 500;
   line-height: 1.29; /* 128.571% */
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -119,7 +123,7 @@
 .popup-main-icon {
   width: 18px;
   height: 18px;
-  fill: var(--light-green);
+  fill: var(--background-color);
 }
 
 /*? SCREEN 768 */

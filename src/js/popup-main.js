@@ -1,66 +1,107 @@
-// const refs = {
-//   productCard: document.querySelector('.prod-item'),
-//   productList: document.querySelector('.list-prod'),
-//   popupMain: document.querySelector('.popup-main'),
-//   // list
-//   popupMainPhoto: document.querySelector('popup-main-photo'),
-//   popupMainTitle: document.querySelector('popup-main-title'),
-//   popupMainSubtitles: document.querySelector('popup-main-subtitles'),
-//   popupMainText: document.querySelector('popup-main-text'),
-//   popupMainPrice: document.querySelector('popup-main-price'),
-// };
+import axios from 'axios';
 
-// const getLocalStorage = JSON.parse(localStorage.getItem('res.data'));
-// console.log(getLocalStorage);
+const refs = {
+  // elements
+  body: document.querySelector('body'),
+  productList: document.querySelector('.list-prod'),
+};
 
-// function getProductId(id) {
-//   console.log(id);
-//   const find = getLocalStorage.find(obj => obj._id === id);
-//   console.log(find);
-//   return find;
-// }
+// * get id of product
 
-// refs.productList.addEventListener('click', e => {
-//   console.log(e.currentTarget);
-//   e.preventDefault();
-//   console.log(e.target);
-//   const id = e.target.id;
-//   getProductId(id);
-//   refs.popupMain.classList.remove('is-hidden');
-//   const { category, name, img, price, size, is10PercentOff, popularity, _id } =
-//     id;
-//   // refs.popupMainPhoto.src = `${img}`;
-// });
+async function getProductById(id) {
+  try {
+    const BASE_API = 'https://food-boutique.b.goit.study/api';
+    const END_POINT = `/products/${id}`;
+    const url = `${BASE_API}${END_POINT}`;
 
-// import axios from 'axios';
+    const response = await axios.get(url);
+    const data = await response.data;
+    return data;
 
-// const refs = {
-//   productItem: document.querySelector('.prod-item'),
-//   productList: document.querySelector('.list-prod'),
-// };
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-// async function getProductByID(id) {
-//   try {
-//     const API_URL = 'https://food-boutique.b.goit.study/api';
-//     const END_POINT = `/products/${id}`;
-//     const url = `${API_URL}${END_POINT}`;
+// * open modal
+refs.productList.addEventListener('click', async e => {
+  console.log(e.target.dataset.id);
+  e.preventDefault();
+  const id = e.target.dataset.id;
+  try {
+    const data = await getProductById(id);
+    renderPopup(data);
 
-//     const response = await axios.get(url);
-//     const data = await response.data;
-//     console.log(data);
-//     return data;
+    const popupMain = document.getElementById('popap-main');
+    const closeBtn = document.querySelector('.popup-main-close-btn');
 
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+    // * close modal by Button - X
+    closeBtn.addEventListener('click', () => {
+      closeModal(popupMain);
+    });
+    // * close modal by Dropbox
+    popupMain.addEventListener('click', e => {
+      if (e.target === popupMain) {
+        closeModal(popupMain);
+      }
+    });
+    // * close modal by Escape
+    window.addEventListener('keydown', e => {
+      if (e.code === 'Escape') {
+        closeModal(popupMain);
+      }
+    });
 
-// function createMarkup(data) {
-//   console.log(data)
-// }
+  } catch (error) {
+    console.error(error);
+  }
+});
 
-// refs.productList.addEventListener('click', e => {
-//   console.log(e.target.id)
-//   const id = e.target.id;
-//   getProductByID(id);
-// });
+// ! render
+
+async function renderPopup(data) {
+  const { category, desc, img, name, price, size, popularity } = data;
+  console.log(data);
+  const markup = `<div id="popap-main" class="popup-main">
+  <div class="popup-main-content">
+    <button class="popup-main-close-btn" type="button">
+      X
+    </button>
+    <div class="popup-main-conteiner">
+      <div class="popup-main-wrap">
+        <img class="popup-main-photo" src="${img}" alt="photo" width="160" />
+      </div>
+      <div class="popup-main-text-conteiner">
+        <p class="popup-main-title">${name}</p>
+        <ul class="popup-main-list">
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Category: </spun>${category}
+          </li>
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Size: </spun>${size}
+          </li>
+          <br />
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Popularity: </spun>${popularity}
+          </li>
+        </ul>
+        <p class="popup-main-text">${desc}</p>
+      </div>
+    </div>
+    <div class="popup-main-footer">
+      <p class="popup-main-price">$${price}</p>
+      <button class="popup-main-add-btn" type="button">
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+`;
+  refs.body.insertAdjacentHTML('afterbegin', markup);
+}
+
+// ! close popup functions
+
+function closeModal(popupMain) {
+  popupMain.classList.add('is-hidden');
+}
