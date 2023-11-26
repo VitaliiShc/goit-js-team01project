@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { pagination } from './pagination.js';
+
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
@@ -14,10 +14,6 @@ export class searchFirstAPI {
       const res = await axiosFirst.get('', {
         params: { page: page, limit: limit },
       });
-      const resultsLength = res.data.results.length;
-      pagination.reset(resultsLength);
-      console.log('Довжина масиву results:', resultsLength);
-
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
     } catch (error) {
       throw error;
