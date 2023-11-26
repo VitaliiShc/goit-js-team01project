@@ -1,5 +1,32 @@
 const basketCart = document.querySelector('.js-basket');
-basketCart.innerHTML = `<div class="product-cart">
+const cartProductQuantity = document.querySelector('.span-title');
+
+// cartProductQuantity.addEventListener*('change', fooo) - ???
+
+console.log(cartProductQuantity.textContent);
+
+if (cartProductQuantity.textContent === '0') {
+  basketCart.innerHTML = `    <picture>
+      <source srcset="./images/basket.png    1x, ./images/basket-2x.png 2x" />
+      <img src="./images/basket.png" alt="basket" class="basket-img" />
+    </picture>
+    <h3 class="basket-title">
+      Your basket is{' '}
+      <a href="/src/index.html" class="basket-title-link">
+        empty...
+      </a>
+    </h3>
+    <p class="basket-text">
+      Go to the main page to select your favorite products and add them to the
+      cart.
+    </p>`;
+  console.log(basketCart);
+
+  // basketCart.classList.remove('.visually-hidden')
+}
+
+if (cartProductQuantity.textContent !== '0') {
+  basketCart.innerHTML = `<div class="product-cart">
     <div class="delete-all">
         <p class="delete-all-text">Delete all</p>
         <button class="delete-all-btn">
@@ -50,18 +77,6 @@ basketCart.innerHTML = `<div class="product-cart">
     <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" required />
     <button type="submit" class="form-btn">Checkout</button>
 </form>`;
-console.log(basketCart)
-
-
-
-
-    // if (value === 0) {
-    //     basketCart.classList.remove('.visually-hidden')
-    // }
-
-    // if (value !== 0) {
-    //     basketCart.classList.add('.visually-hidden')
-    // }
-
-
-
+  console.log(basketCart);
+  // basketCart.classList.add('.visually-hidden')
+}
