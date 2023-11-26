@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
@@ -7,25 +6,22 @@ const axiosFirst = axios.create({
     limit: '90',
   },
 });
-
 export class searchFirstAPI {
   async getFirstSearch(page, limit) {
     try {
       const res = await axiosFirst.get('', {
         params: { page: page, limit: limit },
       });
+      // return res.data;
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
     } catch (error) {
       throw error;
     }
   }
 }
-
 const apiInstance = new searchFirstAPI();
-
 const page = 1;
 const limit = 90;
-
 apiInstance
   .getFirstSearch(page, limit)
   .then(() => {

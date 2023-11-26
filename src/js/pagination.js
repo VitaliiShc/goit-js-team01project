@@ -1,8 +1,8 @@
 import Pagination from 'tui-pagination';
 const options = {
-  totalItems: 90,
-  itemsPerPage: 6,
-  visiblePages: 8,
+  totalItems: 0,
+  itemsPerPage: 9,
+  visiblePages: 10,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
