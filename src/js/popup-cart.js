@@ -5,18 +5,14 @@ const refs = {
 };
 
 refs.checkModalBtn.addEventListener('click', e => {
-  console.log('clic-1');
   e.preventDefault();
   refs.popupCart.classList.remove('is-hidden');
-
-  window.addEventListener('keydown', clickByEscape);
+  window.addEventListener('keydown', closeByEscape);
 });
 
 refs.closeBtn.addEventListener('click', closeModal);
 
 refs.popupCart.addEventListener('click', e => {
-  console.log('click-3');
-  e.preventDefault();
   if (e.target === refs.popupCart) {
     closeModal();
   }
@@ -24,10 +20,10 @@ refs.popupCart.addEventListener('click', e => {
 
 function closeModal() {
   refs.popupCart.classList.add('is-hidden');
-  window.removeEventListener('keydown', clickByEscape);
+  window.removeEventListener('keydown', closeByEscape);
 }
 
-function clickByEscape(e) {
+function closeByEscape(e) {
   if (e.code === 'Escape') {
     closeModal();
   }
