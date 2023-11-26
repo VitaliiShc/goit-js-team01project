@@ -5,32 +5,30 @@ const refs = {
 };
 
 refs.checkModalBtn.addEventListener('click', e => {
-  console.log('clic-1')
+  console.log('clic-1');
   e.preventDefault();
   refs.popupCart.classList.remove('is-hidden');
-})
 
-refs.closeBtn.addEventListener('click', e => {
-  console.log('click-2');
-  e.preventDefault();
-  refs.popupCart.classList.add('is-hidden');
-})
+  window.addEventListener('keydown', clickByEscape);
+});
+
+refs.closeBtn.addEventListener('click', closeModal);
 
 refs.popupCart.addEventListener('click', e => {
-  console.log('click-3')
+  console.log('click-3');
   e.preventDefault();
   if (e.target === refs.popupCart) {
-    refs.popupCart.classList.add('is-hidden');
+    closeModal();
   }
-})
+});
 
-document.addEventListener('keyup', e => {
-  console.log('click-4');
-  e.preventDefault();
-  if (e.key === 'Escape') {
-    refs.popupCart.classList.add('is-hidden');
-    document.removeEventListener('keyup', e)
+function closeModal() {
+  refs.popupCart.classList.add('is-hidden');
+  window.removeEventListener('keydown', clickByEscape);
+}
+
+function clickByEscape(e) {
+  if (e.code === 'Escape') {
+    closeModal();
   }
-})
-
-
+}
