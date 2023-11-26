@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const refs = {
-    popularList: document.querySelector('.popular_list')
+    popularList: document.querySelector('.popular_list'),
+    popularCard: document.querySelector('.popular_card'),
 }
 
 const baseUrl = "https://food-boutique.b.goit.study/api/products/popular";
@@ -10,6 +11,7 @@ export async function getPopularItem() {
     try {
         const response = await axios.get(baseUrl);
         console.log(response.data);
+        localStorage.setItem('popularItems', JSON.stringify(response.data));
         return response.data; 
     } catch (error) {
         console.log(error);
@@ -17,7 +19,8 @@ export async function getPopularItem() {
 }
 
 export function createMarkupPopular(response) { 
-    const markup = response.map(({ name, category, size, popularity, img }) => {
+    const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
+    const markup = (response || storedItems).map(({ name, category, size, popularity, img }) => {
         return `<li class="popular_card">
         <div class="div_img">
             <img class="popular_photo" src="${img}" alt="No description" loading="lazy" width="56px" height="56px"/>
@@ -25,6 +28,7 @@ export function createMarkupPopular(response) {
             <div class="info">
                 <div class="info_name_button">
                     <p class="popular_item_name">${name}</p>
+                    <button class="basket_button"></button>
                 </div>
                     <p class="popular_description space">Category: <span class="popular_description_info">${category}</span></p>
                     <div class="info_decription">
@@ -36,3 +40,10 @@ export function createMarkupPopular(response) {
     }).join('');
     refs.popularList.insertAdjacentHTML('beforeend', markup);
 }
+
+
+// refs.popularCard.addEventListener('click', clickOnCard());
+
+// function clickOnCard() {
+//     console.log("Натиснуто")
+// }
