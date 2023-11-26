@@ -1,0 +1,38 @@
+<div class="popup-main is-hidden">
+  <div class="popup-main-content">
+    <button class="popup-main-close-btn" type="button">
+      <svg class="popup-main-close">
+        <use href="./images/icons.svg#icon-remove"></use>
+      </svg>
+    </button>
+    <div class="popup-main-conteiner">
+      <div class="popup-main-wrap">
+        <img class="popup-main-photo" src="" alt="photo" width="160" />
+      </div>
+      <div class="popup-main-text-conteiner">
+        <p class="popup-main-title">${name}</p>
+        <ul class="popup-main-list">
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Category: </spun>${category}
+          </li>
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Size: </spun>${size}
+          </li>
+          <br />
+          <li class="popup-main-subtitles">
+            <spun class="popup-subtitles-style">Popularity: </spun>${popularity}
+          </li>
+        </ul>
+        <p class="popup-main-text">${desc}</p>
+      </div>
+    </div>
+    <div class="popup-main-footer">
+      <p class="popup-main-price">$${price}</p>
+      <button class="popup-main-add-btn" type="button">
+        Add to<svg class="popup-main-icon">
+          <use href="./images/icons.svg#icon-cart"></use>
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>

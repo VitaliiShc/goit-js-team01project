@@ -7,3 +7,4 @@ import './js/firstProdGet-pagination.js';
 import './js/firstProdGet.js';
 import './js/pagination-logic.js';
 import './js/pagination.js';
+import './js/popup-main.js';

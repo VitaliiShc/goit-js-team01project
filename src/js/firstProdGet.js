@@ -47,10 +47,10 @@ function createFirst() {
 }
 
 function creatMarkupProd(item) {
-  const { category, name, img, price, size, is10PercentOff, popularity } = item;
+  const { category, name, img, price, size, is10PercentOff, popularity, _id } = item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
-  return `<li class="prod-item">
+  return `<li id="${_id}" class="prod-item">
                 <div class="prod-pic">
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
