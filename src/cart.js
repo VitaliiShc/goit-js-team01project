@@ -1,1 +1,1 @@
-// import './js/popup-cart.js';
+import './js/popup-cart.js';
