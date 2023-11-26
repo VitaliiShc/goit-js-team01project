@@ -1,5 +1,5 @@
-import { searchFirstAPI } from './firstGet-pagintaion.js';
+import { searchFirstAPI } from './firstGet.js';
 import { pagination } from './pagination.js';
-import { creatMarkupProd } from './firstProdGet-pagination.js';
+import { creatMarkupProd } from './firstProdGet.js';
 const firstGet = new searchFirstAPI();
 const page = pagination.getCurrentPage();
