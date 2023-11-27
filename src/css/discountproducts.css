@@ -44,13 +44,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
   left: 92%;
-  top: 7.2%;
+  top: 12%;
   transform: translate(-50%, -50%);
   background-color: #6d8434;
+  width: 60px;
+  height: 60px;
+}
+
+.cart-icon-discount {
   width: 60px;
   height: 60px;
 }
@@ -78,6 +81,8 @@
 
 .basket_button_discount {
   display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 30px;
   border-style: none;
   background-color: #6d8434;
@@ -91,6 +96,11 @@
   background-color: #586f1f;
 }
 
+.cart-icon-discount {
+    width: 40px;
+    height: 40px;
+    fill: #E8E8E2;
+}
 /* adaptive */
 
 @media screen and (min-width: 768px) {

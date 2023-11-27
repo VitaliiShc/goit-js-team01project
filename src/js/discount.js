@@ -1,4 +1,5 @@
 import axios from 'axios';
+import icons from '../images/icons.svg';
 
 const refs = {
     discountList: document.querySelector('.discount_list')
@@ -26,12 +27,20 @@ export function createMarkupDiscount(response) {
         const markup = `<li class="discount_card" data-id="${_id}">
                 <div class="dicount_img_icon">
                     <img class="discount_photo" src="${img}" alt="No description" loading="lazy" width="114px" height="114px" data-id="${_id}">
-                    <span class="discount_icon"></span>
+                    <span class="discount_icon">
+                    <svg class="cart-icon-discount">
+                        <use href="${icons}#icon-discount" class="pagination-arrows" />
+                    </svg>
+                    </span>
                 </div>
                 <div class="discount_info">
                     <p class="discount_product_name" data-id="${_id}">${name}</p>
                     <p class="discount_product_price" data-id="${_id}">${price}</p>
-                    <button class="basket_button_discount"></button>
+                    <button class="basket_button_discount">
+                    <svg class="cart-icon-discount">
+                        <use href="${icons}#icon-cart" class="pagination-arrows" />
+                    </svg>
+                    </button>
                 </div>
         </li>`;
 

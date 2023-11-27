@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const refs = {
   // elements
+  popularList: document.querySelector('.popular_list'),
   body: document.querySelector('body'),
   productItem: document.querySelector('.prod-item'),
   productList: document.querySelector('.list-prod'),
@@ -36,6 +37,20 @@ refs.productList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
+
+
+
+refs.popularList.addEventListener('click', async e => {
+  if (e.target === refs.addToCartBtn) {
+    console.log('Catr');
+  } else if (e.target !== refs.popularList) {
+    console.log(e.target.dataset.id);
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    const data = await getProductById(id);
+    renderPopup(data);
+      }
+});
 
     // const popupMain = document.getElementById('popap-main');
     // const closeBtn = document.querySelector('.popup-main-close-btn');
