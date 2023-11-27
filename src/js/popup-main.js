@@ -81,14 +81,14 @@ function renderPopup(data) {
         <p class="popup-main-title">${name}</p>
         <ul class="popup-main-list">
           <li class="popup-main-subtitles">
-            <spun class="popup-subtitles-style">Category: </spun>${category}
+            <span class="popup-subtitles-style">Category: </span>${category}
           </li>
           <li class="popup-main-subtitles">
-            <spun class="popup-subtitles-style">Size: </spun>${size}
+            <span class="popup-subtitles-style">Size: </span>${size}
           </li>
           <br />
           <li class="popup-main-subtitles">
-            <spun class="popup-subtitles-style">Popularity: </spun>${popularity}
+            <span class="popup-subtitles-style">Popularity: </span>${popularity}
           </li>
         </ul>
         <p class="popup-main-text">${desc}</p>
