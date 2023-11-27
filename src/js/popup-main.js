@@ -78,7 +78,7 @@ function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button" id=${_id}>
+      <button class="popup-main-add-btn" type="button"  id=${_id}>
         Add to Cart
       </button>
     </div>
@@ -89,52 +89,58 @@ function renderPopup(data) {
 
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
-  const addToCartBtnMain = document.querySelector('.popup-main-add-btn');
+  const sddToCartBtn = document.querySelector('.popup-main-add-btn');
 
   // * close modal by Button - X
   closeBtn.addEventListener('click', () => {
     closeModal(popupMain);
   });
-
   // * close modal by Dropbox
   popupMain.addEventListener('click', e => {
     if (e.target === popupMain) {
       closeModal(popupMain);
     }
   });
-
   // * close modal by Escape
   window.addEventListener('keydown', e => {
     if (e.code === 'Escape') {
       closeModal(popupMain);
     }
   });
-
-  // * add to cart btn listener
-  if (
-    !!JSON.parse(
-      localStorage.getItem('cart').find(item => item._id === prodInCart._id)
-    )
-  ) {
-    console.log('немає');
-    // addToCartBtnMain.addEventListener('click', handleAddToCartBtnClick);
-  } else {
-    console.log('є');
-  }
-
+  // * add to cart btl listener
+  sddToCartBtn.addEventListener('click', addToCart);
   // додати саме в кошик
   // змініти текст коннетн на "added to cart"
   // зняти слухача
   // закрити модалку
 }
 
-function handleAddToCartBtnClick(event) {
-  addToCart(event);
-  event.target.removeEventListener('click', handleAddToCartBtnClick);
-}
+// function addToCart(e) {
+//   console.log(e.currentTarget);
+//   console.log(e.target);
+// }
 
 // ! close popup functions
 
 function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
 }
+
+// add to cart
+
+// function addToCart(event) {
+//   let buyingProd = event.currentTarget;
+//   let productId = buyingProd.id;
+//   console.log(productId);
+
+//   const savedProduct1 = JSON.parse(localStorage.getItem('res.data'));
+//   const prodInCart = savedProduct1.find(option => option._id === productId);
+//   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+//   const productAlreadyInCart = currentCart.find(
+//     item => item._id === prodInCart._id
+//   );
+//   if (!productAlreadyInCart) {
+//     currentCart.push(prodInCart);
+//     localStorage.setItem('cart', JSON.stringify(currentCart));
+//   }
+// }

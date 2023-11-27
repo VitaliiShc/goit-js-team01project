@@ -8,7 +8,7 @@ export function addToCart(event) {
   const productAlreadyInCart = currentCart.find(
     item => item._id === prodInCart._id
   );
-
+  
   if (!productAlreadyInCart) {
     currentCart.push(prodInCart);
     localStorage.setItem('cart', JSON.stringify(currentCart));
