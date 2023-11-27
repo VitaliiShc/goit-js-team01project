@@ -34,7 +34,7 @@ function renderPage(YOUR_CART) {
     createCartMarkup(YOUR_CART);
   }
 }
-
+// Hello
 function createCartMarkup(array) {
   const cartMarkup = array
     .map(
