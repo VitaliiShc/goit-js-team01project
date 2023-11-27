@@ -54,9 +54,11 @@
 }
 
 .cart-icon-discount {
+  fill: #E8E8E2;
   width: 60px;
   height: 60px;
 }
+
 
 .discount_info {
   display: flex;
@@ -96,11 +98,6 @@
   background-color: #586f1f;
 }
 
-.cart-icon-discount {
-    width: 40px;
-    height: 40px;
-    fill: #E8E8E2;
-}
 /* adaptive */
 
 @media screen and (min-width: 768px) {
