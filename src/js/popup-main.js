@@ -3,7 +3,9 @@ import axios from 'axios';
 const refs = {
   // elements
   body: document.querySelector('body'),
+  productItem: document.querySelector('.prod-item'),
   productList: document.querySelector('.list-prod'),
+  addToCartBtn: document.querySelector('.buy-btn'),
 };
 
 // * get id of product
@@ -24,11 +26,14 @@ async function getProductById(id) {
 }
 
 // * open modal
+
 refs.productList.addEventListener('click', async e => {
-  console.log(e.target.dataset.id);
-  e.preventDefault();
-  const id = e.target.dataset.id;
-  try {
+  if (e.target === refs.addToCartBtn) {
+    console.log('Catr')
+  } else if (e.target !== refs.productList) {
+    console.log(e.target.dataset.id);
+    e.preventDefault();
+    const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
 
@@ -51,15 +56,12 @@ refs.productList.addEventListener('click', async e => {
         closeModal(popupMain);
       }
     });
-
-  } catch (error) {
-    console.error(error);
   }
 });
 
 // ! render
 
-async function renderPopup(data) {
+function renderPopup(data) {
   const { category, desc, img, name, price, size, popularity } = data;
   console.log(data);
   const markup = `<div id="popap-main" class="popup-main">

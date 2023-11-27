@@ -51,7 +51,7 @@
   align-items: center;
   height: 212px;
   border-radius: 10px;
-  background: var(--light-green);
+  background: var(--background-color);
   margin-bottom: 20px;
 }
 
