@@ -7,3 +7,4 @@ import './js/pagination-logic.js';
 import './js/pagination.js';
 import './js/popup-main.js';
 import './js/filters.js';
+import './js/reloadPage.js'

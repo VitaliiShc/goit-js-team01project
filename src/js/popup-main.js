@@ -78,7 +78,7 @@ function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button"  id=${_id}>
+      <button class="popup-main-add-btn" type="button" id=${_id}>
         Add to Cart
       </button>
     </div>
@@ -110,13 +110,17 @@ function renderPopup(data) {
     }
   });
 
-  // // * add to cart btn listener
-  // if (!!JSON.parse(localStorage.getItem('cart').find( ))) {
-  //   console.log('немає');
-  //   // addToCartBtnMain.addEventListener('click', handleAddToCartBtnClick);
-  // } else {
-  //   console.log('є');
-  // }
+  // * add to cart btn listener
+  if (
+    !!JSON.parse(
+      localStorage.getItem('cart').find(item => item._id === prodInCart._id)
+    )
+  ) {
+    console.log('немає');
+    // addToCartBtnMain.addEventListener('click', handleAddToCartBtnClick);
+  } else {
+    console.log('є');
+  }
 
   // додати саме в кошик
   // змініти текст коннетн на "added to cart"
