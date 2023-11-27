@@ -1,5 +1,7 @@
 import axios from 'axios';
 
+import { addToCart } from './addToCart';
+
 const refs = {
   // elements
   body: document.querySelector('body'),
@@ -29,33 +31,13 @@ async function getProductById(id) {
 
 refs.productList.addEventListener('click', async e => {
   if (e.target === refs.addToCartBtn) {
-    console.log('Catr');
+    console.log('Cart');
   } else if (e.target !== refs.productList) {
     console.log(e.target.dataset.id);
     e.preventDefault();
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
-
-    // const popupMain = document.getElementById('popap-main');
-    // const closeBtn = document.querySelector('.popup-main-close-btn');
-
-    // // * close modal by Button - X
-    // closeBtn.addEventListener('click', () => {
-    //   closeModal(popupMain);
-    // });
-    // // * close modal by Dropbox
-    // popupMain.addEventListener('click', e => {
-    //   if (e.target === popupMain) {
-    //     closeModal(popupMain);
-    //   }
-    // });
-    // // * close modal by Escape
-    // window.addEventListener('keydown', e => {
-    //   if (e.code === 'Escape') {
-    //     closeModal(popupMain);
-    //   }
-    // });
   }
 });
 
@@ -66,7 +48,7 @@ function renderPopup(data) {
     console.log('No data');
     return;
   }
-  const { category, desc, img, name, price, size, popularity } = data;
+  const { category, desc, img, name, price, size, popularity, _id } = data;
   console.log(data);
   const markup = `<div id="popap-main" class="popup-main">
   <div class="popup-main-content">
@@ -96,7 +78,7 @@ function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button">
+      <button class="popup-main-add-btn" type="button"  id=${_id}>
         Add to Cart
       </button>
     </div>
@@ -126,13 +108,17 @@ function renderPopup(data) {
     }
   });
   // * add to cart btl listener
-  // sddToCartBtn.addEventListener('click', addToCart);
+  sddToCartBtn.addEventListener('click', addToCart);
   // додати саме в кошик
   // змініти текст коннетн на "added to cart"
   // зняти слухача
   // закрити модалку
-
 }
+
+// function addToCart(e) {
+//   console.log(e.currentTarget);
+//   console.log(e.target);
+// }
 
 // ! close popup functions
 
