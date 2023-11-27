@@ -36,28 +36,29 @@ function renderPage(YOUR_CART) {
 }
 // Hello
 function createCartMarkup(array) {
-  const cartMarkup = array
-    .map(
-      ({
-        category,
-        img,
-        is10PercentOff,
-        name,
-        popularity,
-        price,
-        size,
-        _id,
-      }) => `<div class="yourcart-product-card">
-      <img class="yourcart-product-img" src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e383b.png" alt="product" />
+    const cartMarkup = array
+        .map(
+            ({
+                category,
+                img,
+                is10PercentOff,
+                name,
+                popularity,
+                price,
+                size,
+                _id,
+            }) => `<div class="yourcart-product-card" data-product-id=${_id}>
+      <img class="yourcart-product-img" src=${img} alt=${name} />
       <div class="yourcart-product-card-discription">
         <div class="yourcart-product-card-info">
-          <p class="yourcart-product-name">Name</p>
+          <p class="yourcart-product-name">${name}</p>
           <div class="yourcart-product-features">
-            <p class="yourcart-product-category">Category: <span>Fresh Produce</span></p>
-            <p class="yourcart-product-size">Size: <span>Each</span></p>
+            <p class="yourcart-product-category">Category: <span>${category}</span></p>
+            <p class="yourcart-product-size">Size: <span>${size}</span></p>
           </div>
-          <p class="yourcart-product-price">$1.99</p>
+          <p class="yourcart-product-price">${price}</p>
         </div>
+        <button type="button" class="delete-btn"><svg class="delete-icon"><use href="${icons}#icon-remove"></use>/svg></button>
         <!-- <div class="yourcart-product-card-controls">
             <div class="yourcart-product-remove-btn"></div>
             <div class="counter"></div>
