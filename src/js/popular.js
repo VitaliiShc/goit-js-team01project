@@ -1,5 +1,6 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
+import {getProductById, renderPopup} from './popup-main'
 
 const refs = {
     body: document.querySelector('body'),
@@ -60,3 +61,16 @@ function getProductId(id) {
     return find;
     }
 }
+
+
+
+
+refs.popularList.addEventListener('click', async e => {
+    if (e.target !== refs.popularList) {
+        console.log(e.target.dataset.id);
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        const data = await getProductById(id);
+        renderPopup(data);
+    }
+});

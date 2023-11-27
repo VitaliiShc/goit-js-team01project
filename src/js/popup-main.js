@@ -12,7 +12,7 @@ const refs = {
 
 // * get id of product
 
-async function getProductById(id) {
+export async function getProductById(id) {
   try {
     const BASE_API = 'https://food-boutique.b.goit.study/api';
     const END_POINT = `/products/${id}`;
@@ -39,30 +39,7 @@ refs.productList.addEventListener('click', async e => {
     const data = await getProductById(id);
     renderPopup(data);
 
-// modal-for-popular
 
-refs.popularList.addEventListener('click', async e => {
-    if (e.target !== refs.popularList) {
-    console.log(e.target.dataset.id);
-    e.preventDefault();
-    const id = e.target.dataset.id;
-    const data = await getProductById(id);
-    renderPopup(data);
-      }
-});
-    
-
-// modal-for-discount
-    
-    refs.discountList.addEventListener('click', async e => {
-    if (e.target !== refs.discountList) {
-    console.log(e.target.dataset.id);
-    e.preventDefault();
-    const id = e.target.dataset.id;
-    const data = await getProductById(id);
-    renderPopup(data);
-      }
-});
 
     
 
@@ -90,7 +67,7 @@ refs.popularList.addEventListener('click', async e => {
 
 // ! render
 
-function renderPopup(data) {
+export function renderPopup(data) {
   if (!data) {
     console.log('No data');
     return;

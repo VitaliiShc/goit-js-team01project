@@ -1,5 +1,6 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
+import {getProductById, renderPopup} from './popup-main'
 
 const refs = {
     discountList: document.querySelector('.discount_list')
@@ -61,3 +62,16 @@ function getProductId(id) {
     const find = storedItems.find(obj => obj['_id'] === id);
     return find;
 }
+
+
+
+
+refs.discountList.addEventListener('click', async e => {
+    if (e.target !== refs.discountList) {
+        console.log(e.target.dataset.id);
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        const data = await getProductById(id);
+        renderPopup(data);
+    }
+});
