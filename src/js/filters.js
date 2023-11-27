@@ -17,14 +17,19 @@ foodApi.getCategories().then(categories => {
   defaultOption.disabled = true;
   defaultOption.selected = true;
   select.appendChild(defaultOption);
+
+  
+  // select.addEventListener('click', function () {
+  //   defaultOption.classList.add('hidden');
+  // });
+
+
   categories.forEach(category => {
+    defaultOption.classList.add('hidden');
     const option = document.createElement('option');
     option.value = category;
     option.textContent = category;
     select.appendChild(option);
-  });
-  select.addEventListener('click', function () {
-    defaultOption.classList.add('hidden');
   });
 
   const showAllOption = createShowAllOption();
