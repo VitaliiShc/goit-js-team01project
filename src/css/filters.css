@@ -107,7 +107,7 @@
       width: 169px;
     }
   }
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1280) {
     .filter-box {
       margin-right: 40px;
     }
@@ -124,7 +124,7 @@
       margin-bottom: 50px;
     }
   }
-  @media only screen and (min-width: 1440px) {
+  @media only screen and (min-width: 1280px) {
     .filter-box__list {
       width: 925px;
       border-radius: 10px;

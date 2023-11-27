@@ -14,6 +14,11 @@ export class searchFirstAPI {
       });
       // return res.data;
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
+      createFirst();
+      const buyClick = document.querySelectorAll('.buy-btn');
+      buyClick.forEach(button => {
+        button.addEventListener('click', addToCart);
+      });
     } catch (error) {
       throw error;
     }
@@ -30,7 +35,6 @@ apiInstance
   .catch(error => {
     console.error('Помилка отримання даних:', error);
   });
-
 let screenWidth = window.innerWidth;
 let limitProd = findLimitProd(screenWidth);
 let pageProd = 1;
@@ -82,7 +86,7 @@ function createFirst() {
   }
 }
 function creatMarkupProd(item) {
-  const { category, name, img, price, size, is10PercentOff, popularity, _id } =
+  const { _id, category, name, img, price, size, is10PercentOff, popularity } =
     item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
@@ -103,7 +107,7 @@ function creatMarkupProd(item) {
                 </div>
                 <div class="buing-prod" data-id=${_id}>
                   <p class="price-prod" data-id=${_id}>$${price}</p>
-                  <button class="buy-btn" type="button">
+                  <button class="buy-btn" type="button" id=${_id}>
                       <svg class="buy-svg" width="18" height="18">
                         <use href="icons.svg#icon-cart"></use>
                       </svg>
@@ -116,17 +120,19 @@ function onVisible(is10PercentOff) {
     return 'visible';
   } else return 'hidden';
 }
-createFirst();
+// createFirst();
 // add to cart
 const cartValue = localStorage.getItem('cart');
 if (cartValue !== null) {
 } else {
   localStorage.setItem('cart', JSON.stringify([]));
 }
-const buyClick = document.querySelectorAll('.buy-btn');
-buyClick.forEach(button => {
-  button.addEventListener('click', addToCart);
-});
+
+// const buyClick = document.querySelectorAll('.buy-btn');
+// buyClick.forEach(button => {
+//   button.addEventListener('click', addToCart);
+// });
+
 function addToCart(event) {
   let buyingProd = event.currentTarget;
   let productId = buyingProd.id;

@@ -19,9 +19,9 @@ async function getProductById(id) {
     const response = await axios.get(url);
     const data = await response.data;
     return data;
-
   } catch (error) {
-    console.error(error);
+    return;
+    // console.error(error);
   }
 }
 
@@ -29,7 +29,7 @@ async function getProductById(id) {
 
 refs.productList.addEventListener('click', async e => {
   if (e.target === refs.addToCartBtn) {
-    console.log('Catr')
+    console.log('Catr');
   } else if (e.target !== refs.productList) {
     console.log(e.target.dataset.id);
     e.preventDefault();
@@ -37,31 +37,35 @@ refs.productList.addEventListener('click', async e => {
     const data = await getProductById(id);
     renderPopup(data);
 
-    const popupMain = document.getElementById('popap-main');
-    const closeBtn = document.querySelector('.popup-main-close-btn');
+    // const popupMain = document.getElementById('popap-main');
+    // const closeBtn = document.querySelector('.popup-main-close-btn');
 
-    // * close modal by Button - X
-    closeBtn.addEventListener('click', () => {
-      closeModal(popupMain);
-    });
-    // * close modal by Dropbox
-    popupMain.addEventListener('click', e => {
-      if (e.target === popupMain) {
-        closeModal(popupMain);
-      }
-    });
-    // * close modal by Escape
-    window.addEventListener('keydown', e => {
-      if (e.code === 'Escape') {
-        closeModal(popupMain);
-      }
-    });
+    // // * close modal by Button - X
+    // closeBtn.addEventListener('click', () => {
+    //   closeModal(popupMain);
+    // });
+    // // * close modal by Dropbox
+    // popupMain.addEventListener('click', e => {
+    //   if (e.target === popupMain) {
+    //     closeModal(popupMain);
+    //   }
+    // });
+    // // * close modal by Escape
+    // window.addEventListener('keydown', e => {
+    //   if (e.code === 'Escape') {
+    //     closeModal(popupMain);
+    //   }
+    // });
   }
 });
 
 // ! render
 
 function renderPopup(data) {
+  if (!data) {
+    console.log('No data');
+    return;
+  }
   const { category, desc, img, name, price, size, popularity } = data;
   console.log(data);
   const markup = `<div id="popap-main" class="popup-main">
@@ -100,6 +104,34 @@ function renderPopup(data) {
 </div>
 `;
   refs.body.insertAdjacentHTML('afterbegin', markup);
+
+  const popupMain = document.getElementById('popap-main');
+  const closeBtn = document.querySelector('.popup-main-close-btn');
+  const sddToCartBtn = document.querySelector('.popup-main-add-btn');
+
+  // * close modal by Button - X
+  closeBtn.addEventListener('click', () => {
+    closeModal(popupMain);
+  });
+  // * close modal by Dropbox
+  popupMain.addEventListener('click', e => {
+    if (e.target === popupMain) {
+      closeModal(popupMain);
+    }
+  });
+  // * close modal by Escape
+  window.addEventListener('keydown', e => {
+    if (e.code === 'Escape') {
+      closeModal(popupMain);
+    }
+  });
+  // * add to cart btl listener
+  // sddToCartBtn.addEventListener('click', addToCart);
+  // додати саме в кошик
+  // змініти текст коннетн на "added to cart"
+  // зняти слухача
+  // закрити модалку
+
 }
 
 // ! close popup functions
@@ -107,3 +139,22 @@ function renderPopup(data) {
 function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
 }
+
+// add to cart
+
+// function addToCart(event) {
+//   let buyingProd = event.currentTarget;
+//   let productId = buyingProd.id;
+//   console.log(productId);
+
+//   const savedProduct1 = JSON.parse(localStorage.getItem('res.data'));
+//   const prodInCart = savedProduct1.find(option => option._id === productId);
+//   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+//   const productAlreadyInCart = currentCart.find(
+//     item => item._id === prodInCart._id
+//   );
+//   if (!productAlreadyInCart) {
+//     currentCart.push(prodInCart);
+//     localStorage.setItem('cart', JSON.stringify(currentCart));
+//   }
+// }
