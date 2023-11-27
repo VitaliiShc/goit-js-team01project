@@ -110,8 +110,14 @@ function renderPopup(data) {
     }
   });
 
-  // * add to cart btn listener
-  addToCartBtnMain.addEventListener('click', handleAddToCartBtnClick);
+  // // * add to cart btn listener
+  // if (!!JSON.parse(localStorage.getItem('cart').find( ))) {
+  //   console.log('немає');
+  //   // addToCartBtnMain.addEventListener('click', handleAddToCartBtnClick);
+  // } else {
+  //   console.log('є');
+  // }
+
   // додати саме в кошик
   // змініти текст коннетн на "added to cart"
   // зняти слухача
