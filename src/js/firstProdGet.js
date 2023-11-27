@@ -1,7 +1,39 @@
+import axios from 'axios';
+const axiosFirst = axios.create({
+  baseURL: 'https://food-boutique.b.goit.study/api/products',
+  params: {
+    page: '1',
+    limit: '90',
+  },
+});
+export class searchFirstAPI {
+  async getFirstSearch(page, limit) {
+    try {
+      const res = await axiosFirst.get('', {
+        params: { page: page, limit: limit },
+      });
+      // return res.data;
+      localStorage.setItem('res.data', JSON.stringify(res.data.results));
+    } catch (error) {
+      throw error;
+    }
+  }
+}
+const apiInstance = new searchFirstAPI();
+const page = 1;
+const limit = 90;
+apiInstance
+  .getFirstSearch(page, limit)
+  .then(() => {
+    console.log('Дані успішно отримані та збережені в localStorage');
+  })
+  .catch(error => {
+    console.error('Помилка отримання даних:', error);
+  });
+
 let screenWidth = window.innerWidth;
 let limitProd = findLimitProd(screenWidth);
 let pageProd = 1;
-
 function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
     return 6;
@@ -11,7 +43,6 @@ function findLimitProd(screenWidth) {
     return 9;
   }
 }
-
 function handleResize() {
   const newScreenWidth = window.innerWidth;
   const newLimitProd = findLimitProd(newScreenWidth);
@@ -20,15 +51,20 @@ function handleResize() {
     createFirst();
   }
 }
-
 window.addEventListener('resize', handleResize);
-
 function createFirst() {
   const savedProduct = localStorage.getItem('res.data');
+
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
-  firstElOnPage = (pageProd - 1) * limitProd;
+  let firstElOnPage;
+  let limitтNumberProd;
+  if (isNaN((page - 1) * limit)) {
+    firstElOnPage = 0;
+  } else {
+    firstElOnPage = (page - 1) * limit;
+  }
   limitтNumberProd = +pageProd * +limitProd;
   console.log(firstElOnPage);
   console.log(limitтNumberProd);
@@ -45,9 +81,9 @@ function createFirst() {
     console.log(error);
   }
 }
-
 function creatMarkupProd(item) {
-  const { category, name, img, price, size, is10PercentOff, popularity, _id } = item;
+  const { category, name, img, price, size, is10PercentOff, popularity, _id } =
+    item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
   return `<li class="prod-item" data-id=${_id}>
@@ -75,11 +111,36 @@ function creatMarkupProd(item) {
                 </div>
             </li>`;
 }
-
 function onVisible(is10PercentOff) {
   if (is10PercentOff === true) {
     return 'visible';
   } else return 'hidden';
 }
-
 createFirst();
+// add to cart
+const cartValue = localStorage.getItem('cart');
+if (cartValue !== null) {
+} else {
+  localStorage.setItem('cart', JSON.stringify([]));
+}
+const buyClick = document.querySelectorAll('.buy-btn');
+buyClick.forEach(button => {
+  button.addEventListener('click', addToCart);
+});
+function addToCart(event) {
+  let buyingProd = event.currentTarget;
+  let productId = buyingProd.id;
+  console.log(productId);
+
+  const savedProduct1 = JSON.parse(localStorage.getItem('res.data'));
+  const prodInCart = savedProduct1.find(option => option._id === productId);
+  const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+  const productAlreadyInCart = currentCart.find(
+    item => item._id === prodInCart._id
+  );
+  if (!productAlreadyInCart) {
+    currentCart.push(prodInCart);
+    localStorage.setItem('cart', JSON.stringify(currentCart));
+  } else {
+  }
+}
