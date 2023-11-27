@@ -4,17 +4,39 @@ import icons from '../images/icons.svg';
 
 // import Scrollbar from 'smooth-scrollbar';
 
-const basketCart = document.querySelector('.js-basket');
+const basketCart = document.querySelector('.full-cart-container');
 const cartProductQuantity = document.querySelector('.quantity-carts');
 console.log(cartProductQuantity.textContent);
 
-  const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
-console.log('cart massiv', YOUR_CART);
+const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
+console.log('cart array', YOUR_CART);
 
-createCartMarkup(YOUR_CART);
-  
+renderPage(YOUR_CART);
+
+function renderPage(YOUR_CART) {
+  if (YOUR_CART.length === 0) {
+    console.log('empty');
+    basketCart.innerHTML = `
+    <picture>
+      <source srcset="${basket} 1x, ${basket2x} 2x" />
+      <img src="${basket}" alt="basket" class="basket-img" />
+    </picture>
+    <h3 class="basket-title">
+      Your basket is
+      <a href="/src/index.html" class="basket-title-link"> empty... </a>
+    </h3>
+    <p class="basket-text">
+      Go to the main page to select your favorite products and add them to the
+      cart.
+    </p>`;
+  } else if (YOUR_CART.length !== 0) {
+    console.log('no empty');
+    createCartMarkup(YOUR_CART);
+  }
+}
+
 function createCartMarkup(array) {
-  const markup = array
+  const cartMarkup = array
     .map(
       ({
         category,
@@ -44,10 +66,43 @@ function createCartMarkup(array) {
     </div>`
     )
     .join('');
+  
+  const fullCartMarkup =
+    `            <div class="delete-all">
+                <p class="delete-all-text">Delete all</p>
+                <button type="button" class="delete-all-btn">
+                    <svg class="delete-all-icon">
+                        <use href="${icons}#icon-remove"></use>
+                    </svg>
+                </button>
+            </div><div class="js-basket">` +
+    cartMarkup +
+    `</div>    <div class="order">
+      <h2 class="order-title">Your Order</h2>
+      <div class="order-total">
+        <p class="order-total">Total</p>
+        <div class="order-sum">
+          <p class="order-text-sum">Sum:</p>
+          <span class="order-total-sum">$12,94</span>
+        </div>
+      </div>
+      <form class="form-input">
+        <input
+          type="email"
+          name="user-email"
+          id="user-email"
+          class="mail-input"
+          placeholder="Enter your email"
+          pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+          required
+        />
+        <button type="submit" class="form-btn">Checkout</button>
+      </form>
+    </div>`;
+  
+  console.log(fullCartMarkup);
 
-    console.log(markup);
-basketCart.innerHTML = markup;
-    
+  basketCart.innerHTML = fullCartMarkup;
 }
 
 // basketCart.innerHTML = `<div class="yourcart-product-card">
@@ -90,14 +145,14 @@ basketCart.innerHTML = markup;
 //   basketCart.innerHTML = `
 // <div class="product-cart">
 //         <div class="products-cart-container">
-//             <div class="delete-all">
-//                 <p class="delete-all-text">Delete all</p>
-//                 <button type="button" class="delete-all-btn">
-//                     <svg class="delete-all-icon">
-//                         <use href="${icons}#icon-remove"></use>
-//                     </svg>
-//                 </button>
-//             </div>
+            // <div class="delete-all">
+            //     <p class="delete-all-text">Delete all</p>
+            //     <button type="button" class="delete-all-btn">
+            //         <svg class="delete-all-icon">
+            //             <use href="${icons}#icon-remove"></use>
+            //         </svg>
+            //     </button>
+            // </div>
 //             <ul class="product-list">
 //                 <li class="product-item">
 //                     <div class="product-cart-container">
@@ -127,20 +182,20 @@ basketCart.innerHTML = markup;
 //                 </li>
 //             </ul>
 //         </div>
-//         <div class="order">
-//             <h2 class="order-title">Your Order</h2>
-//             <div class="order-total">
-//                 <p class="order-total">Total</p>
-//                 <div class="order-sum">
-//                     <p class="order-text-sum">Sum:</p>
-//                     <span class="order-total-sum">$12,94</span>
-//                 </div>
-//             </div>
-//             <form class="form-input">
-//                 <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" required />
-//                 <button type="submit" class="form-btn">Checkout</button>
-//             </form>
-//         </div>
+        // <div class="order">
+        //     <h2 class="order-title">Your Order</h2>
+        //     <div class="order-total">
+        //         <p class="order-total">Total</p>
+        //         <div class="order-sum">
+        //             <p class="order-text-sum">Sum:</p>
+        //             <span class="order-total-sum">$12,94</span>
+        //         </div>
+        //     </div>
+        //     <form class="form-input">
+        //         <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" required />
+        //         <button type="submit" class="form-btn">Checkout</button>
+        //     </form>
+        // </div>
 //     </div>
 // `;
 //   console.log(basketCart);
