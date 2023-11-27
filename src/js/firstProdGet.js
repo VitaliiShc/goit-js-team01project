@@ -82,28 +82,28 @@ function createFirst() {
   }
 }
 function creatMarkupProd(item) {
-  const { _id, category, name, img, price, size, is10PercentOff, popularity } =
+  const { category, name, img, price, size, is10PercentOff, popularity, _id } =
     item;
   const nameWithSpace = name.replace(/_/g, ' ');
   const categoryWithSpace = category.replace(/_/g, ' ');
-  return `<li class="prod-item" data-id="${_id}">
-                <div class="prod-pic">
+  return `<li class="prod-item" data-id=${_id}>
+                <div class="prod-pic" data-id=${_id}>
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
                   )};">
                     <use href="icons.svg#icon-cart"></use>
-                  </svg>    
-                  <img class="prod-img" src="${img}" alt="${name}" loading="lazy" />
+                  </svg>
+                  <img class="prod-img" src="${img}" alt="${name}" loading="lazy" data-id=${_id} />
                 </div>
-                <h3 class="title-prod">${nameWithSpace}</h3>
-                <div class="feature">
-                  <p class="feature-prod">Category:<span class="feature-value">${categoryWithSpace}</span></p>
-                  <p class="feature-prod">Size:<span class="feature-value">${size}</span></p>
-                  <p class="feature-prod push">Popularity:<span class="feature-value">${popularity}</span></p>
+                <h3 class="title-prod" data-id=${_id}>${nameWithSpace}</h3>
+                <div class="feature" data-id=${_id}>
+                  <p class="feature-prod" data-id=${_id}>Category:<span class="feature-value" data-id=${_id}>${categoryWithSpace}</span></p>
+                  <p class="feature-prod" data-id=${_id}>Size:<span class="feature-value" data-id=${_id}>${size}</span></p>
+                  <p class="feature-prod push" data-id=${_id}>Popularity:<span class="feature-value" data-id=${_id}>${popularity}</span></p>
                 </div>
-                <div class="buing-prod">
-                  <p class="price-prod">$${price}</p>
-                  <button class="buy-btn" type="button" id="${_id}">
+                <div class="buing-prod" data-id=${_id}>
+                  <p class="price-prod" data-id=${_id}>$${price}</p>
+                  <button class="buy-btn" type="button">
                       <svg class="buy-svg" width="18" height="18">
                         <use href="icons.svg#icon-cart"></use>
                       </svg>
