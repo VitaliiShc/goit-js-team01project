@@ -44,16 +44,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100px;
-  height: 100px;
   border-radius: 50%;
   left: 92%;
-  top: 7.2%;
+  top: 12%;
   transform: translate(-50%, -50%);
   background-color: #6d8434;
   width: 60px;
   height: 60px;
 }
+
+.cart-icon-discount {
+  fill: #E8E8E2;
+  width: 60px;
+  height: 60px;
+}
+
 
 .discount_info {
   display: flex;
@@ -78,6 +83,8 @@
 
 .basket_button_discount {
   display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 30px;
   border-style: none;
   background-color: #6d8434;

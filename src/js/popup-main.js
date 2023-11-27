@@ -2,6 +2,8 @@ import axios from 'axios';
 
 const refs = {
   // elements
+  discountList: document.querySelector('.discount_list'),
+  popularList: document.querySelector('.popular_list'),
   body: document.querySelector('body'),
   productItem: document.querySelector('.prod-item'),
   productList: document.querySelector('.list-prod'),
@@ -36,6 +38,33 @@ refs.productList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
+
+// modal-for-popular
+
+refs.popularList.addEventListener('click', async e => {
+    if (e.target !== refs.popularList) {
+    console.log(e.target.dataset.id);
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    const data = await getProductById(id);
+    renderPopup(data);
+      }
+});
+    
+
+// modal-for-discount
+    
+    refs.discountList.addEventListener('click', async e => {
+    if (e.target !== refs.discountList) {
+    console.log(e.target.dataset.id);
+    e.preventDefault();
+    const id = e.target.dataset.id;
+    const data = await getProductById(id);
+    renderPopup(data);
+      }
+});
+
+    
 
     // const popupMain = document.getElementById('popap-main');
     // const closeBtn = document.querySelector('.popup-main-close-btn');
