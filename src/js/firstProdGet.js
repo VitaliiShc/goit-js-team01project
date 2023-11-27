@@ -14,11 +14,13 @@ export class searchFirstAPI {
       });
       // return res.data;
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
+      // added - replace function execution
       createFirst();
       const buyClick = document.querySelectorAll('.buy-btn');
       buyClick.forEach(button => {
         button.addEventListener('click', addToCart);
       });
+      // end of editing
     } catch (error) {
       throw error;
     }
