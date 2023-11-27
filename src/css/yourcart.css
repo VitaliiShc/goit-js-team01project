@@ -12,7 +12,12 @@
     display: flex;
     align-items: center;
     gap: 14px;
+    margin-bottom: 14px;
     /* padding-top: 54px; */
+}
+
+.deletaall-btn {
+    margin-bottom: 10px;
 }
 
 .icon-block {
@@ -100,7 +105,8 @@
 
 
 .js-basket {
-    margin-top: 40px;
+overflow-y: auto;
+max-height: 480px;
 }
 
 
@@ -344,4 +350,55 @@
     }
 
     /*!----------Кошик з товарами----------*/
+}
+
+
+/* ---------- VS styles ------------ */
+.yourcart-product-card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    width: 100%;
+    height: 160px;
+    align-items: center;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.yourcart-product-img {
+    width: 120px;
+    height: 120px;
+}
+.yourcart-product-card-discription {
+    width: 100%;
+}
+
+.yourcart-product-card-info {
+}
+
+.yourcart-product-name {
+}
+
+.yourcart-product-features {
+}
+
+.yourcart-product-category {
+}
+
+.yourcart-product-size {
+}
+
+.yourcart-product-price {
+}
+
+.yourcart-product-card-controls {
+}
+
+.yourcart-product-remove-btn {
+}
+
+.remove-btn {
+}
+
+.counter {
 }
