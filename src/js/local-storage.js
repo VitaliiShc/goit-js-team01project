@@ -5,7 +5,7 @@ export class LocalStorage {
         this.defaultApiOptions();
       }
   
-      localStorage.setItem('products', JSON.stringify(data));
+      localStorage.setItem('products', JSON.stringify(data.results));
       localStorage.setItem('options', JSON.stringify(options));
     }
   

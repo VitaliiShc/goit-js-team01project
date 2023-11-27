@@ -6,11 +6,8 @@ export class FoodApi {
     this.searchQuery = '';
     this.category = '';
     this.currentPage = 1;
-    this.perPage = this.calculatePerPage();
+    this.perPage = 90;
     
-    window.addEventListener('resize', () => {
-      this.perPage = this.calculatePerPage();
-    });
   }
 
   encodeParams(params) {
@@ -19,15 +16,7 @@ export class FoodApi {
       .join('&');
   }
 
-  calculatePerPage() {
-    if (window.matchMedia('(min-width: 1440px)').matches) {
-      return 9;
-    } else if (window.matchMedia('(min-width: 768px)').matches) {
-      return 8;
-    } else {
-      return 6;
-    }
-  }
+
 
   getFoodList() {
     const params = {
