@@ -1,11 +1,10 @@
 import axios from 'axios';
 
+import { addToCart } from './addToCart';
+
 const refs = {
   // elements
-  discountList: document.querySelector('.discount_list'),
-  popularList: document.querySelector('.popular_list'),
   body: document.querySelector('body'),
-  productItem: document.querySelector('.prod-item'),
   productList: document.querySelector('.list-prod'),
   addToCartBtn: document.querySelector('.buy-btn'),
 };
@@ -30,38 +29,12 @@ export async function getProductById(id) {
 // * open modal
 
 refs.productList.addEventListener('click', async e => {
-  if (e.target === refs.addToCartBtn) {
-    console.log('Catr');
-  } else if (e.target !== refs.productList) {
+if (e.target !== refs.productList) {
     console.log(e.target.dataset.id);
     e.preventDefault();
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
-
-
-
-    
-
-    // const popupMain = document.getElementById('popap-main');
-    // const closeBtn = document.querySelector('.popup-main-close-btn');
-
-    // // * close modal by Button - X
-    // closeBtn.addEventListener('click', () => {
-    //   closeModal(popupMain);
-    // });
-    // // * close modal by Dropbox
-    // popupMain.addEventListener('click', e => {
-    //   if (e.target === popupMain) {
-    //     closeModal(popupMain);
-    //   }
-    // });
-    // // * close modal by Escape
-    // window.addEventListener('keydown', e => {
-    //   if (e.code === 'Escape') {
-    //     closeModal(popupMain);
-    //   }
-    // });
   }
 });
 
@@ -69,10 +42,9 @@ refs.productList.addEventListener('click', async e => {
 
 export function renderPopup(data) {
   if (!data) {
-    console.log('No data');
     return;
   }
-  const { category, desc, img, name, price, size, popularity } = data;
+  const { category, desc, img, name, price, size, popularity, _id } = data;
   console.log(data);
   const markup = `<div id="popap-main" class="popup-main">
   <div class="popup-main-content">
@@ -102,7 +74,7 @@ export function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button">
+      <button class="popup-main-add-btn" type="button"  id=${_id}>
         Add to Cart
       </button>
     </div>
@@ -113,7 +85,7 @@ export function renderPopup(data) {
 
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
-  const sddToCartBtn = document.querySelector('.popup-main-add-btn');
+  const addToCartBtn = document.querySelector('.popup-main-add-btn');
 
   // * close modal by Button - X
   closeBtn.addEventListener('click', () => {
@@ -132,12 +104,7 @@ export function renderPopup(data) {
     }
   });
   // * add to cart btl listener
-  // sddToCartBtn.addEventListener('click', addToCart);
-  // додати саме в кошик
-  // змініти текст коннетн на "added to cart"
-  // зняти слухача
-  // закрити модалку
-
+  addToCartBtn.addEventListener('click', addToCart);
 }
 
 // ! close popup functions
@@ -145,22 +112,3 @@ export function renderPopup(data) {
 function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
 }
-
-// add to cart
-
-// function addToCart(event) {
-//   let buyingProd = event.currentTarget;
-//   let productId = buyingProd.id;
-//   console.log(productId);
-
-//   const savedProduct1 = JSON.parse(localStorage.getItem('res.data'));
-//   const prodInCart = savedProduct1.find(option => option._id === productId);
-//   const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
-//   const productAlreadyInCart = currentCart.find(
-//     item => item._id === prodInCart._id
-//   );
-//   if (!productAlreadyInCart) {
-//     currentCart.push(prodInCart);
-//     localStorage.setItem('cart', JSON.stringify(currentCart));
-//   }
-// }
