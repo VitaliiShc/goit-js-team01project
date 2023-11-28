@@ -74,7 +74,7 @@ export function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button"  id=${_id}>
+      <button class="popup-main-add-btn" type="button" id=${_id}>
         Add to Cart
       </button>
     </div>
