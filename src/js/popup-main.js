@@ -76,7 +76,7 @@ export function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-      <button class="popup-main-add-btn" type="button" id=${_id}>
+      <button class="popup-main-add-btn" type="button" data-buythis="${_id}">
         Add to <svg class="popup-main-icon">
         <use href="${icons}#icon-cart" />
         </svg>
@@ -113,7 +113,7 @@ export function renderPopup(data) {
 
 // ! close popup functions
 
-function closeModal(popupMain) {
+export function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
 }
