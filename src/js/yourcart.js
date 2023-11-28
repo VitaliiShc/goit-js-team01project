@@ -8,6 +8,8 @@ const basketCart = document.querySelector('.full-cart-container');
 const cartProductQuantity = document.querySelector('.quantity-carts');
 console.log(cartProductQuantity.textContent);
 
+
+
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 console.log('cart array', YOUR_CART);
 
@@ -36,18 +38,18 @@ function renderPage(YOUR_CART) {
 }
 // Hello
 function createCartMarkup(array) {
-    const cartMarkup = array
-        .map(
-            ({
-                category,
-                img,
-                is10PercentOff,
-                name,
-                popularity,
-                price,
-                size,
-                _id,
-            }) => `<div class="yourcart-product-card" data-product-id=${_id}>
+  const cartMarkup = array
+    .map(
+      ({
+        category,
+        img,
+        is10PercentOff,
+        name,
+        popularity,
+        price,
+        size,
+        _id,
+      }) => `<div class="yourcart-product-card" data-product-id=${_id}>
       <img class="yourcart-product-img" src=${img} alt=${name} />
       <div class="yourcart-product-card-discription">
         <div class="yourcart-product-card-info">
@@ -84,7 +86,7 @@ function createCartMarkup(array) {
         <p class="order-total">Total</p>
         <div class="order-sum">
           <p class="order-text-sum">Sum:</p>
-          <span class="order-total-sum">$12,94</span>
+          <span class="order-total-sum"></span>
         </div>
       </div>
       <form class="form-input">
@@ -104,8 +106,30 @@ function createCartMarkup(array) {
   console.log(fullCartMarkup);
 
   basketCart.innerHTML = fullCartMarkup;
-}
 
+  function calcTotalPrice(cartMarkup) {
+  let totalPrice = 0;
+
+  for (const product of cartMarkup) {
+    
+    totalPrice += product.price;
+    console.log(totalPrice)
+  }
+
+  
+  }
+  calcTotalPrice()
+
+//   const order = document.querySelector('.order-total-sum');
+//   let total = 0
+//   cartMarkup.forEach((price) => {
+//     total += price
+    
+//   })  
+
+// console.log(total)
+
+} 
 // basketCart.innerHTML = `<div class="yourcart-product-card">
 //       <img class="yourcart-product-img" src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e383b.png" alt="product" />
 //       <div class="yourcart-product-card-discription">
@@ -206,3 +230,8 @@ function createCartMarkup(array) {
 // Scrollbar.init(document.querySelector('#my-scrollbar'), {
 //   alwaysShowTracks: true,
 // });
+
+
+
+
+
