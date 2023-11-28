@@ -114,7 +114,7 @@ export function renderPopup(data) {
 
 // ! close popup functions
 
-function closeModal(popupMain) {
+export function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
 
