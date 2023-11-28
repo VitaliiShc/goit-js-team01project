@@ -1,6 +1,7 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
-import {getProductById, renderPopup} from './popup-main'
+import { getProductById, renderPopup } from './popup-main'
+import { addToCart } from './addToCart';
 
 const refs = {
     body: document.querySelector('body'),
@@ -74,3 +75,5 @@ refs.popularList.addEventListener('click', async e => {
         renderPopup(data);
     }
 });
+
+// refs.popularBtn.addEventListener('click', addToCart);

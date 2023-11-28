@@ -7,7 +7,7 @@ const buyClick = document.querySelectorAll('.buy-btn');
 buyClick.forEach(button => {
   button.addEventListener('click', addToCart);
 });
-function addToCart(event) {
+export function addToCart(event) {
   let buyingProd = event.currentTarget;
   let productId = buyingProd.id;
   console.log(productId);
