@@ -8,9 +8,12 @@ export function addToCart(event) {
   const productAlreadyInCart = currentCart.find(
     item => item._id === prodInCart._id
   );
-  
+
   if (!productAlreadyInCart) {
     currentCart.push(prodInCart);
     localStorage.setItem('cart', JSON.stringify(currentCart));
+    console.log('added to cart', event.currentTarget.id);
+  } else {
+    console.log('already in cart', event.currentTarget.id);
   }
 }

@@ -82,9 +82,8 @@ export function renderPopup(data) {
         </svg>
       </button>
     </div>
-  </div>
-</div>
-`;
+    </div>
+  </div>`;
   refs.body.insertAdjacentHTML('afterbegin', markup);
 
   const popupMain = document.getElementById('popap-main');
