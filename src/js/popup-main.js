@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import icons from '../images/icons.svg';
 import { addToCart } from './addToCart';
 
 const refs = {
@@ -29,7 +29,7 @@ export async function getProductById(id) {
 // * open modal
 
 refs.productList.addEventListener('click', async e => {
-if (e.target !== refs.productList) {
+  if (e.target !== refs.productList) {
     console.log(e.target.dataset.id);
     e.preventDefault();
     const id = e.target.dataset.id;
@@ -49,7 +49,9 @@ export function renderPopup(data) {
   const markup = `<div id="popap-main" class="popup-main">
   <div class="popup-main-content">
     <button class="popup-main-close-btn" type="button">
-      X
+      <svg class="popup-main-close">
+        <use href="${icons}#icon-remove" />
+      </svg>
     </button>
     <div class="popup-main-conteiner">
       <div class="popup-main-wrap">
@@ -75,12 +77,11 @@ export function renderPopup(data) {
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
       <button class="popup-main-add-btn" type="button" id=${_id}>
-        Add to Cart
+        Add to <svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
       </button>
-    </div>
-  </div>
-</div>
-`;
+    </div>`;
   refs.body.insertAdjacentHTML('afterbegin', markup);
 
   const popupMain = document.getElementById('popap-main');
