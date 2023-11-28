@@ -23,6 +23,7 @@ export async function getPopularItem() {
     }
 }
 
+
 export function createMarkupPopular(response) { 
     const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
     const markup = (response || storedItems).map(({ _id, name, category, size, popularity, img }) => {
