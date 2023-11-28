@@ -36,75 +36,108 @@ function renderPage(YOUR_CART) {
 }
 // Hello
 function createCartMarkup(array) {
-    const cartMarkup = array
-        .map(
-            ({
-                category,
-                img,
-                is10PercentOff,
-                name,
-                popularity,
-                price,
-                size,
-                _id,
-            }) => `<div class="yourcart-product-card" data-product-id=${_id}>
-      <img class="yourcart-product-img" src=${img} alt=${name} />
-      <div class="yourcart-product-card-discription">
-        <div class="yourcart-product-card-info">
-          <p class="yourcart-product-name">${name}</p>
-          <div class="yourcart-product-features">
-            <p class="yourcart-product-category">Category: <span>${category}</span></p>
-            <p class="yourcart-product-size">Size: <span>${size}</span></p>
-          </div>
-          <p class="yourcart-product-price">${price}</p>
+  const cartMarkup = array
+      .map(
+          ({
+              category,
+              img,
+              is10PercentOff,
+              name,
+              popularity,
+              price,
+              size,
+              _id,
+          }) => `<div class="yourcart-product-card" data-product-id=${_id}>
+    <img class="yourcart-product-img" src=${img} alt=${name} />
+    <div class="yourcart-product-card-discription">
+      <div class="yourcart-product-card-info">
+        <p class="yourcart-product-name">${name}</p>
+        <div class="yourcart-product-features">
+          <p class="yourcart-product-category">Category: <span>${category}</span></p>
+          <p class="yourcart-product-size">Size: <span>${size}</span></p>
         </div>
-        <button type="button" class="delete-btn"><svg class="delete-icon"><use href="${icons}#icon-remove"></use>/svg></button>
-        <!-- <div class="yourcart-product-card-controls">
-            <div class="yourcart-product-remove-btn"></div>
-            <div class="counter"></div>
-        </div> -->
+        <p class="yourcart-product-price">${price}</p>
       </div>
-    </div>`
-    )
-    .join('');
-  
-  const fullCartMarkup =
-    `            <div class="delete-all">
-                <p class="delete-all-text">Delete all</p>
-                <button type="button" class="delete-all-btn">
-                    <svg class="delete-all-icon">
-                        <use href="${icons}#icon-remove"></use>
-                    </svg>
-                </button>
-            </div><div class="js-basket">` +
-    cartMarkup +
-    `</div>    <div class="order">
-      <h2 class="order-title">Your Order</h2>
-      <div class="order-total">
-        <p class="order-total">Total</p>
-        <div class="order-sum">
-          <p class="order-text-sum">Sum:</p>
-          <span class="order-total-sum">$12,94</span>
-        </div>
-      </div>
-      <form class="form-input">
-        <input
-          type="email"
-          name="user-email"
-          id="user-email"
-          class="mail-input"
-          placeholder="Enter your email"
-          pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
-          required
-        />
-        <button type="submit" class="form-btn">Checkout</button>
-      </form>
-    </div>`;
-  
-  console.log(fullCartMarkup);
+      <button type="button" class="delete-btn" data-product-id="${_id}">
+        <svg class="delete-icon">
+          <use href="${icons}#icon-remove"></use>
+        </svg>
+      </button>
+    </div>
+  </div>`
+  )
+  .join('');
 
-  basketCart.innerHTML = fullCartMarkup;
+const fullCartMarkup = `            
+  <div class="delete-all">
+    <p class="delete-all-text">Delete all</p>
+    <button type="button" class="delete-all-btn">
+      <svg class="delete-all-icon">
+        <use href="${icons}#icon-remove"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="js-basket">${cartMarkup}</div>
+  <div class="order">
+    <h2 class="order-title">Your Order</h2>
+    <div class="order-total">
+      <p class="order-total">Total</p>
+      <div class="order-sum">
+        <p class="order-text-sum">Sum:</p>
+        <span class="order-total-sum">$12,94</span>
+      </div>
+    </div>
+    <form class="form-input">
+      <input
+        type="email"
+        name="user-email"
+        id="user-email"
+        class="mail-input"
+        placeholder="Enter your email"
+        pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}"
+        required
+      />
+      <button type="submit" class="form-btn">Checkout</button>
+    </form>
+  </div>`;
+
+basketCart.innerHTML = fullCartMarkup;
+
+
+const deleteButtons = document.querySelectorAll('.delete-btn');
+deleteButtons.forEach(button => {
+  button.addEventListener('click', function() {
+    const productId = this.getAttribute('data-product-id');
+
+    deleteProduct(productId);
+  });
+});
+
+
+const deleteAllBtn = document.querySelector('.delete-all-btn');
+deleteAllBtn.addEventListener('click', function() {
+
+  localStorage.setItem('cart', '[]');
+
+  renderPage([]);
+});
 }
+
+
+function deleteProduct(productId) {
+
+const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+
+
+const updatedCart = currentCart.filter(product => product._id !== productId);
+
+
+localStorage.setItem('cart', JSON.stringify(updatedCart));
+
+
+renderPage(updatedCart);
+}
+
 
 // basketCart.innerHTML = `<div class="yourcart-product-card">
 //       <img class="yourcart-product-img" src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e383b.png" alt="product" />
