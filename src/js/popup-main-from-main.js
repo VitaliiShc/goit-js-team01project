@@ -35,25 +35,6 @@ refs.productList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
-
-    const removeConteiner = document.querySelector('.popup-main-footer');
-    const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
-    console.log(getStorageProduct);
-    const getStorageId = getStorageProduct.find(el => el._id === id);
-    if (getStorageId === undefined) {
-      return;
-    }
-    if (getStorageId && getStorageId._id === id) {
-      removeConteiner.textContent = '';
-      const markup = `<p class="popup-main-price">$${getStorageId.price}</p>
-      <button class="popup-main-remove-btn" type="button" id=${getStorageId._id}>
-        Remove from<svg class="popup-main-icon">
-        <use href="${icons}#icon-cart" />
-        </svg>
-      </button>`;
-      removeConteiner.insertAdjacentHTML('afterbegin', markup);
-    }
-
   }
 });
 
@@ -95,9 +76,7 @@ export function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
-
-      <button class="popup-main-add-btn" type="button" data-buythis="${_id}">
-
+      <button class="popup-main-add-btn" type="button" id=${_id}>
         Add to <svg class="popup-main-icon">
         <use href="${icons}#icon-cart" />
         </svg>
@@ -111,8 +90,6 @@ export function renderPopup(data) {
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
   const addToCartBtn = document.querySelector('.popup-main-add-btn');
-
-  const removeConteiner = document.querySelector('.popup-main-footer');
 
   // * close modal by Button - X
   closeBtn.addEventListener('click', () => {
@@ -130,28 +107,13 @@ export function renderPopup(data) {
       closeModal(popupMain);
     }
   });
-
-  // * add to cart btn listener
-  addToCartBtn.addEventListener('click', e => {
-    addToCart(e);
-    removeConteiner.textContent = '';
-    const markup = `<p class="popup-main-price">$${price}</p>
-      <button class="popup-main-remove-btn" type="button" id=${_id}>
-        Remove from<svg class="popup-main-icon">
-        <use href="${icons}#icon-cart" />
-        </svg>
-      </button>`;
-    removeConteiner.insertAdjacentHTML('afterbegin', markup);
-    const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
-    console.log(getStorageProduct);
-  });
-
+  // * add to cart btl listener
+  addToCartBtn.addEventListener('click', addToCart);
 }
 
 // ! close popup functions
 
-export function closeModal(popupMain) {
+function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
-
 }
