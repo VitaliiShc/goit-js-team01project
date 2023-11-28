@@ -23,7 +23,7 @@ function renderPage(YOUR_CART) {
     </picture>
     <h3 class="basket-title">
       Your basket is
-      <a href="/src/index.html" class="basket-title-link"> empty... </a>
+      <a href="./index.html" class="basket-title-link"> empty... </a>
     </h3>
     <p class="basket-text">
       Go to the main page to select your favorite products and add them to the
