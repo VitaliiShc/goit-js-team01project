@@ -1,15 +1,21 @@
 import axios from 'axios';
+import icons from '../images/icons.svg';
+import {getProductById, renderPopup} from './popup-main'
 
 const refs = {
-    popularList: document.querySelector('.popular_list')
-}
-
-const baseUrl = "https://food-boutique.b.goit.study/api/products/popular";
+    body: document.querySelector('body'),
+    popularList: document.querySelector('.popular_list'),
+    popularCard: document.querySelector('.popular_card'),
+    popularBtn: document.querySelector('.basket_button'),
+};
 
 export async function getPopularItem() {
     try {
-        const response = await axios.get(baseUrl);
+        const BASE_API = "https://food-boutique.b.goit.study/api/products/popular";
+        const url = `${BASE_API}`;
+        const response = await axios.get(url);
         console.log(response.data);
+        localStorage.setItem('popularItems', JSON.stringify(response.data));
         return response.data; 
     } catch (error) {
         console.log(error);
@@ -17,22 +23,54 @@ export async function getPopularItem() {
 }
 
 export function createMarkupPopular(response) { 
-    const markup = response.map(({ name, category, size, popularity, img }) => {
-        return `<li class="popular_card">
-        <div class="div_img">
-            <img class="popular_photo" src="${img}" alt="No description" loading="lazy" width="56px" height="56px"/>
+    const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
+    const markup = (response || storedItems).map(({ _id, name, category, size, popularity, img }) => {
+        return `<li class="popular_card" data-id="${_id}">
+        <div class="div_img" data-id="${_id}">
+            <img class="popular_photo" src="${img}" alt="No description" loading="lazy" width="56px" height="56px" data-id="${_id}"/>
         </div>
-            <div class="info">
-                <div class="info_name_button">
-                    <p class="popular_item_name">${name}</p>
+            <div class="info" data-id="${_id}">
+                <div class="info_name_button" data-id="${_id}">
+                    <p class="popular_item_name" data-id="${_id}">${name}</p>
+                    <button class="basket_button">
+                    <svg class="cart-icon">
+                        <use href="${icons}#icon-cart" class="pagination-arrows" />
+                    </svg>
+                    </button>
                 </div>
-                    <p class="popular_description space">Category: <span class="popular_description_info">${category}</span></p>
-                    <div class="info_decription">
-                    <p class="popular_description">Size: <span class="popular_description_info">${size}</span></p>
-                    <p class="popular_description">Popularity: <span class="popular_description_info">${popularity}</span></p>
+                    <p class="popular_description space" data-id="${_id}">Category: <span class="popular_description_info" data-id="${_id}">${category}</span></p>
+                    <div class="info_decription" data-id="${_id}">
+                    <p class="popular_description" data-id="${_id}">Size: <span class="popular_description_info" data-id="${_id}">${size}</span></p>
+                    <p class="popular_description" data-id="${_id}">Popularity: <span class="popular_description_info" data-id="${_id}">${popularity}</span></p>
                     </div>
                 </div>
         </li>`;
     }).join('');
     refs.popularList.insertAdjacentHTML('beforeend', markup);
+    refs.popularList.addEventListener('click', e => {
+    const id = e.target.dataset.id;
+    if (id) {
+        const product = getProductId(id);
+        // console.log(product);
+    }
+});
+
+function getProductId(id) {
+    const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
+    const find = storedItems.find(obj => obj['_id'] === id);
+    return find;
+    }
 }
+
+
+
+
+refs.popularList.addEventListener('click', async e => {
+    if (e.target !== refs.popularList) {
+        console.log(e.target.dataset.id);
+        e.preventDefault();
+        const id = e.target.dataset.id;
+        const data = await getProductById(id);
+        renderPopup(data);
+    }
+});
