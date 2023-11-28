@@ -9,6 +9,7 @@ const cartProductQuantity = document.querySelector('.quantity-carts');
 console.log(cartProductQuantity.textContent);
 
 const FULLDATA = JSON.parse(localStorage.getItem('res.data'));
+console.log(FULLDATA);
 
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 console.log('cart array', YOUR_CART);
@@ -18,15 +19,27 @@ console.log('cart array', YOUR_CART);
 let TOTAL_PRICE = 0;
 
 function calcTotalPrice(objArr) {
-  console.log('cart array for calcTotalPrice', objArr);
+  // if (!objArr) {
+  //   return 0;
+  // }
+
+  // objArr.reduce((price) => {
+  //   return (TOTAL_PRICE += price)
+  // }, 0).toFixed(2);
+
+  // console.log('cart array for calcTotalPrice', objArr);
 
   for (const product of objArr) {
     TOTAL_PRICE += product.price;
+    
   }
-  console.log('total price', TOTAL_PRICE);
+  console.log('total price', TOTAL_PRICE.toFixed(2));
+  
 }
-
+  
 calcTotalPrice(YOUR_CART);
+
+let total = TOTAL_PRICE.toFixed(2)
 
 renderPage(YOUR_CART);
 
@@ -54,7 +67,7 @@ function renderPage(YOUR_CART) {
 // Hello
 
 function createCartMarkup(array) {
-  calcTotalPrice(YOUR_CART);
+  // calcTotalPrice(YOUR_CART);
 
   const cartMarkup = array
     .map(
@@ -104,7 +117,7 @@ function createCartMarkup(array) {
         <p class="order-total">Total</p>
         <div class="order-sum">
           <p class="order-text-sum">Sum:</p>
-          <span class="order-total-sum">${TOTAL_PRICE}</span>
+          <span class="order-total-sum">${ total }</span>
         </div>
       </div>
       <form class="form-input">
