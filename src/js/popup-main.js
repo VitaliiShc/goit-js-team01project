@@ -5,14 +5,13 @@ import { addToCart } from './addToCart';
 const refs = {
   // elements
   body: document.querySelector('body'),
-  productItem: document.querySelector('.prod-item'),
   productList: document.querySelector('.list-prod'),
   addToCartBtn: document.querySelector('.buy-btn'),
 };
 
 // * get id of product
 
-async function getProductById(id) {
+export async function getProductById(id) {
   try {
     const BASE_API = 'https://food-boutique.b.goit.study/api';
     const END_POINT = `/products/${id}`;
@@ -30,9 +29,7 @@ async function getProductById(id) {
 // * open modal
 
 refs.productList.addEventListener('click', async e => {
-  if (e.target === refs.addToCartBtn) {
-    console.log('Cart');
-  } else if (e.target !== refs.productList) {
+if (e.target !== refs.productList) {
     console.log(e.target.dataset.id);
     e.preventDefault();
     const id = e.target.dataset.id;
@@ -43,9 +40,8 @@ refs.productList.addEventListener('click', async e => {
 
 // ! render
 
-function renderPopup(data) {
+export function renderPopup(data) {
   if (!data) {
-    console.log('No data');
     return;
   }
   const { category, desc, img, name, price, size, popularity, _id } = data;
@@ -89,7 +85,7 @@ function renderPopup(data) {
 
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
-  const sddToCartBtn = document.querySelector('.popup-main-add-btn');
+  const addToCartBtn = document.querySelector('.popup-main-add-btn');
 
   // * close modal by Button - X
   closeBtn.addEventListener('click', () => {
@@ -108,7 +104,7 @@ function renderPopup(data) {
     }
   });
   // * add to cart btl listener
-  sddToCartBtn.addEventListener('click', addToCart);
+  addToCartBtn.addEventListener('click', addToCart);
 }
 
 // ! close popup functions
