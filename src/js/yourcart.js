@@ -64,7 +64,7 @@ function renderPage(YOUR_CART) {
     createCartMarkup(YOUR_CART);
   }
 }
-// Hello
+
 
 function createCartMarkup(array) {
   // calcTotalPrice(YOUR_CART);
