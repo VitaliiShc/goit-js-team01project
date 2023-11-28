@@ -50,37 +50,51 @@ export function createMarkupPopular(response) {
     })
     .join('');
   refs.popularList.insertAdjacentHTML('beforeend', markup);
-  //   refs.popularBtn.addEventListener('click', addToCart);
-  refs.popularList.addEventListener('click', e => {
-    // if (e.target.classList.contains('basket_button')) {
-    //   console.log('це едд ту карт');
-    // }
-    const id = e.target.dataset.id;
-    if (id) {
-      const product = getProductId(id);
-      // console.log(product);
-    }
-  });
-
-  function getProductId(id) {
-    const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
-    const find = storedItems.find(obj => obj['_id'] === id);
-    return find;
-  }
 }
 
-refs.popularList.addEventListener('click', async e => {
-  console.log('currentTarget', e.currentTarget);
-  console.log('target', e.target);
-  console.log('dataset', e.target.dataset.buythis);
+// refs.popularList.addEventListener('click', async e => {
+//   console.log('currentTarget', e.currentTarget);
+//   console.log('target', e.target);
+//   console.log('dataset', e.target.dataset.buythis);
 
+//   if (e.target !== refs.popularList && !e.target.dataset.buythis) {
+//     e.preventDefault();
+//     const id = e.target.dataset.id;
+//     const data = await getProductById(id);
+//     renderPopup(data);
+//   } else if (e.target.dataset.buythis) {
+//     console.log('add to cart');
+//     addToCart(e);
+//   }
+// });
+
+refs.popularList.addEventListener('click', async e => {
   if (e.target !== refs.popularList && !e.target.dataset.buythis) {
+    console.log(e.target.dataset.id);
     e.preventDefault();
-    console.log('выдкривааэмо модалку');
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
-  } else if (e.target.dataset.buythis) {
+    const removeConteiner = document.querySelector('.popup-main-footer');
+    const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
+    console.log(getStorageProduct);
+    const getStorageId = getStorageProduct.find(el => el._id === id);
+    if (getStorageId === undefined) {
+      return;
+    }
+    if (getStorageId && getStorageId._id === id) {
+      removeConteiner.textContent = '';
+      const markup = `<p class="popup-main-price">$${getStorageId.price}</p>
+      <button class="popup-main-remove-btn" type="button" id=${getStorageId._id}>
+        Remove from<svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
+      </button>`;
+      removeConteiner.insertAdjacentHTML('afterbegin', markup);
+    }
+    }
+
+    else if (e.target.dataset.buythis) {
     console.log('add to cart');
     addToCart(e);
   }
