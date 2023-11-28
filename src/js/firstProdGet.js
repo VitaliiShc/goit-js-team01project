@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {

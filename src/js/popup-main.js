@@ -35,6 +35,7 @@ refs.productList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
+
     const removeConteiner = document.querySelector('.popup-main-footer');
     const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
     console.log(getStorageProduct);
@@ -52,6 +53,7 @@ refs.productList.addEventListener('click', async e => {
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
     }
+
   }
 });
 
@@ -93,21 +95,23 @@ export function renderPopup(data) {
     </div>
     <div class="popup-main-footer">
       <p class="popup-main-price">$${price}</p>
+
       <button class="popup-main-add-btn" type="button" data-buythis="${_id}">
+
         Add to <svg class="popup-main-icon">
         <use href="${icons}#icon-cart" />
         </svg>
       </button>
     </div>
-  </div>
-</div>
-`;
+    </div>
+  </div>`;
   refs.body.insertAdjacentHTML('afterbegin', markup);
   document.body.classList.add('no-scroll');
 
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
   const addToCartBtn = document.querySelector('.popup-main-add-btn');
+
   const removeConteiner = document.querySelector('.popup-main-footer');
 
   // * close modal by Button - X
@@ -126,6 +130,7 @@ export function renderPopup(data) {
       closeModal(popupMain);
     }
   });
+
   // * add to cart btn listener
   addToCartBtn.addEventListener('click', e => {
     addToCart(e);
@@ -140,11 +145,13 @@ export function renderPopup(data) {
     const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
     console.log(getStorageProduct);
   });
+
 }
 
 // ! close popup functions
 
-function closeModal(popupMain) {
+export function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
+
 }
