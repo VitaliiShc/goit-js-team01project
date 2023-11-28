@@ -64,11 +64,16 @@ a {
   overflow: hidden;
 }
 
+.no-scroll {
+  overflow: hidden;
+}
+
 .container {
   width: 100vw;
   max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
+  border: 1px solid red;
 }
 
 @media screen and (min-width: 768px) {

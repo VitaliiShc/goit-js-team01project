@@ -85,6 +85,7 @@ export function renderPopup(data) {
     </div>
   </div>`;
   refs.body.insertAdjacentHTML('afterbegin', markup);
+  document.body.classList.add('no-scroll');
 
   const popupMain = document.getElementById('popap-main');
   const closeBtn = document.querySelector('.popup-main-close-btn');
@@ -115,4 +116,6 @@ export function renderPopup(data) {
 
 function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
+  document.body.classList.remove('no-scroll');
+
 }
