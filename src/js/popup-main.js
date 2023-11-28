@@ -112,4 +112,3 @@ export function renderPopup(data) {
 function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
 }
-
