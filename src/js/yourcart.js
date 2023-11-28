@@ -8,10 +8,25 @@ const basketCart = document.querySelector('.full-cart-container');
 const cartProductQuantity = document.querySelector('.quantity-carts');
 console.log(cartProductQuantity.textContent);
 
-
+const FULLDATA = JSON.parse(localStorage.getItem('res.data'));
 
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 console.log('cart array', YOUR_CART);
+
+// let testValue = 'Test Value';
+
+let TOTAL_PRICE = 0;
+
+function calcTotalPrice(objArr) {
+  console.log('cart array for calcTotalPrice', objArr);
+
+  for (const product of objArr) {
+    TOTAL_PRICE += product.price;
+  }
+  console.log('total price', TOTAL_PRICE);
+}
+
+calcTotalPrice(YOUR_CART);
 
 renderPage(YOUR_CART);
 
@@ -37,7 +52,10 @@ function renderPage(YOUR_CART) {
   }
 }
 // Hello
+
 function createCartMarkup(array) {
+  calcTotalPrice(YOUR_CART);
+
   const cartMarkup = array
     .map(
       ({
@@ -69,7 +87,7 @@ function createCartMarkup(array) {
     </div>`
     )
     .join('');
-  
+
   const fullCartMarkup =
     `            <div class="delete-all">
                 <p class="delete-all-text">Delete all</p>
@@ -86,7 +104,7 @@ function createCartMarkup(array) {
         <p class="order-total">Total</p>
         <div class="order-sum">
           <p class="order-text-sum">Sum:</p>
-          <span class="order-total-sum"></span>
+          <span class="order-total-sum">${TOTAL_PRICE}</span>
         </div>
       </div>
       <form class="form-input">
@@ -102,34 +120,22 @@ function createCartMarkup(array) {
         <button type="submit" class="form-btn">Checkout</button>
       </form>
     </div>`;
-  
-  console.log(fullCartMarkup);
+
+  // console.log(fullCartMarkup);
 
   basketCart.innerHTML = fullCartMarkup;
 
-  function calcTotalPrice(cartMarkup) {
-  let totalPrice = 0;
+  //   const order = document.querySelector('.order-total-sum');
+  //   let total = 0
+  //   cartMarkup.forEach((price) => {
+  //     total += price
 
-  for (const product of cartMarkup) {
-    
-    totalPrice += product.price;
-    console.log(totalPrice)
-  }
+  //   })
 
-  
-  }
-  calcTotalPrice()
+  // console.log(total)
+}
 
-//   const order = document.querySelector('.order-total-sum');
-//   let total = 0
-//   cartMarkup.forEach((price) => {
-//     total += price
-    
-//   })  
-
-// console.log(total)
-
-} 
+// ---------------- draft
 // basketCart.innerHTML = `<div class="yourcart-product-card">
 //       <img class="yourcart-product-img" src="https://ftp.goit.study/img/so-yummy/ingredients/640c2dd963a319ea671e383b.png" alt="product" />
 //       <div class="yourcart-product-card-discription">
@@ -170,14 +176,14 @@ function createCartMarkup(array) {
 //   basketCart.innerHTML = `
 // <div class="product-cart">
 //         <div class="products-cart-container">
-            // <div class="delete-all">
-            //     <p class="delete-all-text">Delete all</p>
-            //     <button type="button" class="delete-all-btn">
-            //         <svg class="delete-all-icon">
-            //             <use href="${icons}#icon-remove"></use>
-            //         </svg>
-            //     </button>
-            // </div>
+// <div class="delete-all">
+//     <p class="delete-all-text">Delete all</p>
+//     <button type="button" class="delete-all-btn">
+//         <svg class="delete-all-icon">
+//             <use href="${icons}#icon-remove"></use>
+//         </svg>
+//     </button>
+// </div>
 //             <ul class="product-list">
 //                 <li class="product-item">
 //                     <div class="product-cart-container">
@@ -207,20 +213,20 @@ function createCartMarkup(array) {
 //                 </li>
 //             </ul>
 //         </div>
-        // <div class="order">
-        //     <h2 class="order-title">Your Order</h2>
-        //     <div class="order-total">
-        //         <p class="order-total">Total</p>
-        //         <div class="order-sum">
-        //             <p class="order-text-sum">Sum:</p>
-        //             <span class="order-total-sum">$12,94</span>
-        //         </div>
-        //     </div>
-        //     <form class="form-input">
-        //         <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" required />
-        //         <button type="submit" class="form-btn">Checkout</button>
-        //     </form>
-        // </div>
+// <div class="order">
+//     <h2 class="order-title">Your Order</h2>
+//     <div class="order-total">
+//         <p class="order-total">Total</p>
+//         <div class="order-sum">
+//             <p class="order-text-sum">Sum:</p>
+//             <span class="order-total-sum">$12,94</span>
+//         </div>
+//     </div>
+//     <form class="form-input">
+//         <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" required />
+//         <button type="submit" class="form-btn">Checkout</button>
+//     </form>
+// </div>
 //     </div>
 // `;
 //   console.log(basketCart);
@@ -230,8 +236,3 @@ function createCartMarkup(array) {
 // Scrollbar.init(document.querySelector('#my-scrollbar'), {
 //   alwaysShowTracks: true,
 // });
-
-
-
-
-
