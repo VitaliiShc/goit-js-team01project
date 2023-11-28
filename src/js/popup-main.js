@@ -109,10 +109,6 @@ function renderPopup(data) {
   });
   // * add to cart btl listener
   sddToCartBtn.addEventListener('click', addToCart);
-  // додати саме в кошик
-  // змініти текст коннетн на "added to cart"
-  // зняти слухача
-  // закрити модалку
 }
 
 // ! close popup functions
