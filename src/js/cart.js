@@ -1,6 +1,7 @@
 import { cartMarkupEmpty } from './cartMarkupEmpty.js';
 import { cartMarkupFull } from './cartMarkupFull.js';
 import { cartClear } from './cartClear.js';
+import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
 
 const cart = document.querySelector('.js-basket');
 // const cartProductQuantity = document.querySelector('.quantity-carts');
@@ -14,5 +15,6 @@ export function cartPageRender(YOUR_CART) {
   } else {
     cart.innerHTML = cartMarkupFull(YOUR_CART);
     cartClear(YOUR_CART);
+    console.log(cartQuantityItemsCount());
   }
 }
