@@ -18,9 +18,10 @@ export function renderCartPage(YOUR_CART) {
       const deleteButtons = document.querySelectorAll('.remove-cart-item-btn');
       deleteButtons.forEach(button => {
         button.addEventListener('click', function () {
-          const productId = this.getAttribute('data-product-id');
+          const productId = this.dataset.productid;
+          console.log(productId);
 
-          deleteProduct(productId);
+          // deleteProduct(productId);
         });
       });
   }

@@ -1,7 +1,7 @@
 import { renderCartPage } from './cart.js';
 
 
-export function cleartCart(YOUR_CART) {
+export function clearCart(YOUR_CART) {
   const removeCartItemBtn = document.querySelector('.remove-cart-item-btn');
   
 
