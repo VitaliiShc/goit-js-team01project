@@ -69,8 +69,8 @@ refs.productList.addEventListener('click', async e => {
         </svg>
       </button>`;
         removeConteiner.insertAdjacentHTML('afterbegin', markup);
-        // const popupMain = document.getElementById('popap-main');
-        // closeModal(popupMain);
+        const popupMain = document.getElementById('popap-main');
+        closeModal(popupMain);
       });
     }
   }
@@ -177,7 +177,7 @@ export function renderPopup(data) {
         </svg>
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
-      // closeModal(popupMain);
+      closeModal(popupMain);
     });
   });
 }
