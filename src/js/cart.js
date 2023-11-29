@@ -6,9 +6,9 @@ const cart = document.querySelector('.js-basket');
 // const cartProductQuantity = document.querySelector('.quantity-carts');
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 
-renderCartPage(YOUR_CART);
+cartPageRender(YOUR_CART);
 
-export function renderCartPage(YOUR_CART) {
+export function cartPageRender(YOUR_CART) {
   if (YOUR_CART.length === 0) {
     cart.innerHTML = cartMarkupEmpty;
   } else {

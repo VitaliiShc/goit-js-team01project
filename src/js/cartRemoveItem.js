@@ -1,4 +1,4 @@
-import { renderCartPage } from './cart.js';
+import { cartPageRender } from './cart.js';
 
 
 export function cartClear(YOUR_CART) {
@@ -15,7 +15,7 @@ export function cartClear(YOUR_CART) {
     const newCart = YOUR_CART.filter(el => el !== getStorageId);
     localStorage.setItem('cart', JSON.stringify(newCart));
 
-    renderCartPage(YOUR_CART);
+    cartPageRender(YOUR_CART);
   });
 }
 
@@ -34,7 +34,7 @@ export function cartClear(YOUR_CART) {
 //     const newCart = YOUR_CART.filter(el => el !== getStorageId);
 //     localStorage.setItem('cart', JSON.stringify(newCart));
 
-//     renderCartPage(YOUR_CART);
+//     cartPageRender(YOUR_CART);
 //   });
 // }
 
