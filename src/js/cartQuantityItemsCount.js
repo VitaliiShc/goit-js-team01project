@@ -20,7 +20,7 @@ export function cartQuantityItemsCount() {
 // function cartQuantityItemsCount() {
 //   // ----- header
 
-//   const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
+
 
   
 
