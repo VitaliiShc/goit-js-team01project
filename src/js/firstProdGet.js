@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
@@ -39,9 +38,10 @@ apiInstance
     console.error('Помилка отримання даних:', error);
   });
 let screenWidth = window.innerWidth;
-let limitProd = findLimitProd(screenWidth);
+export let limitProd = findLimitProd(screenWidth);
+console.log(limitProd);
 let pageProd = 1;
-function findLimitProd(screenWidth) {
+export function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
     return 6;
   } else if (screenWidth >= 768 && screenWidth < 1280) {
@@ -59,9 +59,9 @@ function handleResize() {
   }
 }
 window.addEventListener('resize', handleResize);
-function createFirst() {
+export function createFirst(currentPage) {
+  console.log(currentPage);
   const savedProduct = localStorage.getItem('res.data');
-
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
@@ -77,7 +77,17 @@ function createFirst() {
   console.log(limitтNumberProd);
   try {
     const dataItems = parseItem;
-    if (dataItems && dataItems.length > 0) {
+    if (currentPage >= 2) {
+      let pageCounter = (currentPage - 1) * 8;
+      const itemsToDisplay = dataItems.slice(
+        firstElOnPage + pageCounter,
+        limitтNumberProd + pageCounter
+      );
+      for (let i = 0; i < itemsToDisplay.length; i += 1) {
+        const markup = creatMarkupProd(itemsToDisplay[i]);
+        productsList.insertAdjacentHTML('beforeend', markup);
+      }
+    } else if (dataItems && dataItems.length > 0) {
       const itemsToDisplay = dataItems.slice(firstElOnPage, limitтNumberProd);
       for (let i = 0; i < itemsToDisplay.length; i += 1) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
@@ -88,7 +98,7 @@ function createFirst() {
     console.log(error);
   }
 }
-function creatMarkupProd(item) {
+export function creatMarkupProd(item) {
   const { _id, category, name, img, price, size, is10PercentOff, popularity } =
     item;
   const nameWithSpace = name.replace(/_/g, ' ');

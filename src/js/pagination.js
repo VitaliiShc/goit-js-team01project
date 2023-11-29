@@ -1,8 +1,9 @@
 import Pagination from 'tui-pagination';
+import icons from '../images/icons.svg';
 const options = {
   totalItems: 0,
-  itemsPerPage: 9,
-  visiblePages: 10,
+  itemsPerPage: 0,
+  visiblePages: 4,
   page: 1,
   centerAlign: true,
   firstItemClassName: 'tui-first-child',
@@ -12,8 +13,8 @@ const options = {
     currentPage:
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
-      '<button class="tui-ico-btn">' +
-      '<span class="icon-svg"><img src="icon-arrow.svg"/></span>' +
+      '<button class="tui-ico-btn" type = "button">' +
+      '<svg class="tui-icon-arrow"><use href="${icons}#icon-pagination-arrow-right/></svg>' +
       '</button>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
@@ -26,3 +27,4 @@ const options = {
   },
 };
 export const pagination = new Pagination('pagination-container', options);
+const page = pagination.getCurrentPage();
