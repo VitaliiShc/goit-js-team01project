@@ -1,8 +1,8 @@
 import icons from '../images/icons.svg';
-import { calcTotalPrice } from './cartTotalPrice';
+import { cartTotalPrice } from './cartTotalPrice';
 
 export function cartMarkupFull(YOUR_CART) {
-  const fullCartMarkup =
+  const markupFullCart =
     `<div class="delete-all">
         <p class="delete-all-text">Delete all</p>
             <button type="button" class="delete-all-btn">
@@ -39,7 +39,7 @@ export function cartMarkupFull(YOUR_CART) {
             <p class="order-total">Total</p>
             <div class="order-sum">
                 <p class="order-total-sum">
-                    <span class="order-text-sum">Sum: </span>&#36;${calcTotalPrice(
+                    <span class="order-text-sum">Sum: </span>&#36;${cartTotalPrice(
                       YOUR_CART
                     )}</p>
             </div>
@@ -50,5 +50,5 @@ export function cartMarkupFull(YOUR_CART) {
         </form>
     </div>`;
 
-  return fullCartMarkup;
+  return markupFullCart;
 }

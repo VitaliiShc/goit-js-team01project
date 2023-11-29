@@ -1,4 +1,4 @@
-export function calcTotalPrice(objArr) {
+export function cartTotalPrice(objArr) {
   let TOTAL_PRICE = 0;
   for (const product of objArr) {
     TOTAL_PRICE += product.price;

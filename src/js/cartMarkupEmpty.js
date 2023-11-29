@@ -1,7 +1,7 @@
 import basket from '../images/basket.png';
 import basket2x from '../images/basket-2x.png';
 
-export const emptyCartMarkup = `
+export const cartMarkupEmpty = `
     <picture>
       <source srcset="${basket} 1x, ${basket2x} 2x" />
       <img src="${basket}" alt="basket" class="basket-img" />
