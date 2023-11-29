@@ -1,3 +1,4 @@
+import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
 
 const cartValue = localStorage.getItem('cart');
 if (cartValue !== null) {
@@ -29,16 +30,9 @@ export function addToCart(event) {
 
   console.log('productAlreadyInCart', productAlreadyInCart);
 
-
   if (!productAlreadyInCart) {
     currentCart.push(prodInCart);
     localStorage.setItem('cart', JSON.stringify(currentCart));
-
-  } 
-// =======
-//     console.log('added to cart', event.currentTarget.id);
-//   } else {
-//     console.log('already in cart', event.currentTarget.id);
-//   }
-// >>>>>>> main
+    cartQuantityItemsCount();
+  }
 }

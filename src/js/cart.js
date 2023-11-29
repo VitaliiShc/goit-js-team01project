@@ -4,7 +4,6 @@ import { cartClear } from './cartClear.js';
 import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
 
 const cart = document.querySelector('.js-basket');
-// const cartProductQuantity = document.querySelector('.quantity-carts');
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 
 cartPageRender(YOUR_CART);
@@ -14,7 +13,7 @@ export function cartPageRender(YOUR_CART) {
     cart.innerHTML = cartMarkupEmpty;
   } else {
     cart.innerHTML = cartMarkupFull(YOUR_CART);
+    cartQuantityItemsCount();
     cartClear(YOUR_CART);
-    console.log(cartQuantityItemsCount());
   }
 }
