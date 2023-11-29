@@ -3,7 +3,7 @@ const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
     page: '1',
-    limit: '90',
+    limit: '540',
   },
 });
 export class searchFirstAPI {
@@ -12,7 +12,6 @@ export class searchFirstAPI {
       const res = await axiosFirst.get('', {
         params: { page: page, limit: limit },
       });
-      // return res.data;
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
     } catch (error) {
       throw error;
@@ -21,12 +20,12 @@ export class searchFirstAPI {
 }
 const apiInstance = new searchFirstAPI();
 const page = 1;
-const limit = 90;
+const limit = 540;
 apiInstance
   .getFirstSearch(page, limit)
   .then(() => {
-    console.log('Дані успішно отримані та збережені в localStorage');
+    
   })
   .catch(error => {
-    console.error('Помилка отримання даних:', error);
+    
   });

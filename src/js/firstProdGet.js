@@ -3,7 +3,7 @@ const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
     page: '1',
-    limit: '90',
+    limit: '540',
   },
 });
 export class searchFirstAPI {
@@ -28,18 +28,16 @@ export class searchFirstAPI {
 }
 const apiInstance = new searchFirstAPI();
 const page = 1;
-const limit = 90;
+const limit = 540;
 apiInstance
   .getFirstSearch(page, limit)
   .then(() => {
-    console.log('Дані успішно отримані та збережені в localStorage');
   })
   .catch(error => {
-    console.error('Помилка отримання даних:', error);
   });
 let screenWidth = window.innerWidth;
 export let limitProd = findLimitProd(screenWidth);
-console.log(limitProd);
+// console.log(limitProd);
 let pageProd = 1;
 export function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
@@ -60,7 +58,7 @@ function handleResize() {
 }
 window.addEventListener('resize', handleResize);
 export function createFirst(currentPage) {
-  console.log(currentPage);
+  // console.log(currentPage);
   const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
@@ -73,8 +71,8 @@ export function createFirst(currentPage) {
     firstElOnPage = (page - 1) * limit;
   }
   limitтNumberProd = +pageProd * +limitProd;
-  console.log(firstElOnPage);
-  console.log(limitтNumberProd);
+  // console.log(firstElOnPage);
+  // console.log(limitтNumberProd);
   try {
     const dataItems = parseItem;
     if (currentPage >= 2) {
