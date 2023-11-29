@@ -52,8 +52,27 @@ refs.productList.addEventListener('click', async e => {
         </svg>
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
-    }
 
+      const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+      removePopupBtn.addEventListener('click', e => {
+        const id = e.target.id;
+        const getStorageId = getStorageProduct.find(el => el._id === id);
+        console.log(getStorageId);
+
+        const newCart = getStorageProduct.filter(el => el !== getStorageId);
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        removeConteiner.textContent = '';
+        const markup = `<p class="popup-main-price">$${getStorageId.price}</p>
+      <button class="popup-main-add-btn" type="button" id=${getStorageId._id}>
+        Add to<svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
+      </button>`;
+        removeConteiner.insertAdjacentHTML('afterbegin', markup);
+        // const popupMain = document.getElementById('popap-main');
+        // closeModal(popupMain);
+      });
+    }
   }
 });
 
@@ -125,11 +144,7 @@ export function renderPopup(data) {
     }
   });
   // * close modal by Escape
-  window.addEventListener('keydown', e => {
-    if (e.code === 'Escape') {
-      closeModal(popupMain);
-    }
-  });
+  window.addEventListener('keydown', closeByEscape);
 
   // * add to cart btn listener
   addToCartBtn.addEventListener('click', e => {
@@ -142,10 +157,29 @@ export function renderPopup(data) {
         </svg>
       </button>`;
     removeConteiner.insertAdjacentHTML('afterbegin', markup);
-    const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
+    const getStorageProduct = JSON.parse(localStorage.getItem('cart')) || [];
     console.log(getStorageProduct);
-  });
 
+    // * remove to cart
+    const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+    removePopupBtn.addEventListener('click', e => {
+      const id = e.target.id;
+      const getStorageId = getStorageProduct.find(el => el._id === id);
+      console.log(getStorageId);
+
+      const newCart = getStorageProduct.filter(el => el !== getStorageId);
+      localStorage.setItem('cart', JSON.stringify(newCart));
+      removeConteiner.textContent = '';
+      const markup = `<p class="popup-main-price">$${price}</p>
+      <button class="popup-main-add-btn" type="button" id=${_id}>
+        Add to<svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
+      </button>`;
+      removeConteiner.insertAdjacentHTML('afterbegin', markup);
+      // closeModal(popupMain);
+    });
+  });
 }
 
 // ! close popup functions
@@ -153,5 +187,12 @@ export function renderPopup(data) {
 export function closeModal(popupMain) {
   popupMain.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
+  window.removeEventListener('keydown', closeByEscape);
+}
 
+function closeByEscape(e) {
+  if (e.code === 'Escape') {
+    const popupMain = document.querySelector('.popup-main');
+    closeModal(popupMain);
+  }
 }
