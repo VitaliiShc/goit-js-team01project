@@ -43,6 +43,7 @@ export function createMarkupDiscount(response) {
                     <button class="basket_button_discount" data-buythis="${_id}">
                     <svg class="cart-icon-discount" data-buythis="${_id}">
                         <use href="${icons}#icon-cart" class="pagination-arrows" data-buythis="${_id}"/>
+                        <use href="${icons}#icon-cart" class="pagination-arrows" data-buythis="${_id}"/>
                     </svg>
                     </button>
                 </div>

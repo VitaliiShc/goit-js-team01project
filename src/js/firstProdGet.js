@@ -1,4 +1,5 @@
 import axios from 'axios';
+import icons from '../images/icons.svg';
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
@@ -108,7 +109,7 @@ export function creatMarkupProd(item) {
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
                   )};">
-                    <use href="icons.svg#icon-cart"></use>
+                    <use href="${icons}#icon-discount"></use>
                   </svg>
                   <img class="prod-img" src="${img}" alt="${name}" loading="lazy" data-id=${_id} />
                 </div>
@@ -122,7 +123,7 @@ export function creatMarkupProd(item) {
                   <p class="price-prod" data-id=${_id}>$${price}</p>
                   <button class="buy-btn" type="button" id=${_id}>
                       <svg class="buy-svg" width="18" height="18">
-                        <use href="icons.svg#icon-cart"></use>
+                        <use href="${icons}#icon-cart" id=${_id}></use>
                       </svg>
                 </button>
                 </div>
@@ -163,3 +164,15 @@ function addToCart(event) {
   } else {
   }
 }
+
+
+// function changeIcon(_id) {
+//   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+//   const isIdInCart = cartItems.find(item => item._id === _id);
+
+//   if (isIdInCart) {
+//     return 'icon-cart'
+//   } else {
+//      return 'icon-check'
+//   }
+// }
