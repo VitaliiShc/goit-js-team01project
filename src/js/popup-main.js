@@ -22,7 +22,6 @@ export async function getProductById(id) {
     return data;
   } catch (error) {
     return;
-    // console.error(error);
   }
 }
 
@@ -157,6 +156,7 @@ export function renderPopup(data) {
         </svg>
       </button>`;
     removeConteiner.insertAdjacentHTML('afterbegin', markup);
+    closeModal(popupMain);
     const getStorageProduct = JSON.parse(localStorage.getItem('cart')) || [];
     console.log(getStorageProduct);
 
@@ -177,7 +177,6 @@ export function renderPopup(data) {
         </svg>
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
-      closeModal(popupMain);
     });
   });
 }
