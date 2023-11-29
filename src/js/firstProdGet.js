@@ -36,9 +36,12 @@ apiInstance
   .catch(error => {
   });
 let screenWidth = window.innerWidth;
-export let limitProd = findLimitProd(screenWidth);
+
+export let limitProd = findLimitProd(screenWidth); 
 // console.log(limitProd);
 let pageProd = 1;
+
+////визначає кількість відримованих елементів залежно від ширини екрану
 export function findLimitProd(screenWidth) {
   if (screenWidth < 768) {
     return 6;
@@ -48,6 +51,8 @@ export function findLimitProd(screenWidth) {
     return 9;
   }
 }
+
+//// відвальовує кулькість елементів відповідно до ширини екрану
 function handleResize() {
   const newScreenWidth = window.innerWidth;
   const newLimitProd = findLimitProd(newScreenWidth);
@@ -56,9 +61,12 @@ function handleResize() {
     createFirst();
   }
 }
+
+//// Слухач відстежує зміну шини єкрану
 window.addEventListener('resize', handleResize);
+
+///// основна функція що будує розмітку на основі данних з Локального сховища
 export function createFirst(currentPage) {
-  // console.log(currentPage);
   const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
   const productsList = document.querySelector('.list-prod');
@@ -71,12 +79,13 @@ export function createFirst(currentPage) {
     firstElOnPage = (page - 1) * limit;
   }
   limitтNumberProd = +pageProd * +limitProd;
-  // console.log(firstElOnPage);
-  // console.log(limitтNumberProd);
+
   try {
     const dataItems = parseItem;
+
+    ///// далі я перевіря який елемент мае бути перший на другій сторінці 7 чи 10 в зележності від ширини екрану
     if (currentPage >= 2) {
-      let pageCounter = (currentPage - 1) * 8;
+      let pageCounter = (currentPage - 1) * findLimitProd(screenWidth);
       const itemsToDisplay = dataItems.slice(
         firstElOnPage + pageCounter,
         limitтNumberProd + pageCounter
@@ -96,6 +105,8 @@ export function createFirst(currentPage) {
     console.log(error);
   }
 }
+
+/// Розмітка кожного елементу 
 export function creatMarkupProd(item) {
   const { _id, category, name, img, price, size, is10PercentOff, popularity } =
     item;
@@ -126,6 +137,8 @@ export function creatMarkupProd(item) {
                 </div>
             </li>`;
 }
+
+/// функція для визначення видимості позначки дисконту на елементі
 function onVisible(is10PercentOff) {
   if (is10PercentOff === true) {
     return 'visible';
@@ -144,6 +157,10 @@ if (cartValue !== null) {
 //   button.addEventListener('click', addToCart);
 // });
 
+
+
+
+///// функція додання до корзини
 function addToCart(event) {
   let buyingProd = event.currentTarget;
   let productId = buyingProd.id;
