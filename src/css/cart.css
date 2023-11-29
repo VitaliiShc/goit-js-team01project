@@ -365,7 +365,7 @@
 }
 
 /* ---------- VS styles ------------ */
-.yourcart-product-card {
+.cart-product-card {
   display: flex;
   flex-direction: row;
   gap: 20px;
@@ -377,36 +377,36 @@
   position: relative;
 }
 
-.yourcart-product-img {
+.cart-product-img {
   width: 120px;
   height: 120px;
 }
-.yourcart-product-card-discription {
+.cart-product-card-discription {
   width: 100%;
 }
 
-.yourcart-product-card-info {
+.cart-product-card-info {
 }
 
-.yourcart-product-name {
+.cart-product-name {
 }
 
-.yourcart-product-features {
+.cart-product-features {
 }
 
-.yourcart-product-category {
+.cart-product-category {
 }
 
-.yourcart-product-size {
+.cart-product-size {
 }
 
-.yourcart-product-price {
+.cart-product-price {
 }
 
-.yourcart-product-card-controls {
+.cart-product-card-controls {
 }
 
-.yourcart-product-remove-btn {
+.cart-product-remove-btn {
 }
 
 .remove-btn {

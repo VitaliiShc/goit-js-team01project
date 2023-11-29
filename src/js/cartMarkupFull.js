@@ -14,18 +14,18 @@ export function cartMarkupFull(YOUR_CART) {
     <ul class="your-cart-list">` +
     YOUR_CART.map(
       ({ category, img, name, price, size, _id }) =>
-        `<li class="yourcart-product-card" data-product-id=${_id}>
-            <img class="yourcart-product-img" src=${img} alt=${name} />
-            <div class="yourcart-product-card-discription">
-                <div class="yourcart-product-card-info">
-                    <p class="yourcart-product-name">${name}</p>
-                    <div class="yourcart-product-features">
-                        <p class="yourcart-product-category">Category: <span>${category}</span></p>
-                        <p class="yourcart-product-size">Size: <span>${size}</span></p>
+        `<li class="cart-product-card" data-product-id=${_id}>
+            <img class="cart-product-img" src=${img} alt=${name} />
+            <div class="cart-product-card-discription">
+                <div class="cart-product-card-info">
+                    <p class="cart-product-name">${name}</p>
+                    <div class="cart-product-features">
+                        <p class="cart-product-category">Category: <span>${category}</span></p>
+                        <p class="cart-product-size">Size: <span>${size}</span></p>
                     </div>
-                    <p class="yourcart-product-price">${price}</p>
+                    <p class="cart-product-price">${price}</p>
                 </div>
-                <div class="yourcart-product-card-controls">
+                <div class="cart-product-card-controls">
                     <button class="remove-cart-item-btn" data-productid=${_id} type="button"><svg class="remove-cart-item-icon"><use href="${icons}#icon-remove"></use>/svg></button>
                     <!-- <div class="counter"></div> -->
                 </div>
