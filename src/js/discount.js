@@ -86,7 +86,7 @@ refs.discountList.addEventListener('click', async e => {
   }
 });
 
-function addToCartDiscound(event) {
+export function addToCartDiscound(event) {
   let buyingProd = event.target;
   let productId = buyingProd.dataset.buythis;
   console.log('productId', productId);
