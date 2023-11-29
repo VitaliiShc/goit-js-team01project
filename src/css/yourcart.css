@@ -103,10 +103,14 @@
          margin-bottom: 14px;
     } */
 
+.your-cart-list {
+    overflow-y: auto;
+max-height: 480px;
+}
 
 .js-basket {
-overflow-y: auto;
-max-height: 480px;
+/* overflow-y: auto; */
+/* max-height: 480px; */
 }
 
 
