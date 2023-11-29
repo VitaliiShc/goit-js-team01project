@@ -26,7 +26,7 @@ export function cartMarkupFull(YOUR_CART) {
                     <p class="yourcart-product-price">${price}</p>
                 </div>
                 <div class="yourcart-product-card-controls">
-                    <button type="button" class="delete-btn"><svg class="delete-icon"><use href="${icons}#icon-remove"></use>/svg></button>
+                    <button class="remove-cart-item-btn" data-productid=${_id} type="button"><svg class="remove-cart-item-icon"><use href="${icons}#icon-remove"></use>/svg></button>
                     <!-- <div class="counter"></div> -->
                 </div>
             </div>
@@ -49,5 +49,6 @@ export function cartMarkupFull(YOUR_CART) {
             <button type="submit" class="form-btn">Checkout</button>
         </form>
     </div>`;
+
   return fullCartMarkup;
 }
