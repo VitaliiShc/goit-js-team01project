@@ -3,7 +3,7 @@ const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
     page: '1',
-    limit: '90',
+    limit: '500',
   },
 });
 export class searchFirstAPI {
