@@ -18,7 +18,7 @@ export function renderCartPage(YOUR_CART) {
 }
 
 
-function clearCart(YOUR_CART) {
+// function clearCart(YOUR_CART) {
 //   const removeCartItemBtn = document.querySelector('.remove-cart-item-btn');
 
 //   removeCartItemBtn.addEventListener('click', e => {
