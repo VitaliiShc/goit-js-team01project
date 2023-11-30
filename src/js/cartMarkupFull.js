@@ -3,7 +3,7 @@ import { cartTotalPrice } from './cartTotalPrice';
 
 export function cartMarkupFull(YOUR_CART) {
   const markupFullCart =
-    `<div class="delete-all">
+    `<div class="your-cart-container"><div class="delete-all">
         <p class="delete-all-text">Delete all</p>
             <button type="button" class="delete-all-btn">
                 <svg class="delete-all-icon">
@@ -36,9 +36,10 @@ export function cartMarkupFull(YOUR_CART) {
                     <!-- <div class="counter"></div> -->
                 </div>
             </div>
-        </li></div>`
+        </li>`
     ).join('') +
     `</ul>
+    </div>
     <div class="order">
         <h2 class="order-title">Your Order</h2>
         <div class="order-total">
@@ -51,9 +52,10 @@ export function cartMarkupFull(YOUR_CART) {
             </div>
         </div>
         <form class="form-input">
-            <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[A-Za-z0-9._+\-']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}" required/>
+            <input type="email" name="user-email" id="user-email" class="mail-input" placeholder="Enter your email" pattern="[_\-a-zA-Z0-9\.\+]+@[a-zA-Z0-9](\.?[\-a-zA-Z0-9]*[a-zA-Z0-9])*" required/>
             <button type="submit" class="form-btn">Checkout</button>
         </form>
+    </div>
     </div>`;
     const btn = document.querySelector('.form-btn')
     console.log(btn);
