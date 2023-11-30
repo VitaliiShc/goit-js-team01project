@@ -30,17 +30,21 @@ export function createMarkupPopular(response) {
     return cartProducts.some(product => product._id === productId);
   }
 
-
   const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
   const markup = (response || storedItems)
     .map(({ _id, name, category, size, popularity, img, is10PercentOff }) => {
-      const isInCartValue  = isInCart(_id); 
+      const isInCartValue = isInCart(_id);
+
+      const nameWithSpace = name.replace(/_/g, ' ');
+      const categoryWithSpace = category.replace(/_/g, ' ');
 
       const svgClass = isInCartValue ? 'check_popular' : 'cart-icon-popular';
       const iconClass = isInCartValue ? 'icon-check' : 'icon-cart';
 
       return `<li class="popular_card" data-id="${_id}">
-      <svg class="discont-popular" width="30" height="30" style="visibility: ${onVisible(is10PercentOff)};">
+      <svg class="discont-popular" width="30" height="30" style="visibility: ${onVisible(
+        is10PercentOff
+      )};">
             <use href="${icons}#icon-discount"></use>
       </svg>
         <div class="div_img" data-id="${_id}">
@@ -48,14 +52,14 @@ export function createMarkupPopular(response) {
         </div>
             <div class="info" data-id="${_id}">
                 <div class="info_name_button" data-id="${_id}">
-                    <p class="popular_item_name" data-id="${_id}">${name}</p>
+                    <p class="popular_item_name" data-id="${_id}">${nameWithSpace}</p>
                     <button class="basket_button" id="${_id}" data-buythis="${_id}">
                     <svg class="${svgClass}" data-buythis="${_id}">
                         <use href="${icons}#${iconClass}" data-buythis="${_id}"/>
                     </svg>
                     </button>
                 </div>
-                    <p class="popular_description space" data-id="${_id}">Category: <span class="popular_description_info" data-id="${_id}">${category}</span></p>
+                    <p class="popular_description space" data-id="${_id}">Category: <span class="popular_description_info" data-id="${_id}">${categoryWithSpace}</span></p>
                     <div class="info_decription" data-id="${_id}">
                     <p class="popular_description" data-id="${_id}">Size: <span class="popular_description_info" data-id="${_id}">${size}</span></p>
                     <p class="popular_description" data-id="${_id}">Popularity: <span class="popular_description_info" data-id="${_id}">${popularity}</span></p>
@@ -98,7 +102,7 @@ refs.popularList.addEventListener('click', async e => {
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
 
-       const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+      const removePopupBtn = document.querySelector('.popup-main-remove-btn');
       removePopupBtn.addEventListener('click', e => {
         const id = e.target.id;
         const getStorageId = getStorageProduct.find(el => el._id === id);
@@ -117,9 +121,9 @@ refs.popularList.addEventListener('click', async e => {
         closeModal(popupMain);
       });
     }
-    }
+  }
 
-    if (e.target.dataset.buythis) {
+  if (e.target.dataset.buythis) {
     addToCart(e);
   }
 });

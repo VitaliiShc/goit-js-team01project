@@ -1,44 +1,44 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
-import { getProductById, renderPopup, closeModal } from './popup-main'
+import { getProductById, renderPopup, closeModal } from './popup-main';
 import { addToCart } from './addToCart';
 
-
 const refs = {
-    discountList: document.querySelector('.discount_list'),
-    body: document.querySelector('body'),
-}
+  discountList: document.querySelector('.discount_list'),
+  body: document.querySelector('body'),
+};
 
-const baseUrl = "https://food-boutique.b.goit.study/api/products/discount";
+const baseUrl = 'https://food-boutique.b.goit.study/api/products/discount';
 
 export async function getDiscountItem() {
-    try {
-        const response = await axios.get(baseUrl);
-        console.log(response.data);
-        localStorage.setItem('discountData', JSON.stringify(response.data));
-        return response.data; 
-    } catch (error) {
-        console.log(error);
-    }
+  try {
+    const response = await axios.get(baseUrl);
+    console.log(response.data);
+    localStorage.setItem('discountData', JSON.stringify(response.data));
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 export function createMarkupDiscount(response) {
-    function isInCart(productId) {
+  function isInCart(productId) {
     const cartProducts = JSON.parse(localStorage.getItem('cart')) || [];
     console.log('ElemInCart', cartProducts);
     return cartProducts.some(product => product._id === productId);
   }
-    const limitedResponse = response.slice(0, 2);
+  const limitedResponse = response.slice(0, 2);
 
-    for (let i = 0; i < limitedResponse.length; i++) {
-      const { _id, name, img, price } = limitedResponse[i];
-      
-      const isInCartValue  = isInCart(_id); 
+  for (let i = 0; i < limitedResponse.length; i++) {
+    const { _id, name, img, price } = limitedResponse[i];
+    const nameWithSpace = name.replace(/_/g, ' ');
 
-      const svgClass = isInCartValue ? 'check_disk' : 'cart-icon-disc';
-      const iconClass = isInCartValue ? 'icon-check' : 'icon-cart';
+    const isInCartValue = isInCart(_id);
 
-        const markup = `<li class="discount_card" data-id="${_id}">
+    const svgClass = isInCartValue ? 'check_disk' : 'cart-icon-disc';
+    const iconClass = isInCartValue ? 'icon-check' : 'icon-cart';
+
+    const markup = `<li class="discount_card" data-id="${_id}">
                 <div class="dicount_img_icon" data-id="${_id}">
                     <img class="discount_photo" src="${img}" alt="No description" loading="lazy" width="114px" height="114px" data-id="${_id}">
                     <span class="discount_icon" data-id="${_id}">
@@ -48,7 +48,7 @@ export function createMarkupDiscount(response) {
                     </span>
                 </div>
                 <div class="discount_info" data-id="${_id}">
-                    <p class="discount_product_name" data-id="${_id}">${name}</p>
+                    <p class="discount_product_name" data-id="${_id}">${nameWithSpace}</p>
                     <p class="discount_product_price" data-id="${_id}">${price}</p>
                     <button class="basket_button_discount" data-buythis="${_id}">
                     <svg class="${svgClass}" data-buythis="${_id}">
@@ -58,10 +58,9 @@ export function createMarkupDiscount(response) {
                 </div>
         </li>`;
 
-        refs.discountList.insertAdjacentHTML('beforeend', markup);
-    }
+    refs.discountList.insertAdjacentHTML('beforeend', markup);
+  }
 }
-
 
 refs.discountList.addEventListener('click', async e => {
   if (e.target !== refs.discountList && !e.target.dataset.buythis) {
@@ -88,7 +87,7 @@ refs.discountList.addEventListener('click', async e => {
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
 
-       const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+      const removePopupBtn = document.querySelector('.popup-main-remove-btn');
       removePopupBtn.addEventListener('click', e => {
         const id = e.target.id;
         const getStorageId = getStorageProduct.find(el => el._id === id);
@@ -107,9 +106,9 @@ refs.discountList.addEventListener('click', async e => {
         closeModal(popupMain);
       });
     }
-    }
+  }
 
-    if (e.target.dataset.buythis) {
+  if (e.target.dataset.buythis) {
     addToCart(e);
   }
 });
