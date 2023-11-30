@@ -136,6 +136,10 @@ color: rgba(1, 1, 1, 0.30);
 /* adaptive */
 
 @media screen and (min-width: 768px) {
+.offers {
+        padding: 100px 0;
+    }
+
     .popular_container {
             width: 768px;
         }
@@ -155,6 +159,10 @@ color: rgba(1, 1, 1, 0.30);
 
 
 @media screen and (min-width: 1280px) {
+.offers {
+        padding: 212px 0;
+    }
+
     .popular_container {
             width: 375px;
         }
