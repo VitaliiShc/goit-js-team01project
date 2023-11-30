@@ -28,7 +28,7 @@ export class searchFirstAPI {
 }
 const apiInstance = new searchFirstAPI();
 const page = 1;
-const limit = 90;
+const limit = 500;
 apiInstance
   .getFirstSearch(page, limit)
   .then(() => {
