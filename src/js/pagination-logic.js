@@ -3,62 +3,68 @@ import { pagination } from './pagination.js';
 import { createFirst } from './firstProdGet.js';
 import { limitProd } from './firstProdGet.js';
 import icons from '../images/icons.svg';
-const productUl = document.querySelector('.list-prod');
 
-const itemProduct = JSON.parse(localStorage.getItem('res.data'));
-const resDataElem = itemProduct.length;
+export function pagination() {
+  const productUl = document.querySelector('.list-prod');
 
-pagination.on('afterMove', event => {
-  const currentPage = event.page;
-  console.log(currentPage);
-  createFirst(currentPage);
-});
+  const itemProduct = JSON.parse(localStorage.getItem('res.data'));
+  const resDataElem = itemProduct.length;
 
-let itemsPerPage = limitProd;
-pagination.setItemsPerPage(itemsPerPage);
+  pagination.on('afterMove', event => {
+    const currentPage = event.page;
+    // console.log(currentPage);
+    createFirst(currentPage);
+  });
 
-const productsArray = JSON.parse(localStorage.getItem('products'));
-console.log('Array', productsArray);
-const elements = productsArray.length;
-console.log(elements);
+  let itemsPerPage = limitProd;
+  pagination.setItemsPerPage(itemsPerPage);
 
-const optionsString = localStorage.getItem('options');
-const options = JSON.parse(optionsString);
-let keyword = options.keyword;
-let category = options.category;
-console.log(keyword);
-console.log(category);
+  const optionsString = localStorage.getItem('options');
+  const options = JSON.parse(optionsString);
+  let keyword = options.keyword;
+  let category = options.category;
+  // console.log(keyword);
+  // console.log(category);
 
-function categoriesFilter(keyword, category) {
-  if (keyword === null && category === null) {
-    pagination.reset(resDataElem);
-    createFirst();
-    console.log('hello', elements);
-  } else if (keyword !== null || category !== null) {
-    console.log('mango', productsArray);
-    console.log('Elements', itemsPerPage);
-    creatFiltredProduct(productsArray);
-    console.log('Функція виконалась');
-    pagination.reset(elements);
-    console.log('El', elements);
+  //==============  VS this function sed in filters logic
+
+  function categoriesFilter(keyword, category) {
+    const productsArray = JSON.parse(localStorage.getItem('products'));
+    // console.log('Array', productsArray);
+    const elements = productsArray.length;
+    // console.log(elements);
+
+    if (keyword === null && category === null) {
+      pagination.reset(resDataElem);
+      createFirst();
+      // console.log('hello', elements);
+    } else if (keyword !== null || category !== null) {
+      // console.log('mango', productsArray);
+      // console.log('Elements', itemsPerPage);
+      creatFiltredProduct(productsArray);
+      // console.log('Функція виконалась');
+      pagination.reset(elements);
+      // console.log('El', elements);
+    }
   }
-}
-categoriesFilter(keyword, category);
+  categoriesFilter(keyword, category);
 
-function creatFiltredProduct(productsArray) {
-  const markup = productsArray
-    .map(
-      ({
-        _id,
-        category,
-        name,
-        img,
-        price,
-        size,
-        is10PercentOff,
-        popularity,
-      }) => {
-        return `<li class="prod-item" data-id=${_id}>
+  //==============VS
+
+  function creatFiltredProduct(productsArray) {
+    const markup = productsArray
+      .map(
+        ({
+          _id,
+          category,
+          name,
+          img,
+          price,
+          size,
+          is10PercentOff,
+          popularity,
+        }) => {
+          return `<li class="prod-item" data-id=${_id}>
                 <div class="prod-pic" data-id=${_id}>
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
@@ -82,14 +88,15 @@ function creatFiltredProduct(productsArray) {
                 </button>
                 </div>
             </li>`;
-      }
-    )
-    .join('');
-  productUl.innerHTML = markup;
-}
+        }
+      )
+      .join('');
+    productUl.innerHTML = markup;
+  }
 
-function onVisible(is10PercentOff) {
-  if (is10PercentOff === true) {
-    return 'visible';
-  } else return 'hidden';
+  function onVisible(is10PercentOff) {
+    if (is10PercentOff === true) {
+      return 'visible';
+    } else return 'hidden';
+  }
 }

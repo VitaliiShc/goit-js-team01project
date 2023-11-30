@@ -1,5 +1,7 @@
 import axios from 'axios';
-import icons from '../images/icons.svg';
+
+import { pagination } from './pagination-logic';
+
 const axiosFirst = axios.create({
   baseURL: 'https://food-boutique.b.goit.study/api/products',
   params: {
@@ -7,6 +9,12 @@ const axiosFirst = axios.create({
     limit: '1000',
   },
 });
+
+localStorage.setItem('res.data', []);
+localStorage.setItem('products', []);
+
+
+
 export class searchFirstAPI {
   async getFirstSearch(page, limit) {
     try {
@@ -16,7 +24,7 @@ export class searchFirstAPI {
       // return res.data;
       localStorage.setItem('res.data', JSON.stringify(res.data.results));
       // added - replace function execution
-      // createFirst();
+      createFirst();
       const buyClick = document.querySelectorAll('.buy-btn');
       buyClick.forEach(button => {
         button.addEventListener('click', addToCart);
@@ -34,6 +42,7 @@ apiInstance
   .getFirstSearch(page, limit)
   .then(() => {
     console.log('Дані успішно отримані та збережені в localStorage');
+    pagination()
   })
   .catch(error => {
     console.error('Помилка отримання даних:', error);
@@ -56,14 +65,14 @@ function handleResize() {
   const newLimitProd = findLimitProd(newScreenWidth);
   if (newLimitProd !== limitProd) {
     limitProd = newLimitProd;
-    // createFirst();
+    createFirst();
   }
 }
 window.addEventListener('resize', handleResize);
 export function createFirst(currentPage) {
+  console.log(currentPage);
   const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
-  const productKey = JSON.parse(localStorage.getItem('products'));
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
   let firstElOnPage;
@@ -74,11 +83,11 @@ export function createFirst(currentPage) {
     firstElOnPage = (page - 1) * limit;
   }
   limitтNumberProd = +pageProd * +limitProd;
-  // console.log(firstElOnPage);
-  // console.log(limitтNumberProd);
+  console.log(firstElOnPage);
+  console.log(limitтNumberProd);
   try {
     const dataItems = parseItem;
-    if (dataItems && currentPage >= 2) {
+    if (currentPage >= 2) {
       let pageCounter = (currentPage - 1) * 8;
       const itemsToDisplay = dataItems.slice(
         firstElOnPage + pageCounter,
@@ -88,19 +97,7 @@ export function createFirst(currentPage) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
         productsList.insertAdjacentHTML('beforeend', markup);
       }
-    }
-    // else if (productKey && currentPage >= 2) {
-    //   let pageCounter = (currentPage - 1) * 8;
-    //   const itemsToDisplay = productKey.slice(
-    //     firstElOnPage + pageCounter,
-    //     limitтNumberProd + pageCounter
-    //   );
-    //   for (let i = 0; i < itemsToDisplay.length; i += 1) {
-    //     const markup = creatMarkupProd(itemsToDisplay[i]);
-    //     productsList.insertAdjacentHTML('beforeend', markup);
-    //   }
-    // }
-    else if (dataItems && dataItems.length > 0) {
+    } else if (dataItems && dataItems.length > 0) {
       const itemsToDisplay = dataItems.slice(firstElOnPage, limitтNumberProd);
       for (let i = 0; i < itemsToDisplay.length; i += 1) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
@@ -114,20 +111,20 @@ export function createFirst(currentPage) {
 export function creatMarkupProd(item) {
   const { _id, category, name, img, price, size, is10PercentOff, popularity } =
     item;
-  // const nameWithSpace = name.replace(/_/g, ' ');
-  // const categoryWithSpace = category.replace(/_/g, ' ');
+  const nameWithSpace = name.replace(/_/g, ' ');
+  const categoryWithSpace = category.replace(/_/g, ' ');
   return `<li class="prod-item" data-id=${_id}>
                 <div class="prod-pic" data-id=${_id}>
                   <svg class="discont-prod" width="60" height="60" style="visibility: ${onVisible(
                     is10PercentOff
                   )};">
-                    <use href="${icons}.svg#icon-discount"></use>
+                    <use href="icons.svg#icon-cart"></use>
                   </svg>
                   <img class="prod-img" src="${img}" alt="${name}" loading="lazy" data-id=${_id} />
                 </div>
-                <h3 class="title-prod" data-id=${_id}>${name}</h3>
+                <h3 class="title-prod" data-id=${_id}>${nameWithSpace}</h3>
                 <div class="feature" data-id=${_id}>
-                  <p class="feature-prod" data-id=${_id}>Category:<span class="feature-value" data-id=${_id}>${category}</span></p>
+                  <p class="feature-prod" data-id=${_id}>Category:<span class="feature-value" data-id=${_id}>${categoryWithSpace}</span></p>
                   <p class="feature-prod" data-id=${_id}>Size:<span class="feature-value" data-id=${_id}>${size}</span></p>
                   <p class="feature-prod push" data-id=${_id}>Popularity:<span class="feature-value" data-id=${_id}>${popularity}</span></p>
                 </div>
@@ -135,7 +132,7 @@ export function creatMarkupProd(item) {
                   <p class="price-prod" data-id=${_id}>$${price}</p>
                   <button class="buy-btn" type="button" id=${_id}>
                       <svg class="buy-svg" width="18" height="18">
-                        <use href="${icons}.svg#icon-cart"></use>
+                        <use href="icons.svg#icon-cart"></use>
                       </svg>
                 </button>
                 </div>
