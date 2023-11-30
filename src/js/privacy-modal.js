@@ -22,6 +22,7 @@ function closeModal(modalId) {
   let modal = document.getElementById(modalId);
   modal.classList.add('is-hidden');
   document.body.classList.remove('no-scroll');
+  modal.removeEventListener('click', closeModalHandler);
   window.removeEventListener('keydown', e => {
     if (e.code === 'Escape') {
       closeModal(modalId);
