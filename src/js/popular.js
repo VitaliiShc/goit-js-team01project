@@ -36,7 +36,8 @@ export function createMarkupPopular(response) {
     .map(({ _id, name, category, size, popularity, img, is10PercentOff }) => {
       const isInCartValue  = isInCart(_id); 
 
-      const iconClass = isInCartValue  ? 'icon-check' : 'icon-cart';
+      const svgClass = isInCartValue ? 'check_popular' : 'cart-icon-popular';
+      const iconClass = isInCartValue ? 'icon-check' : 'icon-cart';
 
       return `<li class="popular_card" data-id="${_id}">
       <svg class="discont-popular" width="30" height="30" style="visibility: ${onVisible(is10PercentOff)};">
@@ -49,7 +50,7 @@ export function createMarkupPopular(response) {
                 <div class="info_name_button" data-id="${_id}">
                     <p class="popular_item_name" data-id="${_id}">${name}</p>
                     <button class="basket_button" id="${_id}" data-buythis="${_id}">
-                    <svg class="cart-icon-popular" data-buythis="${_id}">
+                    <svg class="${svgClass}" data-buythis="${_id}">
                         <use href="${icons}#${iconClass}" data-buythis="${_id}"/>
                     </svg>
                     </button>

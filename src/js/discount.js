@@ -35,7 +35,8 @@ export function createMarkupDiscount(response) {
       
       const isInCartValue  = isInCart(_id); 
 
-      const iconClass = isInCartValue  ? 'icon-check' : 'icon-cart';
+      const svgClass = isInCartValue ? 'check_disk' : 'cart-icon-disc';
+      const iconClass = isInCartValue ? 'icon-check' : 'icon-cart';
 
         const markup = `<li class="discount_card" data-id="${_id}">
                 <div class="dicount_img_icon" data-id="${_id}">
@@ -50,7 +51,7 @@ export function createMarkupDiscount(response) {
                     <p class="discount_product_name" data-id="${_id}">${name}</p>
                     <p class="discount_product_price" data-id="${_id}">${price}</p>
                     <button class="basket_button_discount" data-buythis="${_id}">
-                    <svg class="cart-icon-discount" data-buythis="${_id}">
+                    <svg class="${svgClass}" data-buythis="${_id}">
                         <use href="${icons}#${iconClass}" data-buythis="${_id}"/>
                     </svg>
                     </button>

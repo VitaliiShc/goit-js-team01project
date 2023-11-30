@@ -81,8 +81,9 @@ background-color: var(--primary-color);
 .check_popular {
     width: 20px;
         height: 20px;
-        fill: #6D8434;
-        display: none;
+        fill: none;
+        stroke: #6D8434;
+        /* display: none; */
 }
 
 .basket_button:hover,
@@ -92,7 +93,12 @@ background-color: var(--primary-color);
 
 .basket_button:hover .cart-icon-popular,
 .basket_button:focus .cart-icon-popular {
-    fill: #E8E8E2;
+        fill: #E8E8E2;
+}
+
+.basket_button:hover .check_popular,
+.basket_button:focus .check_popular {
+    stroke: #E8E8E2;
 }
 
 
