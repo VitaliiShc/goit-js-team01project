@@ -14,14 +14,16 @@ export function cartMarkupFull(YOUR_CART) {
     <ul class="your-cart-list">` +
     YOUR_CART.map(
       ({ category, img, name, price, size, _id }) =>
-        `<li class="cart-product-card" data-product-id=${_id}>
+            `<div class="cart-list-container"><li class="cart-product-card" data-product-id=${_id}>
+        <div class="product-cart-container">
             <img class="cart-product-img" src=${img} alt=${name} />
+            </div>
             <div class="cart-product-card-discription">
                 <div class="cart-product-card-info">
                     <p class="cart-product-name">${name}</p>
                     <div class="cart-product-features">
-                        <p class="cart-product-category">Category: <span>${category}</span></p>
-                        <p class="cart-product-size">Size: <span>${size}</span></p>
+                        <p class="cart-product-category">Category: <span class="cart-product-category-span">${category}</span></p>
+                        <p class="cart-product-size">Size: <span class="cart-product-size-span">${size}</span></p>
                     </div>
                     <p class="cart-product-price">${price}</p>
                 </div>
@@ -34,13 +36,13 @@ export function cartMarkupFull(YOUR_CART) {
                     <!-- <div class="counter"></div> -->
                 </div>
             </div>
-        </li>`
+        </li></div>`
     ).join('') +
     `</ul>
     <div class="order">
         <h2 class="order-title">Your Order</h2>
         <div class="order-total">
-            <p class="order-total">Total</p>
+            <p class="order-text-total">Total</p>
             <div class="order-sum">
                 <p class="order-total-sum">
                     <span class="order-text-sum">Sum: </span>&#36;${cartTotalPrice(
@@ -53,6 +55,8 @@ export function cartMarkupFull(YOUR_CART) {
             <button type="submit" class="form-btn">Checkout</button>
         </form>
     </div>`;
+    const btn = document.querySelector('.form-btn')
+    console.log(btn);
+    return markupFullCart;
 
-  return markupFullCart;
 }
