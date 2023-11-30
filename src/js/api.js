@@ -6,8 +6,8 @@ export class FoodApi {
     this.searchQuery = '';
     this.category = '';
     this.currentPage = 1;
-    this.perPage = 90;
-    
+this.perPage = 90;
+    this.showAllCategory = 'show-all';
   }
 
   encodeParams(params) {
@@ -16,14 +16,12 @@ export class FoodApi {
       .join('&');
   }
 
-
-
   getFoodList() {
     const params = {
       keyword: this.searchQuery,
-      category: this.category,
+      category: this.category === this.showAllCategory ? null : this.category, 
       page: this.currentPage,
-      limit: this.perPage,
+     limit: this.perPage,
     };
 
     const encodedParams = this.encodeParams(params);
@@ -35,9 +33,13 @@ export class FoodApi {
       });
   }
 
-  getCategories() {
+  
+      
+getCategories() {
     return axios.get(`${this.URL}/products/categories`).then(response => {
-      console.log(response.data);
+      
+    
+console.log(response.data);
       return response.data;
     });
   }

@@ -18,12 +18,6 @@ foodApi.getCategories().then(categories => {
   defaultOption.selected = true;
   select.appendChild(defaultOption);
 
-  
-  // select.addEventListener('click', function () {
-  //   defaultOption.classList.add('hidden');
-  // });
-
-
   categories.forEach(category => {
     defaultOption.classList.add('hidden');
     const option = document.createElement('option');
@@ -50,17 +44,17 @@ const selectedItem = select.value;
   try {
     
 let options = JSON.parse(localStorage.getItem('options')) || {};
-    if (selectedItem === 'show-all') {
-      
-        localStorageManager.defaultApiOptions();
-        const data = await foodApi.getFoodList();
-        localStorageManager.updateLocalStorageWithFoodList(data, options);
-    } else {
-      options.category = selectedItem;
-      foodApi.category = selectedItem;
-      const data = await foodApi.getFoodList();
-      localStorageManager.updateLocalStorageWithFoodList(data, options);
-    }
+if (selectedItem === 'show-all') {
+  localStorage.removeItem('products');
+  localStorageManager.defaultApiOptions();
+
+  document.getElementById('search').value = '';
+} else {
+  options.category = selectedItem;
+  foodApi.category = selectedItem;
+  const data = await foodApi.getFoodList();
+  localStorageManager.updateLocalStorageWithFoodList(data, options);
+}
   } 
     catch (error) {
     console.error('Error fetching food list:', error.message);
@@ -113,42 +107,3 @@ submitForm.addEventListener('submit', async event => {
 
 
 
-
-// Выбjр категории 
-// select.addEventListener('change', function () {
-//     const selectedItem = select.value;
-//     if (select.value === 'show-all') {
-//     foodApi.getFoodList().then(data => {
-//     localStorage.setItem('products', JSON.stringify(data));    
-//           });
-//     } else {
-//       foodApi.category = selectedItem;
-//       foodApi
-//         .getFoodList()
-//         .then(data => {
-//             localStorage.setItem('products', JSON.stringify(data));
-//         })
-//         .catch(error => {
-//             console.error('Error fetching food list:', error.message);
-//             throw error;
-//         })
-//     }
-//   });
-
-//   // Поиск по слову
-// submitForm.addEventListener('submit', event => {
-//     event.preventDefault();
-  
-//     const searchValue = event.target.elements.search.value;
-//     foodApi.searchQuerry = searchValue;
-  
-//     foodApi
-//       .getFoodList()
-//       .then(data => {
-//         localStorage.setItem('products', JSON.stringify(data));
-//       })
-//       .catch(error => {
-//         console.error('Error fetching food list:', error.message);
-//         throw error;
-//       });
-// });
