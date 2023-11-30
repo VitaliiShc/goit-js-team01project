@@ -63,8 +63,9 @@
                 class="footer-subcribe-input"
                 type="email"
                 name="footer-subcribe-email"
+                pattern="[A-Za-z0-9._+-']+@[A-Za-z0-9.-]+.[A-Za-z]{2,}"
                 placeholder="Email"
-                required
+                required=""
             /></label>
             <button class="footer-subcribe-btn" type="submit" data-modal-open>
               Send
@@ -81,7 +82,8 @@
         <a
           class="footer-policy-rule-link"
           onclick="openModal('privacyPolicyModal')"
-          >Privacy Policy</a>&nbsp;&nbsp;&#47;&nbsp;&nbsp;<a
+          >Privacy Policy</a
+        >&nbsp;&nbsp;&#47;&nbsp;&nbsp;<a
           class="footer-policy-rule-link"
           onclick="openModal('termsOfServiceModal')"
           >Terms of Service</a
@@ -90,4 +92,3 @@
     </div>
   </div>
 </footer>
-<!--123-->

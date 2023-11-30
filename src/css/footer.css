@@ -138,6 +138,10 @@
     transition: border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 
+  .footer-subcribe-input:is(:hover, :focus){
+   border: 1px solid var(--background-color);
+  }
+
   .footer-subcribe-input::placeholder {
     color: rgba(232, 232, 226, 0.6);
     font-weight: 400;
