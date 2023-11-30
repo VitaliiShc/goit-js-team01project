@@ -14,7 +14,7 @@ const options = {
       '<strong class="tui-page-btn tui-is-selected">{{page}}</strong>',
     moveButton:
       '<button class="tui-ico-btn" type = "button">' +
-      '<svg class="tui-icon-arrow"><use href="${icons}#icon-pagination-arrow-right/></svg>' +
+      '<svg class="tui-icon-arrow"><use class="tui-ico-arrow" href="${icons}.svg#icon-pagination-arrow-right"></use></svg>' +
       '</button>',
     disabledMoveButton:
       '<span class="tui-page-btn tui-is-disabled tui-{{type}}">' +
