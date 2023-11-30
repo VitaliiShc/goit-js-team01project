@@ -1,0 +1,2 @@
+function openModal(e){var o=document.getElementById(e);o.classList.remove("is-hidden"),document.body.classList.add("no-scroll"),o.addEventListener("click",(function(d){d.target===o&&closeModal(e)})),window.addEventListener("keydown",(function(o){"Escape"===o.code&&closeModal(e)}))}function closeModal(e){document.getElementById(e).classList.add("is-hidden"),document.body.classList.remove("no-scroll"),window.removeEventListener("keydown",(function(o){"Escape"===o.code&&closeModal(e)}))}
+//# sourceMappingURL=index.73f5d2b2.js.map
