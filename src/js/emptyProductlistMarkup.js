@@ -6,6 +6,7 @@ export const nothingMarkupEmpty = `
     <p class="nothing-products-text">
     Try adjusting your search parameters or browse our range by other criteria
     to find the perfect product for you.
+    </p>
     </div>`
     ;
     
