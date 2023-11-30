@@ -73,7 +73,6 @@ a {
   max-width: 375px;
   padding: 0 20px;
   margin: 0 auto;
-  border: 1px solid red;
 }
 
 @media screen and (min-width: 768px) {
