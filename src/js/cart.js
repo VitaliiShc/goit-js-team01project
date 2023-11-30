@@ -2,6 +2,9 @@ import { cartMarkupEmpty } from './cartMarkupEmpty.js';
 import { cartMarkupFull } from './cartMarkupFull.js';
 import { cartClear } from './cartClear.js';
 import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
+import { cartRemoveItem } from './cartRemoveItem.js';
+import { cartOrderPost } from './cartOrderPost.js';
+
 
 const cart = document.querySelector('.js-basket');
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
@@ -13,7 +16,10 @@ export function cartPageRender(YOUR_CART) {
     cart.innerHTML = cartMarkupEmpty;
   } else {
     cart.innerHTML = cartMarkupFull(YOUR_CART);
-    cartQuantityItemsCount();
+
     cartClear(YOUR_CART);
+    cartRemoveItem();
+    cartQuantityItemsCount();
   }
+  cartOrderPost();
 }
