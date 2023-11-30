@@ -7,7 +7,7 @@
 }
 
 .discount_container {
-  padding: 0 20px 20px 20px;
+  padding: 0 20px;
   width: 375px;
   margin: 0 auto;
 }
@@ -91,9 +91,22 @@
   transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+.cart-icon-disc {
+  fill: #E8E8E2;
+  border-radius: 30px;
+}
+
+.check_disk {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: #E8E8E2;
+  /* display: none; */
+}
+
 .basket_button_discount:hover,
 .basket_button_discount:focus {
-  background-color: #586f1f;
+  background-color: #586F1F;
 }
 
 /* adaptive */
