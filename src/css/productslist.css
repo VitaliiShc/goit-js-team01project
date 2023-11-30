@@ -98,7 +98,6 @@
 .prod-pic {
   border-radius: 10px;
   background-color: var(--background-color);
-  width: 295px;
   height: 178px;
   display: flex;
   justify-content: center;
@@ -112,12 +111,17 @@
 }
 
 .discont-prod {
-  background-color: var(--primary-color);
   position: absolute;
-  top: -10px;
-  left: 245px;
-  z-index: 7;
-  visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    left: 92%;
+    top: 12%;
+    transform: translate(-50%, -50%);
+    background-color: #6d8434;
+    width: 60px;
+    height: 60px;
 }
 
 .title-prod {
@@ -177,17 +181,13 @@
   align-items: center;
   cursor: pointer;
   appearance: auto;
+  border: none;
 }
 
 .buy-svg {
-  fill: var(--primary-color);
+  fill: white;
   justify-content: center;
   align-items: center;
-}
-
-.buy-svg:hover,
-.buy-svg:focus {
-  fill: var(--dark-green);
 }
 
 .buy-btn:hover,
