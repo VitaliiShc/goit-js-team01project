@@ -1,13 +1,13 @@
 .modal {
-  position: fixed;
-  z-index: 999;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  overflow: hidden;
-  background-color: rgba(0, 0, 0, 0.4);
-  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
-    visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+   width: 100vw;
+   height: 100vh;
+   z-index: 10;
+   transition: all .8s cubic-bezier(.4, 0, .2, 1);
+   position: fixed;
+   top: 0;
+   left: 0;
+   overflow-x: hidden;
+   overflow-y: hidden;
 }
 
 .modal-content {
@@ -52,3 +52,4 @@
   transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1),
     visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+/*fdg*/
