@@ -8,7 +8,6 @@
 
 .discount_container {
   padding: 0 20px;
-  width: 375px;
   margin: 0 auto;
 }
 
@@ -117,11 +116,19 @@
     width: 768px;
   }
 
+    .discount_card {
+      width: 275px;
+    }
+
   .discount_list {
     display: flex;
     flex-direction: row;
     gap: 32px;
   }
+
+    .dicount_img_icon {
+      width: 243px;
+    }
 }
 
 @media screen and (min-width: 1280px) {

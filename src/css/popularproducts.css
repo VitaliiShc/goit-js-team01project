@@ -4,7 +4,6 @@
 
 .popular_container {
     padding: 0 20px;
-    width: 375px;
     margin-bottom: 40px;
 }
 
@@ -141,7 +140,12 @@ color: rgba(1, 1, 1, 0.30);
             width: 768px;
         }
 
+                .popular_card {
+                    width: 275px;
+                }
+
     .popular_list {
+        width: 563px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
