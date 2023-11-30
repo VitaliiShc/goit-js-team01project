@@ -1,6 +1,6 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
-import { getProductById, renderPopup } from './popup-main';
+import { getProductById, renderPopup, closeModal } from './popup-main';
 import { addToCart } from './addToCart';
 
 const refs = {
@@ -61,8 +61,6 @@ function onVisible(is10PercentOff) {
   } else return 'hidden';
 }
 
-
-
 refs.popularList.addEventListener('click', async e => {
   if (e.target !== refs.popularList && !e.target.dataset.buythis) {
     console.log(e.target.dataset.id);
@@ -70,6 +68,7 @@ refs.popularList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
+
     const removeConteiner = document.querySelector('.popup-main-footer');
     const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
     console.log(getStorageProduct);
@@ -86,6 +85,25 @@ refs.popularList.addEventListener('click', async e => {
         </svg>
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
+
+       const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+      removePopupBtn.addEventListener('click', e => {
+        const id = e.target.id;
+        const getStorageId = getStorageProduct.find(el => el._id === id);
+        console.log(getStorageId);
+        const newCart = getStorageProduct.filter(el => el !== getStorageId);
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        removeConteiner.textContent = '';
+        const markup = `<p class="popup-main-price">$${getStorageId.price}</p>
+      <button class="popup-main-add-btn" type="button" id=${getStorageId._id}>
+        Add to<svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
+      </button>`;
+        removeConteiner.insertAdjacentHTML('afterbegin', markup);
+        const popupMain = document.getElementById('popap-main');
+        closeModal(popupMain);
+      });
     }
     }
 
@@ -93,10 +111,3 @@ refs.popularList.addEventListener('click', async e => {
     addToCart(e);
   }
 });
-
-
-
-
-  //   if (e.target.dataset.buythis) {
-  //   addToCart(e);
-  // }
