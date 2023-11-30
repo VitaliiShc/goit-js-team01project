@@ -95,7 +95,7 @@
 .delete-all {
   display: flex;
   gap: 8px;
-  margin-top: 19px;
+  margin-top: 14px;
   margin-bottom: 30px;
   align-items: center;
   justify-content: flex-end;
@@ -118,8 +118,6 @@
   width: 24px;
   height: 24px;
 }
-
-
 
 .product-cart-container {
   width: 100px;
@@ -147,21 +145,25 @@
   padding: 30px 0;
 }
 
-.cart-list-container:before {
- content: '';
- bottom: 0;
-width: 335px;
-height: 1px;
-border: red;
+.cart-product-card:last-child::after{
+  display: none;
 }
 
-
+.cart-product-card:after {
+  content: '';
+  width: 335px;
+  border: 1px solid rgba(1, 1, 1, 0.1);
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
 
 .remove-cart-item-btn {
   padding: 0;
   position: absolute;
-  top: 22px;
-  right: 7px;
+  top: 30px;
+  right: 14px;
   border: none;
   background-color: transparent;
   display: flex;
@@ -232,19 +234,14 @@ border: red;
   height: 117px;
   flex-shrink: 0;
 }
-/* .product-list {
-  display: flex;
-  margin-top: 40px;
-} */
 
-/* .product-list-info {
-  display: flex;
-} */
+.form-input {
+  padding-bottom: 80px;
+}
 
 .order-title {
   color: #010101;
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.17;
   text-transform: uppercase;
@@ -265,11 +262,10 @@ border: red;
 .order-text-total {
   color: #010101;
   font-size: 18px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.11;
-  padding-left: 18px;
   padding-top: 26px;
+  padding-left: 18px;
   padding-bottom: 14px;
 }
 
@@ -281,7 +277,6 @@ border: red;
 .order-text-sum {
   color: rgba(1, 1, 1, 0.2);
   font-size: 12px;
-  font-style: normal;
   font-weight: 400;
   line-height: 1.17;
   padding-top: 30px;
@@ -291,7 +286,6 @@ border: red;
 .order-total-sum {
   color: #010101;
   font-size: 24px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.17;
   padding-top: 18px;
@@ -309,6 +303,7 @@ border: red;
   color: #010101;
   outline: transparent;
   margin-bottom: 14px;
+  
 }
 
 .mail-input:is(:hover, :focus) {
@@ -330,15 +325,12 @@ border: red;
 .form-btn {
   color: #e8e8e2;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
   line-height: 1.29;
-  /* padding: 12px 138px; */
   width: 100%;
   height: 42px;
   border-radius: 30px;
   background: #6d8434;
-  /* border: 1px solid rgba(1, 1, 1, 0.30); */
   border: none;
   cursor: pointer;
   
@@ -355,7 +347,7 @@ border: red;
     max-width: 768px;
     margin: 0 auto;
     padding-left: 32px;
-    padding-right: 64px;
+    padding-right: 32px;
   }
 
   .carts {
@@ -403,15 +395,137 @@ border: red;
   }
 
   /*!----------Кошик з товарами----------*/
+
+  .delete-all {
+    margin-top: 26px;
+    margin-bottom: 42px;
+  }
+
+  .delete-all-text {
+    font-size: 16px;
+    line-height: 1.25;
+  }
+
+  .product-cart-container {
+    width: 120px;
+    height: 120px;
+    padding: 24px;
+  }
+
+  .cart-product-img {
+    width: 72px;
+    height: 72px;
+  }
+
+  .your-cart-list {
+    margin-bottom: 60px;
+  }
+
+  .cart-product-card {
+    gap: 40px;
+    padding: 40px 0;
+  }
+
+  .cart-product-card:after{
+    width: 672px;
+  }
+
+  .remove-cart-item-btn {
+    top: 40px;
+    right: 39px;
+  }
+
+  .remove-cart-item-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cart-product-name {
+    font-size: 20px;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .cart-product-features {
+    gap: 16px;
+    margin-bottom: 44px;
+  }
+
+  .cart-product-category-span {
+    font-size: 14px;
+    line-height: 1.28;
+  }
+
+  .cart-product-size-span {
+    font-size: 14px;
+    line-height: 1.28;
+  }
+
+  .cart-product-price {
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .form-input {
+    padding-bottom: 100px;
+    display: flex;
+    gap: 16px;
+  }
+
+  .order-title {
+    font-size: 32px;
+    line-height: 1;
+  }
+
+  .order-total {
+    margin-bottom: 40px;
+    width: 590px;
+  }
+
+  .order-text-total {
+    font-size: 20px;
+    line-height: 1.2;
+    padding-top: 22px;
+    padding-left: 28px;
+    padding-bottom: 14px;
+  }
+
+  .order-sum {
+    gap: 8px;
+  }
+
+  .order-total-sum {
+    font-size: 32px;
+    line-height: 1;
+    padding-top: 14px;
+    padding-right: 28px;
+  }
+
+  .mail-input {
+    width: 359px;
+    height: 54px;
+    margin-bottom: 0;
+  }
+
+  .mail-input::placeholder {
+    font-size: 18px;
+    line-height: 1.34;
+  }
+
+  .form-btn {
+    font-size: 20px;
+    line-height: 1.2;
+    width: 215px;
+    height: 54px;
+  }
+
 }
 
 @media screen and (min-width: 1280px) {
   .cart-container {
-    width: 100vw;
-    width: auto;
     max-width: 1280px;
-    margin: 0 auto;
     padding-left: 20px;
+    padding-right: 20px;
   }
 
   .carts {
@@ -430,49 +544,32 @@ border: red;
   }
 
   /*!----------Кошик з товарами----------*/
-}
 
-/* ---------- VS styles ------------ */
+  .delete-all {
+    margin-top: 16px;
+    margin-bottom: 44px;
+  }
 
+  .cart-product-card:after {
+    width: 500px;
+  }
+   
+  .remove-cart-item-btn {
+    top: 44px;
+    right: 40px;
+  }
 
-/* .cart-product-img {
-  width: 120px;
-  height: 120px;
-} */
-.cart-product-card-discription {
-  /* width: 100%; */
-}
+  .form-input {
+    padding-bottom: 0px;
+  }
 
-.cart-product-card-info {
-}
+  .js-basket {
+    display: flex;
+    gap: 101px;
+  }
 
-.cart-product-name {
-}
-
-.cart-product-features {
-}
-
-.cart-product-category {
-}
-
-.cart-product-size {
-}
-
-.cart-product-price {
-}
-
-.cart-product-card-controls {
-}
-
-.cart-product-remove-btn {
-}
-
-.remove-btn {
-}
-
-.counter {
-}
-.check-btn {
-  background-color: red;
+  .your-cart-container {
+    width: 100%;
+  }
 
 }
