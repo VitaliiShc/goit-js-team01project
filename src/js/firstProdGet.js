@@ -63,7 +63,7 @@ window.addEventListener('resize', handleResize);
 export function createFirst(currentPage) {
   const savedProduct = localStorage.getItem('res.data');
   const parseItem = JSON.parse(savedProduct);
-  const productKey = JSON.parse(localStorage.getItem('products'));
+  // const productKey = JSON.parse(localStorage.getItem('products'));
   const productsList = document.querySelector('.list-prod');
   productsList.innerHTML = '';
   let firstElOnPage;
@@ -74,8 +74,8 @@ export function createFirst(currentPage) {
     firstElOnPage = (page - 1) * limit;
   }
   limitтNumberProd = +pageProd * +limitProd;
-  // console.log(firstElOnPage);
-  // console.log(limitтNumberProd);
+  console.log(firstElOnPage);
+  console.log(limitтNumberProd);
   try {
     const dataItems = parseItem;
     if (dataItems && currentPage >= 2) {
@@ -88,19 +88,7 @@ export function createFirst(currentPage) {
         const markup = creatMarkupProd(itemsToDisplay[i]);
         productsList.insertAdjacentHTML('beforeend', markup);
       }
-    }
-    // else if (productKey && currentPage >= 2) {
-    //   let pageCounter = (currentPage - 1) * 8;
-    //   const itemsToDisplay = productKey.slice(
-    //     firstElOnPage + pageCounter,
-    //     limitтNumberProd + pageCounter
-    //   );
-    //   for (let i = 0; i < itemsToDisplay.length; i += 1) {
-    //     const markup = creatMarkupProd(itemsToDisplay[i]);
-    //     productsList.insertAdjacentHTML('beforeend', markup);
-    //   }
-    // }
-    else if (dataItems && dataItems.length > 0) {
+    } else if (dataItems && dataItems.length > 0) {
       const itemsToDisplay = dataItems.slice(firstElOnPage, limitтNumberProd);
       for (let i = 0; i < itemsToDisplay.length; i += 1) {
         const markup = creatMarkupProd(itemsToDisplay[i]);

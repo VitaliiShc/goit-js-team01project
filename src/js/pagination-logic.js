@@ -3,49 +3,45 @@ import { pagination } from './pagination.js';
 import { createFirst } from './firstProdGet.js';
 import { limitProd } from './firstProdGet.js';
 import icons from '../images/icons.svg';
+import { LocalStorage } from './local-storage.js';
+document.addEventListener('DOMContentLoaded', () => {
+  localStorageManager.defaultApiOptions();
+});
+const localStorageManager = new LocalStorage();
+
 const productUl = document.querySelector('.list-prod');
 
 const itemProduct = JSON.parse(localStorage.getItem('res.data'));
+console.log(itemProduct);
 const resDataElem = itemProduct.length;
+console.log(resDataElem);
 
 pagination.on('afterMove', event => {
   const currentPage = event.page;
-  console.log(currentPage);
   createFirst(currentPage);
 });
 
 let itemsPerPage = limitProd;
 pagination.setItemsPerPage(itemsPerPage);
 
-const productsArray = JSON.parse(localStorage.getItem('products'));
-console.log('Array', productsArray);
-const elements = productsArray.length;
-console.log(elements);
-
 const optionsString = localStorage.getItem('options');
 const options = JSON.parse(optionsString);
+console.log(options);
 let keyword = options.keyword;
-let category = options.category;
 console.log(keyword);
+let category = options.category;
+
 console.log(category);
 
-function categoriesFilter(keyword, category) {
+export function categoriesFilter() {
   if (keyword === null && category === null) {
-    pagination.reset(resDataElem);
     createFirst();
-    console.log('hello', elements);
-  } else if (keyword !== null || category !== null) {
-    console.log('mango', productsArray);
-    console.log('Elements', itemsPerPage);
-    creatFiltredProduct(productsArray);
-    console.log('Функція виконалась');
-    pagination.reset(elements);
-    console.log('El', elements);
+    pagination.reset(resDataElem);
   }
 }
-categoriesFilter(keyword, category);
+categoriesFilter();
 
-function creatFiltredProduct(productsArray) {
+export function creatFiltredProduct(productsArray) {
   const markup = productsArray
     .map(
       ({

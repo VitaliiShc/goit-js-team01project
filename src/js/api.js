@@ -7,16 +7,16 @@ export class FoodApi {
     this.category = '';
     this.currentPage = 1;
     this.perPage = 90;
-    
   }
 
   encodeParams(params) {
     return Object.entries(params)
-      .map(([key, value]) => `${encodeURIComponent(key)}=${encodeURIComponent(value)}`)
+      .map(
+        ([key, value]) =>
+          `${encodeURIComponent(key)}=${encodeURIComponent(value)}`
+      )
       .join('&');
   }
-
-
 
   getFoodList() {
     const params = {
@@ -28,11 +28,9 @@ export class FoodApi {
 
     const encodedParams = this.encodeParams(params);
 
-    return axios
-      .get(`${this.URL}/products?${encodedParams}`)
-      .then(response => {
-        return response.data;
-      });
+    return axios.get(`${this.URL}/products?${encodedParams}`).then(response => {
+      return response.data;
+    });
   }
 
   getCategories() {
@@ -42,4 +40,3 @@ export class FoodApi {
     });
   }
 }
-  
