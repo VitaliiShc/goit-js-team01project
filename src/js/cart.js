@@ -11,14 +11,13 @@ const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 cartPageRender(YOUR_CART);
 
 export function cartPageRender(YOUR_CART) {
+  cartQuantityItemsCount();
   if (YOUR_CART.length === 0) {
     cart.innerHTML = cartMarkupEmpty;
   } else {
     cart.innerHTML = cartMarkupFull(YOUR_CART);
-
     cartClear(YOUR_CART);
     cartRemoveItem();
-    cartQuantityItemsCount();
   }
   cartOrderPost();
 }
