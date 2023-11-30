@@ -24,9 +24,20 @@ export async function getPopularItem() {
 }
 
 export function createMarkupPopular(response) {
+  function isInCart(productId) {
+    const cartProducts = JSON.parse(localStorage.getItem('cart')) || [];
+    console.log('ElemInCart', cartProducts);
+    return cartProducts.some(product => product._id === productId);
+  }
+
+
   const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
   const markup = (response || storedItems)
     .map(({ _id, name, category, size, popularity, img, is10PercentOff }) => {
+      const isInCartValue  = isInCart(_id); 
+
+      const iconClass = isInCartValue  ? 'icon-check' : 'icon-cart';
+
       return `<li class="popular_card" data-id="${_id}">
       <svg class="discont-popular" width="30" height="30" style="visibility: ${onVisible(is10PercentOff)};">
             <use href="${icons}#icon-discount"></use>
@@ -39,7 +50,7 @@ export function createMarkupPopular(response) {
                     <p class="popular_item_name" data-id="${_id}">${name}</p>
                     <button class="basket_button" id="${_id}" data-buythis="${_id}">
                     <svg class="cart-icon-popular" data-buythis="${_id}">
-                        <use href="${icons}#icon-cart" data-buythis="${_id}"/>
+                        <use href="${icons}#${iconClass}" data-buythis="${_id}"/>
                     </svg>
                     </button>
                 </div>
