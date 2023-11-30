@@ -1,6 +1,6 @@
 import axios from 'axios';
 import icons from '../images/icons.svg';
-import { getProductById, renderPopup } from './popup-main';
+import { getProductById, renderPopup, closeModal } from './popup-main';
 import { addToCart } from './addToCart';
 
 const refs = {
@@ -26,17 +26,20 @@ export async function getPopularItem() {
 export function createMarkupPopular(response) {
   const storedItems = JSON.parse(localStorage.getItem('popularItems')) || [];
   const markup = (response || storedItems)
-    .map(({ _id, name, category, size, popularity, img }) => {
+    .map(({ _id, name, category, size, popularity, img, is10PercentOff }) => {
       return `<li class="popular_card" data-id="${_id}">
+      <svg class="discont-popular" width="30" height="30" style="visibility: ${onVisible(is10PercentOff)};">
+            <use href="${icons}#icon-discount"></use>
+      </svg>
         <div class="div_img" data-id="${_id}">
             <img class="popular_photo" src="${img}" alt="No description" loading="lazy" width="56px" height="56px" data-id="${_id}"/>
         </div>
             <div class="info" data-id="${_id}">
                 <div class="info_name_button" data-id="${_id}">
                     <p class="popular_item_name" data-id="${_id}">${name}</p>
-                    <button class="basket_button js_add_to_cart" id="${_id}" data-buythis="${_id}">
-                    <svg class="cart-icon js_add_to_cart" data-buythis="${_id}">
-                        <use href="${icons}#icon-cart" class="js_add_to_cart" data-buythis="${_id}"/>
+                    <button class="basket_button" id="${_id}" data-buythis="${_id}">
+                    <svg class="cart-icon-popular" data-buythis="${_id}">
+                        <use href="${icons}#icon-cart" data-buythis="${_id}"/>
                     </svg>
                     </button>
                 </div>
@@ -52,21 +55,11 @@ export function createMarkupPopular(response) {
   refs.popularList.insertAdjacentHTML('beforeend', markup);
 }
 
-// refs.popularList.addEventListener('click', async e => {
-//   console.log('currentTarget', e.currentTarget);
-//   console.log('target', e.target);
-//   console.log('dataset', e.target.dataset.buythis);
-
-//   if (e.target !== refs.popularList && !e.target.dataset.buythis) {
-//     e.preventDefault();
-//     const id = e.target.dataset.id;
-//     const data = await getProductById(id);
-//     renderPopup(data);
-//   } else if (e.target.dataset.buythis) {
-//     console.log('add to cart');
-//     addToCart(e);
-//   }
-// });
+function onVisible(is10PercentOff) {
+  if (is10PercentOff === true) {
+    return 'visible';
+  } else return 'hidden';
+}
 
 refs.popularList.addEventListener('click', async e => {
   if (e.target !== refs.popularList && !e.target.dataset.buythis) {
@@ -75,6 +68,7 @@ refs.popularList.addEventListener('click', async e => {
     const id = e.target.dataset.id;
     const data = await getProductById(id);
     renderPopup(data);
+
     const removeConteiner = document.querySelector('.popup-main-footer');
     const getStorageProduct = JSON.parse(localStorage.getItem('cart'));
     console.log(getStorageProduct);
@@ -91,11 +85,29 @@ refs.popularList.addEventListener('click', async e => {
         </svg>
       </button>`;
       removeConteiner.insertAdjacentHTML('afterbegin', markup);
+
+       const removePopupBtn = document.querySelector('.popup-main-remove-btn');
+      removePopupBtn.addEventListener('click', e => {
+        const id = e.target.id;
+        const getStorageId = getStorageProduct.find(el => el._id === id);
+        console.log(getStorageId);
+        const newCart = getStorageProduct.filter(el => el !== getStorageId);
+        localStorage.setItem('cart', JSON.stringify(newCart));
+        removeConteiner.textContent = '';
+        const markup = `<p class="popup-main-price">$${getStorageId.price}</p>
+      <button class="popup-main-add-btn" type="button" id=${getStorageId._id}>
+        Add to<svg class="popup-main-icon">
+        <use href="${icons}#icon-cart" />
+        </svg>
+      </button>`;
+        removeConteiner.insertAdjacentHTML('afterbegin', markup);
+        const popupMain = document.getElementById('popap-main');
+        closeModal(popupMain);
+      });
     }
     }
 
-    else if (e.target.dataset.buythis) {
-    console.log('add to cart');
+    if (e.target.dataset.buythis) {
     addToCart(e);
   }
 });

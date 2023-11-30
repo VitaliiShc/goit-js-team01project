@@ -1,52 +1,21 @@
 import { cartPageRender } from './cart.js';
+import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
 
+const cart = document.querySelector('.js-basket');
 
-export function cartClear(YOUR_CART) {
-  const removeCartItemBtn = document.querySelector('.remove-cart-item-btn');
-  
+export function cartRemoveItem() {
+  cart.addEventListener('click', e => {
+    if (e.target.dataset.removeit) {
+      const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
 
-  removeCartItemBtn.addEventListener('click', e => {
-    const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
-    const id = e.currentTarget.datast.productid;
+      const updatedCart = currentCart.filter(
+        product => product._id !== e.target.dataset.removeit
+      );
 
-    const getStorageId = YOUR_CART.find(el => el._id === id);
-    console.log(getStorageId);
+      localStorage.setItem('cart', JSON.stringify(updatedCart));
 
-    const newCart = YOUR_CART.filter(el => el !== getStorageId);
-    localStorage.setItem('cart', JSON.stringify(newCart));
-
-    cartPageRender(YOUR_CART);
+      cartPageRender(updatedCart);
+      cartQuantityItemsCount();
+    }
   });
 }
-
-
-
-// function cartClear(YOUR_CART) {
-//   const removeCartItemBtn = document.querySelector('.remove-cart-item-btn');
-
-//   removeCartItemBtn.addEventListener('click', e => {
-//     const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
-//     const id = e.currentTarget.datast.productid;
-
-//     const getStorageId = YOUR_CART.find(el => el._id === id);
-//     console.log(getStorageId);
-
-//     const newCart = YOUR_CART.filter(el => el !== getStorageId);
-//     localStorage.setItem('cart', JSON.stringify(newCart));
-
-//     cartPageRender(YOUR_CART);
-//   });
-// }
-
-
-
-
-// const removePopupBtn = document.querySelector('.popup-main-remove-btn');
-// removeCartItemBtn.addEventListener('click', e => {
-//   const id = e.target.id;
-//   const getStorageId = YOUR_CART.find(el => el._id === id);
-//   console.log(getStorageId);
-
-//   const newCart = YOUR_CART.filter(el => el !== getStorageId);
-//   localStorage.setItem('cart', JSON.stringify(newCart));
-// });

@@ -5,7 +5,6 @@ import { cartQuantityItemsCount } from './cartQuantityItemsCount.js';
 import { cartRemoveItem } from './cartRemoveItem.js';
 import { cartOrderPost } from './cartOrderPost.js';
 
-
 const cart = document.querySelector('.js-basket');
 const YOUR_CART = JSON.parse(localStorage.getItem('cart'));
 

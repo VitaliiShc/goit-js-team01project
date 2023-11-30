@@ -28,7 +28,11 @@ export function cartMarkupFull(YOUR_CART) {
                     <p class="cart-product-price">${price}</p>
                 </div>
                 <div class="cart-product-card-controls">
-                    <button class="remove-cart-item-btn" data-productid=${_id} type="button"><svg class="remove-cart-item-icon"><use href="${icons}#icon-remove"></use>/svg></button>
+                    <button class="remove-cart-item-btn" type="button" data-removeit=${_id}>
+                        <svg class="remove-cart-item-icon" data-removeit=${_id}>
+                            <use href="${icons}#icon-remove" data-removeit=${_id}></use></use>
+                        </svg>
+                    </button>
                     <!-- <div class="counter"></div> -->
                 </div>
             </div>
